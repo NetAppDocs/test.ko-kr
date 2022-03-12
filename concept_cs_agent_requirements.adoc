@@ -1,0 +1,113 @@
+---
+sidebar: sidebar 
+permalink: concept_cs_agent_requirements.html 
+summary: Agent로 사용하는 서버 또는 VM은 최소 요구 사항을 충족해야 합니다 
+keywords: agent, Linux, requirements, docker, browsers, permissions, Network 
+---
+= 상담원 요구 사항
+
+
+[role="lead"]
+반드시 해야 합니다 link:task_cs_add_agent.html["Agent를 설치합니다"] 데이터 수집기에서 정보를 얻기 위해 Agent를 설치하기 전에 운영 체제, CPU, 메모리 및 디스크 공간 요구 사항을 충족하는지 확인해야 합니다.
+
+[cols="36,60"]
+|===
+| 구성 요소 | Linux 요구 사항 
+
+
+| 운영 체제 | Red Hat Enterprise Linux 7.x, 8.x 64비트 CentOS 7.x 64비트 CentOS 8 Stream 이 컴퓨터는 다른 응용 프로그램 수준 소프트웨어를 실행하지 않아야 합니다. 전용 서버가 권장됩니다. 
+
+
+| 명령 | 설치, 스크립트 실행 및 제거에 'SUDO su –' 명령이 필요합니다. 
+
+
+| CPU | CPU 코어 4개 
+
+
+| 메모리 | 16GB RAM 
+
+
+| 사용 가능한 디스크 공간입니다 | 디스크 공간은 /opt/NetApp 25-30 GB 와 같은 방식으로 할당해야 합니다 
+
+
+| 네트워크 | 100Mbps~1Gbps 이더넷 연결, 정적 IP 주소, 모든 장치에 대한 IP 연결 및 Cloud Secure 인스턴스에 대한 필수 포트(80 또는 443). 
+|===
+참고: Cloud Secure 에이전트는 Cloud Insights 획득 장치 및/또는 에이전트와 동일한 시스템에 설치할 수 있습니다. 그러나 별도의 컴퓨터에 설치하는 것이 가장 좋습니다. 동일한 시스템에 설치된 경우 아래와 같이 디스크 공간을 할당하십시오.
+
+|===
+
+
+| 사용 가능한 디스크 공간입니다 | Linux의 경우 디스크 공간을 50GB~55GB로, /opt/NetApp 25-30 GB/var/log/NetApp 25GB로 할당해야 합니다 
+|===
+
+
+=== 추가 권장 사항
+
+* NTP(Network Time Protocol) * 또는 * SNTP(Simple Network Time Protocol) * 를 사용하여 ONTAP 시스템과 에이전트 시스템의 시간을 동기화하는 것이 좋습니다.
+
+
+
+
+== 클라우드 네트워크 액세스 규칙
+
+미국 * 기반 * Cloud Secure 환경:
+
+[cols="5*"]
+|===
+| 프로토콜 | 포트 | 목적지 | 방향 | 설명 
+
+
+| TCP | 443 | site_name> .cs01.cloudinsights.netapp.com <site_name> .c01.cloudinsights.netapp.com <site_name> .c02.cloudinsights.netapp.com 을 참조하십시오 | 아웃바운드 | Cloud Insights에 대한 액세스 
+
+
+| TCP | 443 | gateway.c01.cloudinsights.netapp.com agentlogin.cs01.cloudinsights.netapp.com | 아웃바운드 | 인증 서비스에 대한 액세스 
+|===
+유럽 기반 * Cloud Secure 환경:
+
+[cols="5*"]
+|===
+| 프로토콜 | 포트 | 목적지 | 방향 | 설명 
+
+
+| TCP | 443 | site_name> .cs01-eu-1.cloudinsights.netapp.com <site_name> .c01-eu-1.cloudinsights.netapp.com <site_name> .c02-eu-1.cloudinsights.netapp.com 을 참조하십시오 | 아웃바운드 | Cloud Insights에 대한 액세스 
+
+
+| TCP | 443 | gateway.c01.cloudinsights.netapp.com agentlogin.cs01-eu-1.cloudinsights.netapp.com | 아웃바운드 | 인증 서비스에 대한 액세스 
+|===
+APAC 기반 * Cloud Secure 환경의 경우:
+
+[cols="5*"]
+|===
+| 프로토콜 | 포트 | 목적지 | 방향 | 설명 
+
+
+| TCP | 443 | site_name> .cs01-ap-1.cloudinsights.netapp.com <site_name> .c01-ap-1.cloudinsights.netapp.com <site_name> .c02-ap-1.cloudinsights.netapp.com 을 참조하십시오 | 아웃바운드 | Cloud Insights에 대한 액세스 
+
+
+| TCP | 443 | gateway.c01.cloudinsights.netapp.com agentlogin.cs01-ap-1.cloudinsights.netapp.com | 아웃바운드 | 인증 서비스에 대한 액세스 
+|===
+
+
+== 네트워크 내 규칙
+
+[cols="5*"]
+|===
+| 프로토콜 | 포트 | 목적지 | 방향 | 설명 
+
+
+| TCP | 389(LDAP) 636(LDAPS/START-TLS) | LDAP 서버 URL입니다 | 아웃바운드 | LDAP에 연결합니다 
+
+
+| TCP | 443 | SVM 관리 IP 주소 | 아웃바운드 | ONTAP와의 API 통신 
+
+
+| TCP | 35000-55000 | SVM 데이터 LIF IP 주소 | 인바운드/아웃바운드 | Fpolicy 이벤트에 대한 ONTAP와의 통신 
+
+
+| TCP | 7 | SVM 데이터 LIF IP 주소 | 아웃바운드 | ONTAP와 Cloud Secure 간의 양방향. 에이전트가 SVM 수명에서 ping을 보냅니다. 
+|===
+
+
+==== 관련:
+
+를 참조하십시오 link:concept_cs_event_rate_checker.html["이벤트 속도 검사기"] 사이징에 대한 정보를 제공하는 문서입니다.

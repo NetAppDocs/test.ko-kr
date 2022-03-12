@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: task_webhook_example_slack.html 
+keywords: webhook, notification, Slack, integration 
+summary: Slack의 성능 또는 인벤토리 임계값에 대한 알림을 보낼 웹 후크를 만듭니다 
+---
+= Slack 의 Webhook 예제
+
+
+[role="lead"]
+Webhook을 사용하면 사용자 지정된 Webhook 채널을 사용하여 다양한 응용 프로그램에 경고 알림을 보낼 수 있습니다. 이 페이지에서는 Slack에 대한 Webhook을 설정하는 예를 제공합니다.
+
+
+NOTE: 이 페이지는 변경될 수 있는 타사 지침을 참조합니다. 을 참조하십시오 link:https://slack.com/help/articles/115005265063-Incoming-webhooks-for-Slack["슬랙 문서"] 를 참조하십시오.
+
+
+
+=== 슬랙 예:
+
+* 로 이동합니다 https://api.slack.com/apps[] 을 클릭하고 새 앱을 만듭니다 의미 있는 이름을 지정하고 Slack Workspace를 선택합니다.
++
+image:Webhooks_Slack_Create_Webhook.png["Slack Webhook 을 만듭니다"]
+
+* 들어오는 Webhook으로 이동하여 들어오는 Webhook_ 활성화, 새 Webhook_ 추가 요청 을 클릭하고 게시할 채널을 선택합니다.
+* Webhook URL을 복사합니다. Cloud Insights Webhook 구성에 붙여 넣어야 합니다.
++
+image:Webhook_Slack_Config.jpg["슬랙 Webhook URL"]
+
+
+
+
+
+=== Cloud Insights Webhook 생성:
+
+. Cloud Insights에서 * 관리자 > 알림 * 으로 이동하고 * Webhook * 탭을 선택합니다. 새 웹후크를 만들려면 * + 웹후크 * 를 클릭합니다.
+. 웹 후크에 "Slack Webhook"과 같은 의미 있는 이름을 지정합니다.
+. Template Type_드롭다운에서 * Slack * 을 선택합니다.
+. 위의 URL을 _url_필드에 붙여 넣습니다.
+
+
+image:Webhooks-Slack_example.png["슬랙 웹후크 템플릿"]
+
+
+
+=== Webhook를 통한 알림
+
+Webhook를 통해 이벤트에 대해 알리려면 Cloud Insights에서 * 알림 > 모니터 * 로 이동하고 * + 모니터 * 를 클릭하여 새 를 생성합니다 link:task_create_monitor.html["모니터링"].
+
+* 메트릭을 선택하고 모니터 조건을 정의합니다.
+* 팀 알림 설정 에서 * Webhook * 전달 방법 을 선택합니다.
+* 원하는 이벤트(Critical, Warning, Resolved)에 대해 "Slack" 웹 후크를 선택합니다.
++
+image:Webhooks_Slack_Notifications.png["Webhook 알림"]
+
+
+
+
+
+==== 추가 정보:
+
+* 메시지 형식 및 레이아웃을 수정하려면 을 참조하십시오 https://api.slack.com/messaging/composing[]
+* 오류 처리: https://api.slack.com/messaging/webhooks#handling_errors[]
+

@@ -1,0 +1,18 @@
+---
+sidebar: sidebar 
+permalink: reference_schemas.html 
+summary: Reporting과 함께 사용할 데이터 웨어하우스 스키마 다이어그램 및 테이블 
+keywords: dwh, data warehouse, schema, reporting 
+---
+= 보고를 위한 Cloud Insights 스키마
+
+
+[role="lead"]
+이러한 스키마 테이블과 다이어그램은 Cloud Insights 보고를 위한 참조로 여기에 제공됩니다.
+
+link:https://docs.netapp.com/us-en/cloudinsights/ci_reporting_database_schema.pdf["* 스키마 테이블 *"] PDF 형식. 링크를 클릭하여 열거나 마우스 오른쪽 단추를 클릭하고 _다른 이름으로 저장..._을 선택하여 다운로드합니다.
+
+link:reporting_schema_diagrams.html["* 스키마 다이어그램 *"]
+
+
+NOTE: 보고 기능은 Cloud Insights에서 사용할 수 있습니다 link:concept_subscribing_to_cloud_insights.html["Premium Edition을 참조하십시오"].

@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_postgresql.html 
+keywords: telegraf, installation, install, postgresql 
+summary: PostgreSQL 데이터 수집기 구성 
+---
+= PostgreSQL Data Collector
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 PostgreSQL에서 메트릭을 수집합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. Services * 에서 PostgreSQL을 선택합니다.
++
+Telegraf 에이전트가 설치된 운영 체제 또는 플랫폼을 선택합니다.
+
+. 수집용 에이전트를 아직 설치하지 않았거나 다른 운영 체제 또는 플랫폼용 에이전트를 설치하려는 경우, _지침 표시_를 클릭하여 를 확장합니다 link:task_config_telegraf_agent.html["에이전트 설치"] 지침.
+. 이 데이터 수집기에 사용할 Agent Access 키를 선택합니다. Agent 액세스 키 * 버튼을 클릭하여 새 Agent 액세스 키를 추가할 수 있습니다. 모범 사례: OS/플랫폼별로 데이터 수집기를 그룹화하려는 경우에만 다른 에이전트 액세스 키를 사용하십시오.
+. 구성 단계에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+image:PostgreSQLDCConfigLinux.png["PostgreSQL 구성"]
+
+
+
+== 설정
+
+정보는 에서 찾을 수 있습니다 link:https://www.postgresql.org/docs/["PostgreSQL 문서"].
+
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| PostgreSQL 서버 | Namespace 데이터베이스 서버 | 노드 이름 노드 IP입니다 | 할당된 버퍼 백엔드 버퍼 백엔드 파일 동기화 버퍼 체크포인트 버퍼 지우기 체크포인트 동기화 시간 체크포인트 쓰기 시간 체크포인트 요청 체크포인트 지정 시간 최대 쓰기 정리 
+
+
+| PostgreSQL 데이터베이스 | Namespace 데이터베이스 서버 | 데이터베이스 OID 노드 이름 노드 IP입니다 | 블록 읽기 시간 블록 쓰기 시간 블록 적중 횟수 블록 읽기 충돌 교착 상태 클라이언트 번호 임시 파일 바이트 임시 파일 수 행 삭제됨 행 페치 행 삽입 행 업데이트된 행 확정 트랜잭션 롤백업 
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

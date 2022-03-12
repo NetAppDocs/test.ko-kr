@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: task_config_cs_incloud.html 
+keywords: Cloud, Storage, AWS, Cloud Volumes, Cloud ONTAP, firewall, VPC, Subnet, 
+summary: Cloud Secure는 데이터 수집기를 사용하여 디바이스에서 파일 및 사용자 액세스 데이터를 수집합니다. 
+---
+= Cloud Volumes ONTAP 데이터 수집기 구성
+
+
+[role="lead"]
+Cloud Secure는 데이터 수집기를 사용하여 디바이스에서 파일 및 사용자 액세스 데이터를 수집합니다.
+
+
+
+== Cloud Volumes ONTAP 스토리지 구성
+
+OnCommand 에이전트를 호스팅하도록 단일 노드/HA AWS 인스턴스를 구성하려면 Cloud Secure Cloud Manager 설명서를 참조하십시오.https://docs.netapp.com/us-en/occm/index.html[]
+
+구성이 완료되면 단계에 따라 SVM을 설정합니다.https://docs.netapp.com/us-en/cloudinsights/task_add_collector_svm.html[]
+
+
+
+== 에이전트 시스템 구성
+
+Cloud Secure 에이전트로 사용할 시스템을 구성하려면 다음 단계를 수행하십시오.
+
+.단계
+. AWS 콘솔에 로그인하고 EC2-Instances 페이지로 이동한 후 _Launch instance_를 선택합니다.
+. 이 페이지에서 언급한 대로 적절한 버전의 RHEL 또는 CentOS AMI를 선택합니다.https://docs.netapp.com/us-en/cloudinsights/concept_cs_agent_requirements.html[]
+. Cloud ONTAP 인스턴스가 상주하는 VPC 및 서브넷을 선택합니다.
+. 할당된 리소스로 _T2.xLarge_(vCPU 4개 및 16GB RAM)를 선택합니다.
++
+.. EC2 인스턴스를 만듭니다.
+
+
+. YUM 패키지 관리자를 사용하여 필요한 Linux 패키지를 설치합니다.
++
+.. install_wget_and_unzip_native Linux 패키지를 설치합니다.
+
+
+
+
+
+
+== Cloud Secure 에이전트를 설치합니다
+
+. Cloud Insights 환경에 관리자 또는 계정 소유자로 로그인합니다.
+. Cloud Secure * 관리자 > 데이터 수집기 * 로 이동하고 * 에이전트 * 탭을 클릭합니다.
+. * + Agent * 를 클릭하고 RHEL을 대상 플랫폼으로 지정합니다.
+. Agent 설치 명령을 복사합니다.
+. 로그인한 RHEL EC2 인스턴스에 Agent Installation 명령을 붙여 넣습니다. 그러면 Cloud Secure 에이전트가 설치되어 모든 가 제공됩니다 link:concept_cs_agent_requirements.html["상담원 필수 구성 요소"] 충족됩니다.
+
+
+자세한 단계는 https://docs.netapp.com/us-en/cloudinsights/task_cs_add_agent.html#steps-to-install-agent 링크를 참조하십시오

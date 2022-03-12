@@ -1,0 +1,139 @@
+---
+sidebar: sidebar 
+permalink: task_dc_na_astra_data_store.html 
+summary: NetApp Astra Data Store를 구성합니다 
+keywords: data collector, queries, create, astra, data, store, 
+---
+= NetApp Astra Data Store 데이터 수집기
+
+
+[role="lead"]
+이 데이터 수집기는 단일 Astra Data Store 클러스터에 대한 인벤토리 및 성능 데이터를 가져옵니다. 모니터링 운영자는 데이터 수집기 외에 고급 메트릭을 수집하도록 _Telegraf_를 구성하고 로그를 수집하도록 _Fluent bit_를 구성합니다.
+
+
+TIP: 이러한 설치 지침 및 추가 정보는 Astra Data Store 문서에서도 확인할 수 있습니다.link:https://docs.netapp.com/us-en/astra-data-store/use/monitor-with-cloud-insights.html["Cloud Insights를 통해 메트릭을 모니터링합니다"]
+
+
+
+
+== 용어
+
+Cloud Insights는 이 데이터 수집기에서 인벤토리 및 성능 데이터를 가져옵니다. 획득한 각 자산 유형에 대해 자산에 가장 일반적으로 사용되는 용어가 표시됩니다. 이 데이터 수집기를 보거나 문제를 해결할 때 다음 용어를 염두에 두십시오.
+
+[cols="2*"]
+|===
+| 공급업체/모델 기간 | Cloud Insights 용어입니다 
+
+
+| AstraDSVolume(AstraDS볼륨) | 내부 볼륨 
+
+
+| AstraDSNodeInfo.status.drives를 참조하십시오 | 디스크 
+
+
+| AstraDSNodeInfo를 참조하십시오 | 스토리지 노드 
+
+
+| AstraDSExportPolicy를 참조하십시오 | 공유/공유 초기자 
+
+
+| AstraDSCluster(AstraDSCluster) | 스토리지 
+|===
+
+
+== 요구 사항
+
+* NetApp 모니터링 사업자는 Astra Data Store와 함께 Kubernetes 클러스터에 설치해야 합니다. Astra Data Store 설치 중에 설치되지 않은 경우 Astra Data Store 설치 지침에 따라 모니터링 운영자를 설치하십시오.
+* kubbeck-astrads_kubbctl 플러그인을 설치해야 합니다. 설치되지 않은 경우 Astra Data Store 설치 지침에 따라 _kubctl -astrads_binary를 설치하십시오.
+* 다음 명령을 사용할 수 있어야 합니다. _awk, curl, grep 및 JQ_.
+
+
+
+
+== 설치
+
+설치 스크립트는 Astra Data Store 데이터 수집기의 설치 과정을 안내합니다. 화면의 지침을 따릅니다. 설치를 완료하는 데 몇 분 정도 걸립니다. 완료되면 데이터가 Cloud Insights에 표시되기까지 몇 분 정도 걸릴 수 있습니다.
+
+스크립트는 다음 단계를 안내합니다.
+
+. API 액세스 토큰을 선택하십시오.
+. 설치 대화 상자에서 설치 프로그램 스크립트를 복사하여 _adsintresights-ads-monitoring.sh_라는 이름의 파일로 저장합니다. 클립보드 아이콘을 클릭하여 스크립트를 빠르게 클립보드에 복사할 수 있습니다.
+. Bash 창을 열고 디렉토리를 _adintsights-ads-monitoring.sh_script의 위치로 변경합니다.
+. 설치 대화 상자에서 권한 명령 블록을 복사합니다. 클립보드 아이콘을 클릭하여 명령을 빠르게 클립보드에 복사할 수 있습니다.
+. Bash 창에 권한 명령을 붙여넣고 Enter 키를 누릅니다.
+. 설치 대화 상자에서 설치 명령을 복사합니다. 클립보드 아이콘을 클릭하여 명령을 빠르게 클립보드에 복사할 수 있습니다.
+. BASH 창에 설치 명령을 붙여 넣습니다.
+. Kubernetes_IP>를 Kubernetes API 서버의 IP 주소로 바꿉니다.
+. Kubernetes API 토큰으로 <Kubernetes_token>을 교체하십시오.
+. Enter 키를 누릅니다.
++
+설치 프로그램 스크립트는 * 모니터링 오퍼레이터가 설치 및 구성되었는지 확인합니다. * Fluent bit 설정 * 텔레그라프 구성. * 획득 장치를 설치합니다. * 획득 장치가 실행되면 Astra Data Store Collector를 설치합니다.
+
+. 설치 완료 _ 를 클릭합니다.
+
+
+오류로 인해 설치 프로그램 스크립트가 종료되면 오류가 해결되면 다시 실행할 수 있습니다. 설치 프로그램 스크립트는 환경에서 기본 설정을 사용하지 않는 경우 모니터링 운영자 네임스페이스 및 Kubernetes API 서버 포트와 같은 추가 매개 변수를 지원합니다. 사용 가능한 옵션의 전체 목록은 아래에 나와 있습니다.
+
+
+
+=== 설치 프로그램 스크립트 옵션:
+
+Cloud Insights 도메인 이름과 선택한 API 액세스 키는 다운로드 시 설치 프로그램 스크립트에 포함됩니다.
+
+....
+$ ./cloudinsights-ads-monitoring.sh -h
+USAGE: cloudinsights-ads-monitoring.sh [OPTIONS]
+Configure monitoring of Astra Data Store by Cloud Insights.
+OPTIONS:
+ -h                      Display this help message.
+ -d ci_domain_name       Cloud Insights tenant domain name.
+ -i kubernetes_ip        Kubernetes API server IP address.
+ -k ci_api_key           Cloud Insights API Access Key.
+ -n namespace            Namespace for monitoring components. (default: netapp-monitoring)
+ -p kubernetes_port      Kubernetes API server port. (default: 6443)
+ -r root_pv_dir          Create 3 Persistent Volumes in this directory for the Acquisition Unit.
+                         Only specify this option if there is no Storage Provisioner installed and the PVs do not already exist.
+ -s storage_class        Storage Class name for provisioning Acquisition Unit PVs. If not specified, the default storage class will be used.
+ -t kubernetes_token     Kubernetes API server token.
+....
+
+
+== 문제 해결
+
+이 데이터 수집기에서 문제가 발생할 경우 다음과 같은 방법을 시도해 보십시오.
+
+
+
+==== Astra Data Store 데이터 수집기
+
+[cols="2*"]
+|===
+| 문제: | 다음을 시도해 보십시오. 
+
+
+| "승인되지 않은" 메시지가 표시됩니다 | Kubernetes API 토큰에 _astrads.netapp.io_ apiGroup의 API 호출 권한이 있는지 확인하십시오 
+
+
+| "알 수 없는 호스트:astrads-metrics-service.astrads-system.svc.cluster.local: 이름 또는 서비스를 알 수 없음" | 수집기가 ADS Kubernetes 클러스터 내에서 실행 중인 획득 장치 포드에 설치되어 있는지 확인합니다. astrads-metrics-service가 astrads-system namespace를 실행하고 있는지 확인합니다. 
+|===
+
+
+==== 설치 스크립트
+
+[cols="2*"]
+|===
+| 문제: | 다음을 시도해 보십시오. 
+
+
+| 모니터링 연산자는 <namespace> 네임스페이스에서 실행되고 있지 않습니다. | Astra Data Store 설치 지침에 따라 설치합니다 
+
+
+| 획득 장치 포드 <POD>가 300초 후에 성공적으로 시작되지 않았습니다. | 수집 유닛 포드 이름 가져오기: kubbtl get Pod -- namespace netapp-monitoring | grep "au-pod" Pod 이벤트의 오류 확인: kubctl pod -- namespace NetApp - monitoring <POD_name> 설명 
+
+
+| 900초 후 획득 장치 설치가 완료되지 않았습니다 | 수집 장치 포드 이름 확인: kubctl get Pod -- namespace netapp-monitoring | grep "au-pod" Pod 로그에서 오류 확인: kubctl logs -- Namespace NetApp - monitoring <POD_NAME> 오류가 없고 로그가 "Main-Acquisition is up and running!" 메시지로 끝나는 경우, 성공적으로 설치되었지만 예상보다 시간이 너무 깁니다. 설치 스크립트를 다시 실행합니다. 
+
+
+| Cloud Insights에서 획득 장치 ID를 검색하지 못했습니다 | 획득 장치가 Cloud Insights에 나타나는지 확인합니다. Admin > Data Collector 로 이동하고 Acquisition Units 탭을 클릭합니다. Cloud Insights API 키에 획득 장치에 대한 권한이 있는지 확인합니다. 
+|===
+이 Data Collector에 대한 추가 정보는 에서 확인할 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

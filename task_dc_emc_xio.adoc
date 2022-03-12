@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: task_dc_emc_xio.html 
+keywords: data collector, XtremeIO, EMC 
+summary: XtremeIO 데이터 수집기 구성 
+---
+= Dell EMC XtremeIO 데이터 수집기
+
+
+[role="lead"]
+EMC XtremIO 데이터 수집기는 EMC XtremIO 스토리지 시스템에서 인벤토리 및 성능 데이터를 가져옵니다.
+
+
+
+== 요구 사항
+
+EMC XtremIO(HTTP) 데이터 수집기를 구성하려면 다음이 필요합니다.
+
+* XtremIO 관리 서버(XMS) 호스트 주소
+* 관리자 권한이 있는 계정입니다
+* 포트 443(HTTPS)에 대한 액세스
+
+
+
+
+== 용어
+
+Cloud Insights는 EMC XtremIO 데이터 수집기에서 다음과 같은 인벤토리 정보를 수집합니다. Cloud Insights에서 획득한 각 자산 유형에 대해 이 자산에 가장 일반적으로 사용되는 용어가 표시됩니다. 이 데이터 소스를 보거나 문제를 해결할 때 다음 용어를 염두에 두십시오.
+
+[cols="2*"]
+|===
+| 공급업체/모델 기간 | Cloud Insights 용어입니다 
+
+
+| 디스크(SSD) | 디스크 
+
+
+| 클러스터 | 스토리지 
+
+
+| 컨트롤러 | 스토리지 노드 
+
+
+| 볼륨 | 볼륨 
+
+
+| LUN 매핑 | 볼륨 맵 
+
+
+| 타겟 FC 이니시에이터 | 볼륨 마스크 
+|===
+참고: 이러한 용어 매핑은 일반적인 용어 매핑일 뿐이며 이 데이터 소스의 모든 경우를 나타내는 것은 아닙니다.
+
+
+
+== 요구 사항
+
+* XtremIO 관리 서버(XMS) 호스트 IP 주소
+* XtremIO의 관리자 사용자 이름 및 암호
+
+
+
+
+== 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| XMS 호스트 | XtremIO 관리 서버의 IP 주소 또는 정규화된 도메인 이름입니다 
+
+
+| 사용자 이름입니다 | XtremIO 관리 서버의 사용자 이름입니다 
+
+
+| 암호 | XtremIO 관리 서버의 암호입니다 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| TCP 포트 | XTremIO 관리 서버에 연결하는 데 사용되는 TCP 포트입니다. 기본값은 443입니다. 
+
+
+| 재고 폴링 간격(분) | 재고 조사 사이의 간격입니다. 기본값은 60분입니다. 
+
+
+| 성능 폴링 간격(초) | 성능 폴링 간격입니다. 기본값은 300초입니다. 
+|===
+
+
+== 문제 해결
+
+이 Data Collector에 대한 추가 정보는 에서 확인할 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

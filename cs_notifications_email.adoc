@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: cs_notifications_email.html 
+summary: Cloud Secure 경고 알림을 위한 이메일 주소 추가 
+keywords: email, notifications, alerts, warnings, attacks 
+---
+= 경고 이메일 알림 구성
+
+
+[role="lead"]
+알림의 전자 메일 알림은 알림의 모든 작업에 대해 알림 받는 사람 목록으로 전송됩니다.
+
+알림 수신자를 구성하려면 * Admin > Notifications * 를 클릭하고 각 수신자의 이메일 주소를 입력합니다.
+
+[role="thumb"]
+image:CS-Alert-Notification-List.png["경고 이메일 알림 수신자 목록"]

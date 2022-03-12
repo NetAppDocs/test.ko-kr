@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: task_config_cs_amazon_fsx.html 
+keywords: Cloud, Storage, AWS, Fsx 
+summary: Cloud Secure는 데이터 수집기를 사용하여 디바이스에서 파일 및 사용자 액세스 데이터를 수집합니다. 
+---
+= NetApp ONTAP용 Amazon FSx 구성
+
+
+[role="lead"]
+이 데이터 수집기는 NetApp ONTAP용 Amazon FSx에서 파일 및 사용자 액세스 데이터를 수집합니다. 이 데이터 수집기는 Cloud Insights 서비스 지역 전체에서 점증적으로 사용할 수 있습니다. Cloud Insights 환경에서 이 수집기의 아이콘이 보이지 않으면 영업 담당자에게 문의하십시오.
+
+
+
+=== 에이전트 시스템 구성
+
+Cloud Secure 에이전트로 사용할 시스템을 구성하려면 다음 단계를 수행하십시오.
+
+. AWS 콘솔에 로그인하고 EC2-Instances 페이지로 이동한 다음 Launch Instance를 선택합니다.
+. 에 설명된 대로 적절한 버전의 RHEL 또는 CentOS AMI를 선택합니다 link:concept_cs_agent_requirements.html["요구 사항"].
+. NetApp ONTAP 인스턴스의 Amazon FSx가 상주하는 것과 동일한 VPC 및 서브넷에서 에이전트 상자를 생성합니다.
++
+또는 NetApp ONTAP VPC용 Amazon FSx에 연결되어 있는 VPC에 에이전트 상자가 있어야 합니다.
+
++
+NetApp ONTAP용 Amazon FSx와 에이전트 간에 양방향 통신이 존재하는지 확인합니다.
+
+. 할당된 리소스로 T2.xLarge(vCPU 4개 및 16GB RAM)를 선택합니다.
++
+.. EC2 인스턴스를 만듭니다.
+
+
+. YUM 패키지 관리자를 사용하여 필요한 Linux 패키지를 설치합니다.
++
+.. 기본 Linux 패키지를 설치하고 압축을 풉니다.
+
+
+
+
+
+
+=== Cloud Secure 에이전트를 설치합니다
+
+. Cloud Insights 환경에 관리자 또는 계정 소유자로 로그인합니다.
+. Cloud Secure 관리자 > 데이터 수집기 로 이동하고 에이전트 탭을 클릭합니다.
+. Agent를 클릭하고 RHEL을 대상 플랫폼으로 지정합니다.
+. Agent 설치 명령을 복사합니다.
+. 로그인한 RHEL EC2 인스턴스에 Agent Installation 명령을 붙여 넣습니다.
++
+이렇게 하면 모든 에이전트 필수 구성 요소가 충족되는 경우 Cloud Secure 에이전트가 설치됩니다.
+
+
+
+자세한 단계는 Cloud Secure를 참조하십시오 link:task_cs_add_agent.html["Agent 설치"] 페이지,

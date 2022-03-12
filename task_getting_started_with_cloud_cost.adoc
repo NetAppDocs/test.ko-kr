@@ -1,0 +1,80 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_with_cloud_cost.html 
+summary: 클라우드 비용 시작 
+keywords: analysis, cost, analyzer 
+---
+= 클라우드 비용 시작
+
+
+[role="lead"]
+클라우드 비용 은 과거, 현재 및 예상 지출에 대한 상세한 비용 분석을 제공하여 고객 환경에서 클라우드 사용량을 파악하는 데 사용됩니다. Cloud Cost 대시보드에서는 조직의 클라우드 비용을 명확하게 파악하고 개별 워크로드, 계정 및 서비스를 세부적으로 파악할 수 있습니다.
+
+클라우드 비용은 다음과 같은 주요 과제를 해결하는 데 도움이 될 수 있습니다.
+
+* 클라우드 비용 추적 및 모니터링
+* 폐기물 및 잠재적 최적화 영역 식별
+* 실행 가능한 작업 항목 제공
+
+
+클라우드 비용을 구성하거나 보려면 Cloud Insights_Administrator_or_Account Owner_permissions가 있어야 합니다. 구성이 완료되면 해당 권한을 가진 모든 Cloud Insights 사용자가 클라우드 비용에 액세스할 수 있습니다.
+
+Cloud Cost를 _AWS Organizations_account에 연결하여 구성합니다. 이를 라고도 합니다 link:https://docs.spot.io/cloud-analyzer/getting-started/connect-your-aws-master-payer-account-existing-customer["관리 _"] 계정.
+
+
+NOTE: Cloud Cost는 미국 지역 Cloud Insights 환경에서만 사용할 수 있으며, 단일 AWS 조직 계정에만 구성할 수 있습니다. 클라우드 비용은 Cloud Insights에 있을 수 있는 AWS Collector와 별도로 구성해야 합니다.
+
+
+
+==== 클라우드 비용 설정
+
+Cloud Insights에 로그인하고 * 클라우드 비용 * 메뉴 항목을 처음 클릭하면 시작 화면이 나타나고 클라우드 비용 설정을 시작하라는 메시지가 표시됩니다.
+
+image:Cloud_Cost_Welcome.png["클라우드 비용"]
+
+* 시작하려면 * 시작에 AWS 자격 증명 추가 * 버튼을 클릭합니다. AWS 연결 화면이 나타납니다. 이 화면의 지침에 따라 * AWS Organizations Account * 를 Cloud Cost에 연결합니다.
++
+image:Cloud_Cost_Setup_1.png["설치하고"]
+
+* 계정 구성을 완료하면 Cloud Cost에 "Welcome" 메시지가 표시됩니다.
++
+image:Cloud_Cost_Welcome_Wait.png["클라우드 비용에 오신 것을 환영합니다!"]
+
++
+
+NOTE: Cloud Cost를 완전히 구성하는 데 최대 24시간이 걸릴 수 있습니다. 구성이 완료되면 이메일 알림을 받게 됩니다. 문제가 있는 경우 채팅 아이콘을 클릭하거나 을 방문하여 NetApp Support에 문의할 수 있습니다 link:https://spot.io/support["NetApp Spot 지원"].
+
+* 설정이 완료되면 * Cloud Cost * (클라우드 비용 *) 메뉴 항목을 클릭하면 다음 예제와 같이 비용 분석 대시보드가 표시됩니다.
++
+image:Cloud_Cost_Example_Dashboard.png["클라우드 비용 예 대시보드"]
+
+
+
+
+
+=== 클라우드 비용에 대해 자세히 알아보십시오
+
+Cloud Cost는 Cloud Insights 환경을 의 Cloud Analyzer 기능과 연결합니다 link:https://docs.spot.io/cloud-analyzer/["Spot을 선택합니다"]Cloud Insights에서 클라우드 비용 데이터에 대한 가장 적절한 뷰를 제공합니다. 클라우드 비용 대시보드 오른쪽 위에 있는 _Get Full Analysis_링크를 클릭하면 스폿에서 전체 Cloud Analyzer 대시보드를 열 수 있습니다. 전체 분석을 통해 추가 데이터 및 세부 정보를 제공하여 클라우드 지출에 대한 통찰력을 얻을 수 있습니다.
+
+
+
+=== 문제 해결
+
+문제가 발생할 경우 다음과 같이 시도해 볼 수 있습니다.
+
+[cols="2*"]
+|===
+| 문제: | 다음을 시도해 보십시오. 
+
+
+| 설정을 확인하는 Spot에서 이메일을 받았지만 링크가 Cloud Insights와 관련이 없는 것 같습니다 | Spot 이메일의 링크는 Cloud Insights 클라우드 비용과 관련이 없습니다. Spot에서 보낸 이메일의 링크를 무시합니다. 
+
+
+| Cloud Cost에서 Spot 로그인 프롬프트를 표시합니다. | Cloud Cost 세션이 만료되었을 수 있습니다. Cloud Insights 홈 화면으로 이동한 다음 클라우드 비용으로 돌아가 클라우드 비용 세션을 다시 시작합니다. 
+
+
+| "Cloud Cost session conflict detected(클라우드 비용 세션 충돌이 감지되었습니다)" 메시지를 받았습니다. | 여러 계정에서 연 클라우드 비용 세션은 동일한 브라우저에서 지원되지 않습니다. Cloud Insights에서 로그아웃한 후 다시 로그인하여 계정에 대한 클라우드 비용 정보를 확인하십시오. 
+
+
+| 로그인을 시도할 때 "권한 없음"이라는 오류가 표시됩니다. 잘못된 자격 증명입니다." | 올바른 자격 증명으로 로그인하고 있는지 확인합니다. 문제가 지속되면 NetApp Spot Support에 문의하십시오. 
+|===

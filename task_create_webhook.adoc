@@ -1,0 +1,80 @@
+---
+sidebar: sidebar 
+permalink: task_create_webhook.html 
+keywords: webhook, notification, slack, integration 
+summary: 성능 또는 인벤토리 임계값에 대한 경고를 표시할 모니터를 생성합니다 
+---
+= Webhook를 사용한 알림
+
+
+[role="lead"]
+Webhook을 사용하면 사용자 지정된 Webhook 채널을 사용하여 다양한 응용 프로그램에 경고 알림을 보낼 수 있습니다.
+
+Slack, PagerDuty, Teams, Teams, Teams 등 대부분의 상용 응용 프로그램은 Webhook를 표준 입력 인터페이스로 지원합니다. Cloud Insights는 일반 사용자 지정 가능한 웹 후크 채널을 지원하여 이러한 전달 채널을 대부분 지원할 수 있습니다. Webhook에 대한 정보는 이 응용 프로그램 웹 사이트에서 찾을 수 있습니다. 예를 들어, Slack 은 을 제공합니다 link:https://api.slack.com/messaging/webhooks["유용한 가이드입니다"].
+
+여러 개의 웹후크 채널을 만들 수 있으며, 각 채널은 서로 다른 용도로 사용됩니다. 즉, 별도의 애플리케이션, 다른 수신자 등을 만들 수 있습니다
+
+Webhook 채널 인스턴스는 다음 요소로 구성됩니다.
+
+|===
+
+
+| 이름 | 고유한 이름입니다 
+
+
+| URL | 웹 후크 대상 URL. URL과 함께 _http://_ 또는 _https://_ 접두사가 포함됩니다 
+
+
+| 방법 | GET, POST - 기본값은 POST입니다 
+
+
+| 사용자 정의 머리글 | 여기에 사용자 정의 머리글 행을 지정합니다 
+
+
+| 메시지 본문 | 메시지 본문을 여기에 놓습니다 
+
+
+| 기본 경고 매개변수 | 에는 webhook에 대한 기본 매개 변수가 나와 있습니다 
+
+
+| 사용자 지정 매개 변수 및 암호 | 사용자 지정 매개 변수 및 암호를 사용하면 고유한 매개 변수와 암호와 같은 보안 요소를 추가할 수 있습니다 
+|===
+
+
+=== Webhook 생성
+
+Cloud Insights Webhook를 만들려면 * 관리자 > 알림 * 으로 이동하여 * Webhook * 탭을 선택합니다.
+
+다음 이미지는 Slack에 대해 구성된 웹후크 예를 보여 줍니다.
+
+image:Webhook_Example_Slack.png["Webhook 예제"]
+
+Cloud Insights Webhook은 여러 가지 기본 매개 변수로 구성됩니다. 또한 사용자 지정 매개 변수 또는 암호를 직접 만들 수도 있습니다.
+
+image:Webhook_Default_Parameters.png["Cloud Insights 기본 Webhook 매개 변수"]
+
+
+
+==== 매개 변수: 해당 매개 변수는 무엇이며 어떻게 사용합니까?
+
+경고 매개 변수는 알림에 따라 채워지는 동적 값입니다. 예를 들어, _%%TriggeredOn%_ 매개 변수는 경고가 트리거된 개체로 대체됩니다.
+
+
+
+==== 사용자 지정 매개 변수 및 암호
+
+이 섹션에서는 원하는 사용자 지정 매개 변수 및/또는 암호를 추가할 수 있습니다. 보안상의 이유로 암호를 정의한 경우 웹 후크 생성자만 이 웹 후크 채널을 수정할 수 있습니다. 다른 사람에게는 읽기 전용입니다. URL/헤더에서 _%<secret_name>%%_(으)로 비밀을 사용할 수 있습니다.
+
+
+
+=== 모니터에서 Webhook 알림 선택
+
+에서 웹 후크 알림을 선택합니다 link:task_create_monitor.html#creating-a-monitor["모니터링"], * 경고 > 모니터 관리 * 로 이동하여 원하는 모니터를 선택하거나 새 모니터를 추가합니다. 팀 알림 설정 섹션에서 전달 방법으로 _Webhook_을 선택합니다. 경고 수준(위험, 경고, 해결)을 선택한 다음 원하는 웹 후크를 선택합니다.
+
+image:Webhook_Monitor_Notify.png["Webhook 모니터 알림"]
+
+
+
+== Webhook 예:
+
+에 대한 Webhook link:task_webhook_example_slack.html["슬랙"]에 대한 Webhook 에 대한 Webhook 에 대한 Webhook 

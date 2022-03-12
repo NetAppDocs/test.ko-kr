@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: task_troubleshooting_general_problems.html 
+summary: 일반 Cloud Insights 문제 해결 팁 
+keywords: troubleshooting, problems, browser, login, log in, accessing, access to 
+---
+= 일반적인 Cloud Insights 문제 해결
+
+
+[role="lead"]
+여기에서 Cloud Insights 문제 해결을 위한 제안 사항을 찾을 수 있습니다.
+
+도 참조하십시오 link:task_troubleshooting_linux_acquisition_unit_problems.html["Linux 획득 장치 문제 해결"] 및 .
+
+
+
+==== 로그인 문제:
+
+|===
+
+
+| * 문제: * | * 사용해 보세요. * 
+
+
+| Cloud Insights는 5분마다 로그아웃합니다 | 브라우저 설정에서 _ [*.]auth0.com _ 에서 타사 쿠키 수락을 활성화합니다. 예를 들어 Chrome의 익명 모드에서 기본 브라우저 설정은 타사 쿠키를 차단합니다. 브라우저 URL에 "chrome://settings/cookies"를 입력하십시오. "모든 쿠키 허용" 옵션을 선택합니다. 
+
+
+| Cloud Central 계정이 있지만 Cloud Central에 로그인할 수 없습니다. | saas.support@netapp.com 으로 문의하십시오. 특히, Cloud Central 문제 또는 질문을 위한 것입니다. 기타 모든 Cloud Insights 문제는 에 문의하십시오 link:concept_requesting_support.html["NetApp 지원"]. 
+
+
+| Cloud Insights에 초대를 받았는데 "승인되지 않음" 메시지가 나타납니다. | Cloud Central 계정에 등록했는지 또는 조직에서 Cloud Central에서 SSO 로그인을 사용하는지 확인합니다. Cloud Central 프로필 이메일 주소가 Cloud Insights 환영 이메일에 표시된 이메일 주소와 일치하는지 확인하십시오. 이메일이 일치하지 않으면 올바른 이메일 주소로 새 초대를 요청하십시오. 
+
+
+| Cloud Central 또는 Cloud Secure에서 로그아웃하고 Cloud Insights에서 자동으로 로그아웃했습니다. | NetApp 클라우드에서 SSO(Single Sign-On)를 사용하면 모든 Cloud Insights, Cloud Secure 및 보고 세션이 로그아웃됩니다. 여러 Cloud Insights 계정에 액세스할 수 있는 경우 한 계정에서 로그아웃하면 모든 활성 세션이 로그아웃됩니다. 계정에 액세스하려면 다시 로그인하십시오. 
+
+
+| 며칠 후에 자동으로 로그아웃되었습니다. | NetApp Cloud 어카운트는 몇 일마다 재인증을 요구합니다(현재 Cloud Central 설정은 7일). 계정에 액세스하려면 다시 로그인하십시오. 
+
+
+| "더 이상 로그인할 수 없습니다"라는 오류 메시지가 나타납니다. | 계정 관리자에게 문의하여 Cloud Insights에 대한 액세스 권한을 확인하십시오. Cloud Central 프로필 이메일 주소가 Cloud Insights 환영 이메일에 표시된 이메일 주소와 일치하는지 확인하십시오 
+
+
+| 기타 로그인 오류 | Chrome에서 시크릿 모드를 시도하거나 브라우저 기록, 쿠키 및 캐시를 지웁니다. 다른 브라우저 프로필(예 Chrome - 사람 추가). 
+|===
+활성 Cloud Insights 구독이 있는 경우 다음 지원 옵션을 사용할 수 있습니다.
+
+link:https://www.netapp.com/us/contact-us/support.aspx["전화"]
+
+
+자세한 내용은 를 참조하십시오 https://docs.netapp.com/us-en/cloudinsights/concept_requesting_support.html["Cloud Insights 지원 문서"].

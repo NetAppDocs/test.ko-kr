@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: concept_determining_data_collector_acq_status.html 
+summary: Data Collector 획득 상태 
+keywords: collector, acquisition, status 
+---
+= 데이터 수집기 획득 상태를 확인하는 중입니다
+
+
+[role="lead"]
+데이터 수집기는 Cloud Insights의 주요 정보 소스이기 때문에 데이터 수집기가 실행 상태를 유지해야 합니다.
+
+데이터 수집기 상태는 자산 페이지의 오른쪽 상단 모서리에 "Acquired N minutes ago(N분 전 획득)" 메시지로 표시됩니다. 여기서 N은 자산의 데이터 수집기의 가장 최근 획득 시간을 나타냅니다. 획득 시간/날짜도 표시됩니다.
+
+메시지를 클릭하면 데이터 수집기 이름, 상태 및 마지막으로 성공한 획득 시간이 있는 테이블이 표시됩니다. 관리자로 로그인한 경우 테이블에서 데이터 수집기 이름 링크를 클릭하면 해당 데이터 수집기에 대한 세부 정보 페이지로 이동합니다.

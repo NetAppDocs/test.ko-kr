@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: task_cs_add_collector_ontap.html 
+keywords: data collector, ONTAP, SVM 
+summary: 데이터 수집기 추가 중 
+---
+= NetApp ONTAP 데이터 수집기 구성
+
+
+[role="lead"]
+Cloud Secure는 데이터 수집기를 사용하여 디바이스에서 파일 및 사용자 액세스 데이터를 수집합니다. 이 데이터는 분석을 위해 Cloud Secure에 제공됩니다.
+
+이 데이터 수집기를 구성하려면 다음 정보가 필요합니다.
+
+* 데이터를 수집하도록 에이전트를 구성해야 합니다
+* SVM 관리 IP 주소입니다
+* SVM에 액세스할 수 있는 사용자 이름입니다
+* SVM에 액세스하기 위한 암호입니다
+
+
+.구성 단계
+. Cloud Secure 환경에 관리자 또는 계정 소유자로 로그인합니다.
+. Admin > Data Collector > + Data Collector * 를 클릭합니다
++
+사용 가능한 데이터 Collector가 표시됩니다.
+
+. NetApp ONTAP 타일에서 * + 모니터 * 를 클릭합니다.
++
+시스템에 데이터 수집기 추가: ONTAP SVM 구성 페이지가 표시됩니다.
+
+. 수집기의 고유한 이름을 입력합니다
+. 데이터를 수집할 에이전트를 선택합니다
+. SVM 관리 IP 주소를 입력합니다
+. SVM에 액세스할 사용자 이름을 입력합니다
+. SVM에 액세스하려면 암호를 입력하십시오
+. 수집기 추가 * 를 클릭합니다
+
+
+.작업을 마친 후
+* Admin > Data Collector * 를 클릭하여 구성한 수집기의 상태를 확인합니다.
++
+일반적으로 수집기 상태가 표시되기 전에 지연이 있습니다.
+
+

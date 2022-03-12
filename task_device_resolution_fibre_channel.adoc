@@ -1,0 +1,117 @@
+---
+sidebar: sidebar 
+permalink: task_device_resolution_fibre_channel.html 
+keywords: Automatic, AR, AHR, Host, automatic device resolution, FC, Identify 
+summary:  
+---
+= 파이버 채널 장치 해상도
+
+
+[role="lead"]
+Fibre Channel 식별 화면에는 호스트가 자동 디바이스 확인으로 식별되지 않은 Fibre Channel 디바이스의 WWN 및 WWPN이 표시됩니다. 또한 화면에는 수동 장치 해상도에 의해 해결된 모든 장치가 표시됩니다.
+
+수동 해상도에 의해 해결된 장치에는 _OK_의 상태가 포함되어 있으며 장치를 식별하는 데 사용되는 규칙을 식별합니다. 누락된 디바이스의 상태는 _Unidentified_입니다. 식별에서 특별히 제외된 장치는 _excluded_ 상태입니다. 장치 식별의 총 범위는 이 페이지에 나와 있습니다.
+
+Fibre Channel Identify(파이버 채널 식별) 화면의 왼쪽에 있는 여러 디바이스를 선택하여 대량 작업을 수행합니다. 장치 위로 마우스를 가져가서 목록 맨 오른쪽에 있는 _Identify_or_Unidentify_buttons를 선택하여 단일 장치에서 작업을 수행할 수 있습니다.
+
+Total Coverage_link는 구성에 사용할 수 있는 식별된 장치 수/장치 수를 목록으로 표시합니다.
+
+* SRM 별칭
+* 스토리지 별칭입니다
+* 별칭 전환
+* 존
+* 사용자 정의
+
+
+
+
+==== Fibre Channel 디바이스를 수동으로 추가합니다
+
+장치 해상도 Fibre Channel 식별 탭에서 사용할 수 있는 _Manual Add_기능을 사용하여 Fibre Channel 디바이스를 Cloud Insights에 수동으로 추가할 수 있습니다. 이 프로세스는 향후 발견될 것으로 예상되는 장치를 사전 식별하는 데 사용될 수 있습니다.
+
+시스템에 디바이스 ID를 추가하려면 WWN 또는 IP 주소와 디바이스 이름을 알아야 합니다.
+
+호스트, 스토리지, 테이프 또는 알 수 없는 파이버 채널 장치를 수동으로 추가할 수 있습니다.
+
+.절차를 참조하십시오
+. Cloud Insights 웹 UI에 로그인합니다
+. 관리 > 장치 해상도 * 를 클릭합니다
+. 파이버 채널 식별 * 탭을 클릭합니다.
+. 추가 * 버튼을 클릭합니다.
++
+장치 추가 * 대화 상자가 표시됩니다
+
+. WWN 또는 IP 주소, 디바이스 이름을 입력하고 디바이스 유형을 선택합니다.
++
+입력한 디바이스가 Fibre Channel Identify 탭의 디바이스 목록에 추가됩니다. 규칙은 _Manual_로 식별됩니다.
+
+
+
+
+
+==== CSV 파일에서 Fibre Channel 디바이스 ID 가져오기
+
+CSV 파일의 장치 목록을 사용하여 파이버 채널 장치 ID를 Cloud Insights 장치 해상도로 수동으로 가져올 수 있습니다.
+
+. 시작하기 전에
+
+
+장치 식별 정보를 장치 해상도로 직접 가져오려면 올바른 형식의 .csv 파일이 있어야 합니다. 파이버 채널 장치용 .csv 파일에는 다음 정보가 필요합니다.
+
+|===
+
+
+| WWN입니다 | IP | 이름 | 유형 
+|===
+데이터 필드는 아래 예와 같이 따옴표로 묶어야 합니다.
+
+....
+"WWN","IP","Name","Type"
+"WWN:2693","ADDRESS2693|IP2693","NAME-2693","HOST"
+"WWN:997","ADDRESS997|IP997","NAME-997","HOST"
+"WWN:1860","ADDRESS1860|IP1860","NAME-1860","HOST"
+....
+
+NOTE: 가장 좋은 방법은 먼저 Fibre Channel 식별 정보를 .csv 파일로 내보내고, 해당 파일을 원하는 대로 변경한 다음 파일을 다시 Fibre Channel Identify로 가져오는 것입니다. 이렇게 하면 예상 열이 올바른 순서로 표시됩니다.
+
+Fibre Channel 식별 정보를 가져오려면 다음을 수행합니다.
+
+. Cloud Insights 웹 UI에 로그인합니다.
+. 관리 > 장치 해상도 * 를 클릭합니다
+. 파이버 채널 식별 * 탭을 선택합니다.
+. Identify(식별) > Identify from file(파일에서 식별) * 버튼을 클릭합니다.
+. 가져올 .csv 파일이 들어 있는 폴더로 이동하고 원하는 파일을 선택합니다.
++
+입력한 디바이스가 Fibre Channel Identify 탭의 디바이스 목록에 추가됩니다. "규칙"은 수동으로 식별됩니다.
+
+
+
+
+
+==== Fibre Channel 디바이스 식별 정보를 .csv 파일로 내보내는 중입니다
+
+Cloud Insights 장치 해상도 기능에서 기존 파이버 채널 장치 식별 정보를 .csv 파일로 내보낼 수 있습니다. 장치 ID를 수정하여 Cloud Insights로 다시 가져온 다음 내보낸 ID와 원래 일치하는 장치를 식별하는 데 이 ID를 사용할 수 있도록 장치 ID를 내보낼 수 있습니다.
+
+이 시나리오는 .csv 파일에서 쉽게 편집한 다음 시스템으로 다시 가져올 수 있는 유사한 속성이 장치에 있는 경우에 사용할 수 있습니다.
+
+Fibre Channel 디바이스 ID를 .csv 파일로 내보낼 때 파일에는 다음 정보가 표시된 순서대로 포함됩니다.
+
+|===
+
+
+| WWN입니다 | IP | 이름 | 유형 
+|===
+.절차를 참조하십시오
+. Cloud Insights 웹 UI에 로그인합니다.
+. 관리 > 장치 해상도 * 를 클릭합니다
+. 파이버 채널 식별 * 탭을 선택합니다.
+. ID를 내보낼 Fibre Channel 디바이스를 선택합니다.
+. 내보내기 * 를 클릭합니다 image:ExportButton.png[""] 단추를 클릭합니다.
++
+CSV 파일을 열 것인지 파일을 저장할 것인지 선택합니다.
+
+
+
+관련:link:task_device_resolution_ip.html["IP 장치 해상도"]
+
+

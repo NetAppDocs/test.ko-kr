@@ -1,0 +1,94 @@
+---
+sidebar: sidebar 
+permalink: task_dc_brocade_sphereon_intrepid.html 
+keywords: data collector, Brocade, Sphereon Intrepid, 
+summary: Brocade Sphereon/Intrepid 스위치 데이터 수집기 구성 
+---
+= Brocade Sphereon/Intrepid 스위치 데이터 수집기 구성
+:toc: macro
+:hardbreaks:
+:toclevels: 2
+:toc: 
+:toclevels: 2
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud Insights는 Brocade Sphereon/Intrepid 스위치(SNMP) 데이터 수집기를 사용하여 Brocade Sphereon 또는 Intrepid 스위치의 인벤토리를 검색합니다.
+
+
+
+== 요구 사항
+
+이 데이터 수집기를 구성하려면 다음 요구 사항을 충족해야 합니다.
+
+* Fabric의 모든 스위치에 대한 IP 연결이 있어야 합니다. Fabric에서 모든 스위치 검색 확인란을 선택하면 Cloud Insights에서 Fabric의 모든 스위치를 식별하지만, 이러한 스위치를 검색하려면 추가 스위치에 대한 IP 연결이 필요합니다.
+* SNMP V1 또는 SNMP V2를 사용하는 경우 읽기 전용 커뮤니티 문자열입니다.
+* 조닝 정보를 얻기 위해 스위치에 대한 HTTP 액세스.
+* 스위치에 대한 snmpwalk 유틸리티를 실행하여 액세스 검증을 수행합니다(_<install_path>\bin\_ 참조).
+
+
+
+
+== 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| Sphereon 스위치 | 스위치의 IP 주소 또는 정규화된 도메인 이름입니다 
+
+
+| SNMP 버전 | SNMP 버전입니다 
+
+
+| SNMP 커뮤니티 문자열 | 스위치에 액세스하는 데 사용되는 SNMP 읽기 전용 커뮤니티 문자열입니다 
+
+
+| SNMP 사용자 이름입니다 | 스위치에 대한 SMI-S 사용자 이름(SNMP v3만 해당) 
+
+
+| SNMP 암호 | 스위치에 대한 SMI-S 암호(SNMP v3만 해당) 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| 재고 폴링 간격(분) | 재고 조사 사이의 간격입니다. 기본값은 15분입니다. 
+
+
+| SNMP 인증 프로토콜 | SNMP 인증 프로토콜(SNMP v3만 해당) 
+
+
+| SNMP 개인 정보 보호 암호 | SNMP 개인 정보 보호 암호(SNMP v3만 해당) 
+
+
+| SNMP 재시도 횟수 | SNMP 재시도 횟수입니다 
+
+
+| 패브릭 이름 | 데이터 수집기에서 보고할 Fabric 이름입니다. 패브릭 이름을 WWN으로 보고하려면 공백으로 두십시오. 
+
+
+| 트래핑을 활성화합니다 | 장치에서 SNMP 트랩을 수신할 때 획득을 활성화하려면 선택합니다. 트래핑 활성화를 선택한 경우 SNMP도 활성화해야 합니다. 
+
+
+| 트랩 사이의 최소 시간(초) | 트랩에 의해 트리거된 획득 시도 사이의 최소 시간입니다. 기본값은 10초입니다. 
+
+
+| 성능 폴링 간격(초) | 성능 폴링 간격입니다. 기본값은 300초입니다. 
+|===
+
+
+== 문제 해결
+
+이 Data Collector에 대한 추가 정보는 에서 확인할 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

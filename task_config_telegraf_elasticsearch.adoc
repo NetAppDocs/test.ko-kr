@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_elasticsearch.html 
+keywords: telegraf, installation, install, ElasticSearch 
+summary: Elasticsearch 데이터 수집기 구성 
+---
+= Elasticsearch Data Collector(Elasticsearch Data Collector)
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 Elasticsearch에서 메트릭을 수집합니다.
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. 서비스 * 에서 Elasticsearch를 선택합니다.
++
+Telegraf 에이전트가 설치된 운영 체제 또는 플랫폼을 선택합니다.
+
+. 수집용 에이전트를 아직 설치하지 않았거나 다른 운영 체제 또는 플랫폼용 에이전트를 설치하려는 경우, _지침 표시_를 클릭하여 를 확장합니다 link:task_config_telegraf_agent.html["에이전트 설치"] 지침.
+. 이 데이터 수집기에 사용할 Agent Access 키를 선택합니다. Agent 액세스 키 * 버튼을 클릭하여 새 Agent 액세스 키를 추가할 수 있습니다. 모범 사례: OS/플랫폼별로 데이터 수집기를 그룹화하려는 경우에만 다른 에이전트 액세스 키를 사용하십시오.
+. 구성 단계에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+image:ElasticsearchDCConfigLinux.png["Elasticsearch 구성"]
+
+
+
+== 설정
+
+정보는 에서 찾을 수 있습니다 link:https://www.elastic.co/guide/index.html["Elasticsearch 문서"].
+
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| Elasticsearch Cluster(Elasticsearch 클러스터) | 네임스페이스 클러스터 | 노드 IP 노드 이름 클러스터 상태 | 마스터 노드 수 총 노드 수 사용 가능한 파일 시스템 데이터(바이트) 사용 가능한 파일 시스템 데이터(바이트) 파일 시스템 데이터 총(바이트) JVM 스레드 OS 할당 프로세서 OS 메모리 사용 가능(바이트) OS 메모리 사용 가능 OS 메모리 총 메모리 사용 가능(바이트) OS 메모리 사용된 프로세스 CPU Indices 완료 크기(바이트) 인덱스 수 지수 카운트 지수 문서 인덱스 문서 삭제된 색인 필드 데이터 승수 지수 필드 데이터 메모리 크기(바이트) 지수 쿼리 캐시 수 지수 지수 지수 지수 지수 지수 지수 지수 지수 세그먼트 수 지수 지수 메모리(바이트) 지수 1차 평균 지수 1차 지수 1차 지수 최소 지수 1차 지수 최소 지수 샤드 인덱스 복제 평균 색인 샤드 인덱스 복제 최대 색인 복제 최소 색인 복제 최소 색인 샤드 평균 색인 샤드 최대 색인 조각자 최대 색인 조각자 1차 색인 복제 색인 샤드 총 색인 저장소 크기(바이트) 
+
+
+| Elasticsearch Node(Elasticsearch 노드) | 네임스페이스 클러스터 ES 노드 ID ES 노드 IP ES 노드 | 영역 ID입니다 | 머신 러닝 활성화 머신 러닝 메모리 머신 러닝 최대 오픈 작업 X-Pack 설치 차단기 계정 추정 크기(바이트) 차단기 계정 제한 크기(바이트) 차단기 회계 오버헤드 차단기 계정 가동식 차단기 현장 데이터 예상 크기(바이트) 차단기 필드 데이터 오버헤드 차단기 필드 데이터 비상정지 차단기 필드 데이터 비상정지 차단기 필드 데이터 비상정지 차단기 필드 데이터 비상정지 차단기 필드 데이터 비상정지 차단기 비행 중 자극 크기(바이트) 차단기 비행 중 제한 크기(바이트) 차단기 비행 중 오버헤드 차단기 기내 비상정지 차단기 상위 추정 크기(바이트) 차단기 상위 제한 크기(바이트) 차단기 상위 오버헤드 차단기 상위 비상정지 차단기 요청 예상 크기(바이트) 차단기 요청 제한 크기(바이트) 차단기 요청 비상 차단기 요청 비상정지 데이터 파일 시스템 요청 (바이트) Filesystem Data Free (바이트) Filesystem Data Total (바이트) Filesystem IO Stats Devices Ops Filesystem IO Stats Read (KB) Filesystem IO Stats Devices Read Ops Filesystem IO Stats Write Ops Filesystem IO Stats Total Read (KB) Filesystem IO Stats Total Read (KB) Filesystem 입출력 통계 읽기 작업 파일 시스템 입출력 통계 총 쓰기(KB) 파일 시스템 입출력 통계 쓰기 작업 파일 시스템 사용 가능한 최소 사용량 예상치(바이트) 파일 시스템 사용 최소 사용량 예상치 합계(바이트) 파일 시스템 사용 가능한 디스크 파일 시스템 최대 사용량 예상치 합계(바이트) 파일 시스템 사용 가장 많이 사용된 디스크 파일 시스템 파일 시스템 사용 가장 많이 사용된 디스크 파일 시스템 총 사용 가능(바이트) 파일 시스템 총 사용 가능(바이트) 파일 시스템 총 수(바이트) 인덱스 문서 수 지수 문서 지워진 인덱스 필드 데이터 승수 지수 지수 필드 데이터 지수 지수 지수 플러시 주기적 플러시 총 지수 플러시 총 시간 지수 현재 지수 Get Exists 시간 지수 Get Exists Time Indices Get Exists Time Indices Get Exists 총 지수 총 색인 총 색인 삭제 총 색인 색인 색인 색인 색인 총 색인 색인 노치 업데이트 총 색인 지정 스로틀 시간 HTTP 현재 열린 HTTP 총 HTTP 버퍼 풀 직접 수 JVM 클래스 현재 로드된 수 JVM GC Collector 이전 컬렉션 수 JVM Mem 힙 커밋됨(바이트) OS CPU 로드 평균 15m OS CPU OS 메모리 가용 용량(바이트) OS 스왑 가용(바이트) 프로세스 CPU 프로세스 CPU 총 프로세스 최대 파일 설명자 프로세스 메모리 총 가상(바이트) 스레드 풀 분석 활성 스레드 풀 분석 완료된 스레드 풀 분석 가장 큰 스레드 풀 분석 대기열 스레드 풀 분석 거부된 스레드 풀 분석 스레드 스레드 풀 페치 샤드 시작 활성 스레드 풀 페치 샤드 시작 스레드 풀 페치 샤드 시작 최대 스레드 풀 페치 샤드 시작 대기열 스레드 풀 페치 샤드 시작 스레드 풀 페치 샤드 시작 스레드 풀 페치 샤드 저장소 활성 스레드 풀 페치 샤드 저장소 전송 완료 Rx (per sec) 전송 RX 바이트 (per sec) 전송 서버 Open Transport TX (per sec) 전송 TX 바이트 (per sec) 
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

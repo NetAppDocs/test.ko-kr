@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_memcached.html 
+keywords: telegraf, installation, install, memcached 
+summary: Memcached 데이터 수집기 구성 
+---
+= Memcached Data Collector
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 Memcached에서 메트릭을 수집합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. 서비스 * 에서 멤캐시드 를 선택합니다.
++
+Telegraf 에이전트가 설치된 운영 체제 또는 플랫폼을 선택합니다.
+
+. 수집용 에이전트를 아직 설치하지 않았거나 다른 운영 체제 또는 플랫폼용 에이전트를 설치하려는 경우, _지침 표시_를 클릭하여 를 확장합니다 link:task_config_telegraf_agent.html["에이전트 설치"] 지침.
+. 이 데이터 수집기에 사용할 Agent Access 키를 선택합니다. Agent 액세스 키 * 버튼을 클릭하여 새 Agent 액세스 키를 추가할 수 있습니다. 모범 사례: OS/플랫폼별로 데이터 수집기를 그룹화하려는 경우에만 다른 에이전트 액세스 키를 사용하십시오.
+. 구성 단계에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+image:MemcachedDCConfigWindows.png["멤캐시드 구성"]
+
+
+
+== 설정
+
+정보는 에서 찾을 수 있습니다 link:https://github.com/memcached/memcached/wiki["멤캐시드 위키"].
+
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| 멤캐시드 | 네임스페이스 서버 | 노드 IP 노드 이름 | 접속 수락 처리된 인증 요청 실패한 인증 요청 사용된 바이트 읽기(초 당) 쓴 바이트 수(초 당) CAS Badval CAS 적중 CAS 적중 횟수 CAS 비적중 횟수 플러시 요청(초 당) 요청 수(초당) 설정 요청 수(초당) 터치 요청 수(초당) 연결 수(초당) 연결 구조 현재 연결 열기 현재 저장 항목 요청 횟수(초) 감소 요청 횟수(초) 삭제 요청 횟수(초) 삭제 요청 횟수(초) 삭제 요청 실패 횟수(초 단위) 제거된 항목 유효한 종료 항목 만료 항목 적중 횟수(초 단위) 적중 횟수(초 단위) 실패 횟수(초 단위) 사용된 해시 바이트 해시가 확장 중입니다. 해시 전력 수준 절개 요청 횟수(초) 오류 요청 횟수(초) 서버 최대 바이트 수신 비활성화 Num Reclaimed Worker Threads 수신 해제 총 열려 있는 연결 수 저장된 총 항목 터치 적중 횟수 서버 가동 시간 
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

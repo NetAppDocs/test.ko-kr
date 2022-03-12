@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: task_cs_user_management.html 
+keywords: Cloud Secure, User, Login, account 
+summary: Cloud Secure 사용자 계정은 Cloud Insights 사용자 관리를 통해 관리됩니다 
+---
+= 사용자 관리
+
+
+[role="lead"]
+Cloud Secure 사용자 계정은 Cloud Insights를 통해 관리됩니다.
+
+Cloud Insights는 계정 소유자, 관리자, 사용자 및 게스트의 네 가지 사용자 계정 수준을 제공합니다. 각 계정에는 특정 권한 수준이 할당됩니다. 관리자 권한이 있는 사용자 계정은 사용자를 만들거나 수정하고 각 사용자에게 다음 Cloud Secure 역할 중 하나를 할당할 수 있습니다.
+
+|===
+
+
+| 역할 | Cloud Secure 액세스 
+
+
+| 관리자 | 알림, Forensics, 데이터 수집기, 자동화된 응답 정책 및 Cloud Secure용 API를 비롯한 모든 Cloud Secure 기능을 수행할 수 있습니다. 관리자는 다른 사용자를 초대할 수도 있지만 Cloud Secure 역할만 할당할 수 있습니다. 
+
+
+| 사용자 | 알림을 확인 및 관리하고 Forensics를 볼 수 있습니다. 사용자 역할은 알림 상태를 변경하고, 메모를 추가하고, 스냅샷을 수동으로 생성하고, 사용자 액세스를 제한할 수 있습니다. 
+
+
+| 게스트 | 알림 및 Forensics를 볼 수 있습니다. 게스트 역할은 알림 상태를 변경하거나, 메모를 추가하거나, 스냅샷을 수동으로 생성하거나, 사용자 액세스를 제한할 수 없습니다. 
+|===
+.단계
+. Cloud Secure에 로그인합니다
+. 메뉴에서 * Admin > User Management * 를 클릭합니다
++
+Cloud Insights의 사용자 관리 페이지로 전달됩니다.
+
+. 각 사용자에 대해 원하는 역할을 선택합니다.
+
+
+새 사용자를 추가하는 동안 원하는 역할(일반적으로 사용자 또는 게스트)을 선택하기만 하면 됩니다.
+
+사용자 계정 및 역할에 대한 자세한 내용은 Cloud Insights에서 확인할 수 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/concept_user_roles.html["사용자 역할"] 문서화:

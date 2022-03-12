@@ -1,0 +1,92 @@
+---
+sidebar: sidebar 
+permalink: security_information_and_region.html 
+summary: Cloud Insights는 릴리즈 라이프사이클 전반에서 보안 모범 사례를 준수합니다. 
+keywords: security, risk, protection 
+---
+= 정보 및 지역
+
+
+[role="lead"]
+NetApp은 고객 정보의 보안을 매우 중요하게 생각합니다. 다음은 Cloud Insights에서 사용자 정보를 저장하는 방법과 위치입니다.
+
+
+
+== Cloud Insights는 어떤 정보를 저장합니까?
+
+Cloud Insights는 다음 정보를 저장합니다.
+
+* 성능 데이터
++
+성능 데이터는 모니터링되는 장치/소스의 성능에 대한 정보를 제공하는 시계열 데이터입니다. 예를 들어, 스토리지 시스템에서 제공되는 입출력 수, FiberChannel 포트의 처리량, 웹 서버에서 제공하는 페이지 수, 데이터베이스의 응답 시간 등이 여기에 포함됩니다.
+
+* 재고 데이터
++
+인벤토리 데이터는 모니터링되는 디바이스/소스와 해당 소스 구성 방법을 설명하는 메타데이터로 구성됩니다. 여기에는 설치된 하드웨어 및 소프트웨어 버전, 스토리지 시스템의 디스크 및 LUN, CPU 코어, 가상 머신의 RAM 및 디스크, 데이터베이스의 테이블스페이스, SAN 스위치의 포트 수와 유형, 디렉토리/파일 이름(Cloud Secure가 설정된 경우) 등이 포함됩니다
+
+* 구성 데이터
++
+이 요약에는 모니터링된 장치의 호스트 이름 또는 IP 주소, 폴링 간격, 시간 초과 값 등 고객 인벤토리 및 작업을 관리하는 데 사용되는 고객이 제공한 구성 데이터가 요약되어 있습니다
+
+* 비밀
++
+비밀은 Cloud Insights 획득 장치가 고객 장치 및 서비스에 액세스하기 위해 사용하는 자격 증명으로 구성됩니다. 이러한 자격 증명은 AES-256을 사용하여 암호화되며 개인 키는 획득 장치에만 저장되며 고객 환경을 떠나지 않습니다. 권한이 있는 Cloud Insights SRE는 이 설계로 인해 일반 텍스트로 고객 비밀에 액세스할 수 없습니다.
+
+* 기능 데이터
++
+이 데이터는 NetApp에서 클라우드 데이터 서비스를 제공하여 생성되는 것으로, 클라우드 데이터 서비스의 개발, 구축, 운영, 유지보수, 보안에 대해 NetApp에 알려줍니다. 기능 데이터에는 고객 정보 또는 개인 정보가 포함되어 있지 않습니다.
+
+* 사용자 액세스 데이터
++
+NetApp Cloud Central에서 사용자 인증과 관련된 데이터를 비롯한 지역 Cloud Insights 사이트와 통신할 수 있는 인증 및 액세스 정보
+
+* Cloud Secure 사용자 디렉토리 데이터
++
+Cloud Secure 기능이 활성화되어 있고 고객이 사용자 디렉터리 수집기를 사용하도록 선택한 경우 시스템은 사용자 표시 이름, 회사 전자 메일 주소 및 Active Directory에서 수집한 기타 정보를 저장합니다.
+
+
+
+
+NOTE: 사용자 디렉토리 데이터는 Cloud Secure 사용자 디렉토리 데이터 수집기에서 수집한 사용자 디렉토리 정보를 나타내며, Cloud Insights/Cloud Secure의 사용자에 대한 데이터는 아닙니다.
+
+* 인프라 및 서비스 리소스에서 명시적 개인 데이터 * 가 수집되지 않습니다. 수집된 정보는 성능 메트릭, 구성 정보 및 인프라 메타데이터로만 구성되며, NetApp의 자동 지원 및 ActiveIQ를 비롯한 수많은 공급업체 Phone-Home과 매우 유사합니다. 그러나 고객의 명명 규칙에 따라 공유, 볼륨, VM, qtree, 응용 프로그램 등에 개인 식별 정보가 포함될 수 있습니다.
+
+Cloud Secure가 활성화된 경우 시스템은 SMB 또는 기타 공유에서 파일 및 디렉토리 이름을 추가로 확인합니다. 여기에는 개인 식별 정보가 포함될 수 있습니다. 고객이 Cloud Secure 사용자 디렉토리 수집기(기본적으로 Active Directory를 통해 Windows SID를 사용자 이름에 매핑함)를 사용하는 경우 표시 이름, 회사 이메일 주소 및 선택된 추가 속성은 Cloud Insights에서 수집 및 저장됩니다.
+
+또한 Cloud Insights에 대한 액세스 로그는 유지 관리되며 서비스에 로그인하는 데 사용되는 사용자의 IP 및 이메일 주소를 포함합니다.
+
+
+
+== 내 정보는 어디에 저장됩니까?
+
+Cloud Insights는 사용자 환경이 생성되는 지역에 따라 정보를 저장합니다.
+
+다음 정보는 호스트 영역에 저장됩니다.
+
+* 카운터 및 성능 메트릭을 포함한 원격 측정 및 자산/객체 정보
+* 획득 장치 정보
+* 기능 데이터
+* Cloud Insights 내부 사용자 활동에 대한 감사 정보
+* Cloud Secure Active Directory 정보
+* Cloud Secure 감사 정보
+
+
+다음 정보는 Cloud Insights 환경을 호스팅하는 지역에 관계없이 미국에 상주합니다.
+
+* 사이트/계정 소유자와 같은 환경 사이트("테넌트"라고도 함) 정보
+* NetApp Cloud Central에서 사용자 승인과 관련된 작업을 포함하여 지역 Cloud Insights 사이트와 통신할 수 있는 정보
+* Cloud Insights 사용자와 테넌트 간의 관계와 관련된 정보입니다.
+
+
+
+
+== 추가 정보
+
+다음 링크에서 NetApp의 개인 정보 보호 및 보안에 대해 자세히 확인할 수 있습니다.
+
+* link:https://www.netapp.com/us/company/trust-center/index.aspx["보안 센터"]
+* link:https://www.netapp.com/us/company/trust-center/privacy/data-location-cross-border-transfers.aspx["국가 간 데이터 전송"]
+* link:https://www.netapp.com/us/company/trust-center/privacy/bcr-binding-corporate-rules.aspx["기업 규칙을 구속하는 중입니다"]
+* link:https://www.netapp.com/us/company/trust-center/transparency/third-party-data-requests.aspx["타사 데이터 요청에 대한 응답"]
+* link:https://www.netapp.com/us/company/trust-center/privacy/privacy-principles-security-safeguards.aspx["NetApp 개인 정보 보호 원칙"]
+

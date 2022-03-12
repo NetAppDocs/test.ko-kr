@@ -1,0 +1,116 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_docker.html 
+keywords: telegraf, installation, install, docker 
+summary: Docker 데이터 수집기 구성 
+---
+= Docker Data Collector 를 참조하십시오
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 Docker에서 메트릭을 수집합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. Services * 에서 Docker 를 선택합니다.
++
+컬렉션에 대한 Agent를 구성하지 않은 경우 메시지가 표시됩니다 link:task_config_telegraf_agent.html["에이전트를 설치합니다"] 있습니다.
+
++
+에이전트가 이미 구성되어 있는 경우 해당 운영 체제 또는 플랫폼을 선택하고 * 계속 * 을 클릭합니다.
+
+. Docker Configuration 화면의 지침에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+image:DockerDCConfigLinux.png["Docker 구성"]
+
+
+
+== 설정
+
+Docker용 Telegraf 입력 플러그인은 지정된 UNIX 소켓 또는 TCP 끝점을 통해 메트릭을 수집합니다.
+
+
+
+==== 호환성
+
+Docker 버전 1.12.6을 기준으로 구성이 개발되었습니다.
+
+
+
+==== 설정 중입니다
+
+
+
+===== UNIX 소켓을 통해 Docker 액세스
+
+Telegraf 에이전트가 베어메탈에서 실행 중인 경우 다음을 실행하여 Telegraf Unix 사용자를 Docker Unix 그룹에 추가합니다.
+
+ sudo usermod -aG docker telegraf
+Telegraf 에이전트가 Kubernetes Pod 내에서 실행 중인 경우 소켓을 POD에 볼륨으로 매핑한 다음 해당 볼륨을 /var/run/docker.sock에 마운트하여 Docker Unix 소켓을 표시합니다. 예를 들어 PodSpec에 다음을 추가합니다.
+
+[listing]
+----
+volumes:
+...
+- name: docker-sock
+hostPath:
+path: /var/run/docker.sock
+type: File
+----
+그런 다음 컨테이너에 다음을 추가합니다.
+
+[listing]
+----
+volumeMounts:
+...
+- name: docker-sock
+mountPath: /var/run/docker.sock
+----
+Kubernetes 플랫폼에 제공된 Cloud Insights 설치 관리자는 이 매핑을 자동으로 다룹니다.
+
+
+
+===== TCP 엔드포인트를 통해 Docker에 액세스합니다
+
+기본적으로 Docker는 암호화되지 않은 액세스에 포트 2375를 사용하고 암호화된 액세스에 포트 2376을 사용합니다.
+
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| Docker 엔진 | 네임스페이스 Docker 엔진 | 노드 이름 노드 IP 노드 UUID 노드 OS Kubernetes 클러스터 Docker 버전 유닛 | 메모리 컨테이너 일시 중지 컨테이너 실행 컨테이너 중지 CPU 이동 루틴 이미지 수신기 이벤트 사용 파일 설명자 데이터 사용 가능한 데이터 총 데이터 사용된 메타데이터 사용 가능한 메타데이터 총 메타데이터 사용된 풀 블록 크기 
+
+
+| Docker 컨테이너 | 네임스페이스 컨테이너 이름 Docker 엔진 | Kubernetes 컨테이너 해시 Kubernetes 컨테이너 포트 Kubernetes 컨테이너 재시작 Kubernetes 컨테이너 종료 메시지 경로 Kubernetes 컨테이너 종료 메시지 정책 Kubernetes Pod 종료 유예 기간 컨테이너 상태 컨테이너 버전 노드 이름 Kubernetes 컨테이너 로그 경로 Kubernetes 컨테이너 이름 Kubernetes 컨테이너 이름 Kubernetes Docker 유형 Kubernetes Pod 이름 Kubernetes Pod 네임스페이스 Kubernetes 네임스페이스 Kubernetes POD UID Kubernetes Sandbox ID 노드 IP 노드 UUID Docker 버전 Kubernetes IO Config Cubernetes Source OpenShift IO SCC Kubernetes 설명 Kubernetes Display Name OpenShift Tags Kompose Service Pod Template Hash Controller Revision Hash Pod Template Generation License Schema Build Date Schema Name Schema URL 스키마 VCS URL 스키마 공급업체 스키마 버전 스키마 버전 유지 관리 업체 고객 Pod Kubernetes StatefulSet Pod 이름 테넌트 WebConsole 아키텍처 권한 소스 URL 빌드 날짜 RH 빌드 호스트 RH 구성 요소 배포 범위 설치 릴리스 요약 제거 VCS 참조 VCS 유형 공급업체 버전 상태 컨테이너 ID | 메모리 활성 익명 메모리 활성 파일 메모리 캐시 메모리 계층적 제한 메모리 비활성 익명 메모리 비활성 파일 메모리 제한 메모리 매핑된 파일 메모리 최대 사용 메모리 페이지 결함 메모리 페이지 주 결함 메모리 페이징 메모리 페이징 메모리 상주 세트 크기 메모리 상주 세트 크기 큰 메모리 총 활성 익명 메모리 총 활성 파일 메모리 총 캐시 메모리 총 비활성 익명 메모리 총 비활성 파일 메모리 총 매핑된 파일 메모리 총 페이지 오류 메모리 총 페이지 주요 오류 메모리 총 페이징 메모리 총 페이징 아웃 메모리 총 상주 세트 크기 메모리 총 상주 세트 크기 총 상주 세트 크기 총 메모리 총 메모리 총 크기 큰 메모리 총계 Unevicable 메모리 Useficable 메모리 사용량 메모리 사용량 종료 코드 OOM이 실패한 Streak에서 시작된 PID를 종료했습니다 
+
+
+| Docker 컨테이너 블록 IO | 네임스페이스 컨테이너 이름 장치 Docker 엔진 | Kubernetes 컨테이너 해시 Kubernetes 컨테이너 포트 Kubernetes 컨테이너 재시작 Kubernetes 컨테이너 종료 메시지 경로 Kubernetes 컨테이너 종료 메시지 정책 Kubernetes Pod 종료 유예 기간 컨테이너 상태 컨테이너 버전 노드 이름 Kubernetes 컨테이너 로그 경로 Kubernetes 컨테이너 이름 Kubernetes 컨테이너 이름 Kubernetes Docker 유형 Kubernetes Pod 이름 Kubernetes Pod 네임스페이스 Kubernetes 네임스페이스 Kubernetes POD UID Kubernetes Sandbox ID 노드 IP 노드 UUID Docker 버전 Kubernetes Config Cubernetes 소스 OpenShift SCC Kubernetes 설명 Kubernetes 표시 이름 OpenShift 태그 스키마 버전 Pod 템플릿 해시 컨트롤러 수정 해시 템플릿 생성 Kompose 서비스 스키마 빌드 날짜 스키마 이름 스키마 공급업체 고객 Pod Kubernetes StatefulSet Pod 이름 테넌트 WebConsole 빌드 날짜 라이센스 공급업체 아키텍처 권한 소스 URL RH 빌드 호스트 RH 구성 요소 배포 범위 설치 유지 보수 관리자 릴리스 실행 요약 제거 VCS 참조 VCS 유형 버전 스키마 URL 스키마 VCS URL 스키마 버전 컨테이너 ID | 입출력 서비스 바이트 재귀 비동기 입출력 서비스 바이트 재귀 읽기 입출력 서비스 바이트 재귀 동기화 입출력 서비스 바이트 재귀 총 입출력 서비스 바이트 재귀 입출력 서비스 재귀 입출력 서비스 재귀 입출력 서비스 재귀 입출력 재귀적 입출력 서비스 재귀적 입출력 서비스 재귀적 입출력 재귀적 입출력 서비스 입출력 재귀적 입출력 서비스 입출력 재귀적 쓰기 
+
+
+| Docker 컨테이너 네트워크 를 참조하십시오 | 네임스페이스 컨테이너 이름 네트워크 Docker 엔진 | 컨테이너 이미지 컨테이너 상태 컨테이너 버전 노드 이름 노드 IP 노드 UUID 노드 OS K8s 클러스터 Docker 버전 컨테이너 ID | RX Drop된 RX Bytes RX Errors RX Packets TX Drop TX Bytes TX Errors TX Packet 
+
+
+| Docker 컨테이너 CPU | 네임스페이스 컨테이너 이름 CPU Docker Engine입니다 | Kubernetes 컨테이너 해시 Kubernetes 컨테이너 포트 Kubernetes 컨테이너 재시작 Kubernetes 컨테이너 종료 메시지 경로 Kubernetes 컨테이너 종료 메시지 정책 Kubernetes Pod 종료 유예 기간 Kubernetes 구성 보기 Kubernetes 구성 소스 SCC OpenShift 컨테이너 이미지 컨테이너 상태 컨테이너 버전 노드 이름 Kubernetes 컨테이너 로그 경로 Kubernetes 컨테이너 이름 Kubernetes Docker 유형 Kubernetes Pod 이름 Kubernetes Pod 네임스페이스 Kubernetes Pod UID Kubernetes Sandbox ID 노드 IP 노드 UUID 노드 OS Kubernetes 클러스터 Docker 버전 Kubernetes 설명 Kubernetes 표시 이름 OpenShift 태그 스키마 버전 Pod 템플릿 해시 컨트롤러 수정 해시 템플릿 생성 Kompose 서비스 스키마 빌드 날짜 스키마 라이센스 스키마 이름 스키마 공급업체 고객 포드 Kubernetes StatefulSet Pod 이름 테넌트 WebConsole 빌드 날짜 라이센스 공급업체 아키텍처 권한 있는 소스 URL RH 빌드 호스트 RH 구성 요소 배포 범위 설치 유지 보수 관리자 릴리스 설치 요약 제거 VCS 참조 VCS 유형 버전 스키마 URL 스키마 VCS URL 스키마 버전 컨테이너 ID | 제한 기간 제한 제한 제한된 기간 제한 사용자 모드 사용 비율 시스템 사용 총계의 커널 모드 사용에서 제한된 시간 사용 제한 
+|===
+
+
+== 문제 해결
+
+[cols="2*"]
+|===
+| 문제: | 다음을 시도해 보십시오. 
+
+
+| 구성 페이지의 지침에 따라 Cloud Insights에 Docker 메트릭이 표시되지 않습니다. | Telegraf 에이전트 로그를 확인하여 다음 오류를 보고하는지 확인합니다. E! 플러그인 오류 [inputs.docker]: Docker 데몬 소켓에 연결하려고 시도하는 동안 권한이 거부되었습니다. 필요한 경우 위에서 지정한 대로 Telegraf 에이전트 액세스를 Docker Unix 소켓에 제공하는 데 필요한 단계를 수행하십시오. 
+|===
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: task_dc_ms_anf.html 
+keywords: data collector, azure, Netapp files, anf 
+summary: Azure NetApp Files 데이터 수집기 구성 중. 
+---
+= Azure NetApp Files 데이터 수집기 구성
+
+
+[role="lead"]
+Cloud Insights는 Azure NetApp Files 데이터 수집기를 사용하여 인벤토리 및 성능 데이터를 가져옵니다.
+
+
+
+== 요구 사항
+
+이 데이터 수집기를 구성하려면 다음 정보가 필요합니다.
+
+* 포트 요구 사항: 443 HTTPS
+* Azure 관리 REST IP(management.azure.com)
+* Azure 서비스 주 클라이언트 ID(사용자 계정)
+* Azure 서비스 주 인증 키(사용자 암호)
+* Cloud Insights 검색을 위해 Azure 계정을 설정해야 합니다.
++
+계정이 올바르게 구성되고 Azure에 애플리케이션을 등록하면 Cloud Insights로 Azure 인스턴스를 검색하는 데 필요한 자격 증명이 제공됩니다. 다음 링크에서는 검색을 위해 계정을 설정하는 방법에 대해 설명합니다.
+
+
+
+https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal[]
+
+
+
+== 구성
+
+아래 표에 따라 데이터 수집기 필드에 데이터를 입력합니다.
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| Azure 서비스 기본 클라이언트 ID입니다 | Azure에 로그인 ID를 입력합니다 
+
+
+| Azure 테넌트 ID입니다 | Azure 테넌트 ID입니다 
+
+
+| Azure 서비스 주 인증 키 | 로그인 인증 키 
+
+
+| API 요청에 대한 Microsoft의 청구서를 알고 있습니다 | Insight 폴링을 통해 API 요청이 접수된다는 사실을 알고 있는지 확인하려면 이 확인란을 선택하십시오. 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| 재고 폴링 간격(분) | 기본값은 60입니다 
+|===
+
+
+== 문제 해결
+
+* ANF 데이터 수집기에서 사용하는 자격 증명은 ANF 볼륨이 포함된 Azure 구독에 액세스할 수 없습니다.
+* Reader 액세스로 인해 성능 수집이 실패하는 경우 리소스 그룹 수준에서 Contributor 액세스 권한을 부여해 보십시오.
+
+
+이 Data Collector에 대한 추가 정보는 에서 확인할 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

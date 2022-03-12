@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: task_dc_na_cloud_volumes.html 
+summary: AWS 데이터 수집기에 NetApp Cloud Volumes Services를 구성합니다 
+keywords: data collector, NetApp, Cloud, AWS 
+---
+= AWS용 NetApp Cloud Volumes Services 데이터 수집기
+
+
+[role="lead"]
+이 데이터 수집기는 AWS용 NetApp Cloud Volumes Services 구성의 인벤토리 수집을 지원합니다.
+
+
+
+== 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| Cloud Volumes Region(Cloud Volumes 영역 | NetApp Cloud Volumes Services for AWS의 지역 
+
+
+| API 키 | Cloud Volumes API 키입니다 
+
+
+| 비밀 키 | Cloud Volumes 암호 키입니다 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| 재고 폴링 간격(분) | 기본값은 60분입니다 
+|===
+
+
+== 문제 해결
+
+이 Data Collector에 대한 추가 정보는 에서 확인할 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

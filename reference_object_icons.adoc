@@ -1,0 +1,13 @@
+---
+sidebar: sidebar 
+permalink: reference_object_icons.html 
+summary: Cloud Insights 객체 아이콘 참조. 
+keywords: icons, assets, objects, reference 
+---
+= 개체 아이콘 참조
+
+
+[role="lead"]
+Cloud Insights에서 사용되는 개체 아이콘에 대한 빠른 참조입니다.
+
+image:Icon_Glossary.png["아이콘 참조"]

@@ -1,0 +1,161 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_hadoop.html 
+keywords: telegraf, installation, install, Hadoop 
+summary: Hadoop 데이터 수집기 구성 
+---
+= Hadoop Data Collector
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 Hadoop에서 메트릭을 수집합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. 서비스 * 에서 Hadoop을 선택합니다.
++
+Telegraf 에이전트가 설치된 운영 체제 또는 플랫폼을 선택합니다.
+
+. 수집용 에이전트를 아직 설치하지 않았거나 다른 운영 체제 또는 플랫폼용 에이전트를 설치하려는 경우, _지침 표시_를 클릭하여 를 확장합니다 link:task_config_telegraf_agent.html["에이전트 설치"] 지침.
+. 이 데이터 수집기에 사용할 Agent Access 키를 선택합니다. Agent 액세스 키 * 버튼을 클릭하여 새 Agent 액세스 키를 추가할 수 있습니다. 모범 사례: OS/플랫폼별로 데이터 수집기를 그룹화하려는 경우에만 다른 에이전트 액세스 키를 사용하십시오.
+. 구성 단계에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+image:HadoopDCConfigLinux-1.png["Hadoop 구성"]
+image:HadoopDCConfigLinux-2.png["Hadoop 구성"]
+
+
+
+== 설정
+
+전체 Hadoop 구축에는 다음 구성 요소가 포함됩니다.
+
+* NameNode: HDFS(Hadoop Distributed File System) 운영 시스템입니다. 일련의 DataNode를 조정합니다.
+* Secondary NameNode: main NameNode에 대한 웜 페일오버입니다. Hadoop에서는 NameNode에 대한 프로모션이 자동으로 수행되지 않습니다. Secondary NameNode는 NameNode에서 정보를 수집하여 필요할 때 상향 이동할 수 있도록 준비합니다.
+* DataNode: 데이터의 실제 소유자입니다.
+* ResourceManager: 컴퓨팅 운영 시스템(YARN)입니다. 일련의 NodeManager를 조정합니다.
+* NodeManager: 컴퓨팅 리소스로, 응용 프로그램 실행을 위한 실제 위치입니다.
+* JobHistoryServer: 모든 작업 내역 관련 요청을 처리합니다.
+
+
+Hadoop 플러그인은 Telegraf의 Jolokia 플러그인을 기반으로 합니다. 모든 Hadoop 구성 요소에서 정보를 수집하는 요구 사항과 같이 JMX는 모든 구성 요소에서 Jolokia를 통해 구성 및 노출되어야 합니다.
+
+
+
+==== 호환성
+
+Hadoop 버전 2.9.2를 기준으로 구성이 개발되었습니다.
+
+
+
+==== 설정 중입니다
+
+
+
+===== 졸로키아 에이전트 용기
+
+모든 개별 구성 요소의 경우 Jolokia 에이전트 JAR 파일 버전을 다운로드해야 합니다. 에 대해 테스트한 버전은 입니다 link:https://jolokia.org/download.html["졸로키아 에이전트 1.6.0"].
+
+아래 지침에서는 다운로드한 jar 파일(jolokia-jvm-1.6.0-agent.jar)이 '/opt/hADOOP/lib/' 위치에 있다고 가정합니다.
+
+
+
+===== NameNode입니다
+
+Jolokia API를 노출하도록 NameNode를 구성하려면 <Hadoop_HOME>/etc/Hadoop/Hadoop-env.sh에서 다음을 설정할 수 있습니다.
+
+[listing]
+----
+export HADOOP_NAMENODE_OPTS="$HADOOP_NAMENODE_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7800,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8000 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8000 above) and Jolokia (7800). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+===== Secondary NameNode입니다
+
+보조 NameNode를 구성하여 Jolokia API를 표시하려면 <Hadoop_HOME>/etc/Hadoop/Hadoop-env.sh에서 다음을 설정할 수 있습니다.
+
+[listing]
+----
+export HADOOP_SECONDARYNAMENODE_OPTS="$HADOOP_SECONDARYNAMENODE_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7802,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8002 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8002 above) and Jolokia (7802). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+===== DataNode 를 선택합니다
+
+Jolokia API를 노출하도록 DataNodes를 구성하려면 <Hadoop_HOME>/etc/Hadoop/Hadoop-env.sh에서 다음을 설정할 수 있습니다.
+
+[listing]
+----
+export HADOOP_DATANODE_OPTS="$HADOOP_DATANODE_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7801,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8001 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8001 above) and Jolokia (7801). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+===== ResourceManager 를 클릭합니다
+
+ResourceManager를 구성하여 Jolokia API를 노출하려면 <Hadoop_HOME>/etc/Hadoop/Hadoop-env.sh에서 다음을 설정할 수 있습니다.
+
+[listing]
+----
+export YARN_RESOURCEMANAGER_OPTS="$YARN_RESOURCEMANAGER_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7803,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8003 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8003 above) and Jolokia (7803). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+===== NodeManager를 참조하십시오
+
+NodeManagers가 Jolokia API를 노출하도록 구성하려면 <Hadoop_HOME>/etc/Hadoop/Hadoop-env.sh에서 다음을 설정할 수 있습니다.
+
+[listing]
+----
+export YARN_NODEMANAGER_OPTS="$YARN_NODEMANAGER_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7804,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8004 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8004 above) and Jolokia (7804). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+===== JobHistoryServer를 참조하십시오
+
+JobHistoryServer가 Jolokia API를 표시하도록 구성하려면 <Hadoop_Home>/etc/Hadoop/Hadoop-env.sh에서 다음을 설정할 수 있습니다.
+
+[listing]
+----
+export HADOOP_JOB_HISTORYSERVER_OPTS="$HADOOP_JOB_HISTORYSERVER_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7805,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8005 -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8005 above) and Jolokia (7805). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| Hadoop 보조 NameNode | 클러스터 네임스페이스 서버 | 노드 이름 노드 IP 컴파일 정보 버전 | GC 카운트 GC 사본 수 GC 마크 스윕 컴팩트 카운트 GC 번호 정보 임계값이 GC 번호 경고 임계값을 초과함 GC 시간 GC 복사 시간 GC 마크 스윕 컴팩트 시간 GC 총 추가 절전 시간 로그 오류 카운트 로그 치명적 카운트 로그 경고 카운트 메모리 힙 커밋됨 메모리 힙 최대 메모리 힙 사용된 메모리 최대 메모리 비 힙 커밋된 메모리 비 힙 사용된 스레드 차단된 스레드 새 스레드 Runnable 스레드 종료 스레드 시간 지정 대기 스레드 대기 
+
+
+| Hadoop NodeManager를 참조하십시오 | 클러스터 네임스페이스 서버 | 노드 이름 노드 IP입니다 | 컨테이너 할당된 메모리 할당 메모리 할당 Oportunistic 가상 코어 할당된 Oportunistic 가상 코어 할당 메모리 사용 가능한 가상 코어 사용 가능한 디렉토리 잘못된 로컬 디렉토리 불량 로그 캐시 크기 클린 컨테이너 시작 기간 평균 시간 컨테이너 시작 기간 작업 컨테이너의 실행 완료 컨테이너 실패 컨테이너 제거 컨테이너 실행 컨테이너 실행 컨테이너 실행 컨테이너 실행 실패 컨테이너 실행 컨테이너 실행 컨테이너 실행 컨테이너 실행 컨테이너 실행 안 됨 컨테이너 실행 컨테이너 실행 시작 컨테이너 실행 컨테이너 실행 컨테이너 오류 컨테이너에서 롤백 디스크 사용률 좋은 로컬 디렉토리 디스크 사용률 좋은 로그 디렉토리 바이트 삭제 전용 바이트 삭제 기회주의적인 바이트를 실행하는 공용 컨테이너 삭제 총 셔플 연결 임의 재생 출력 바이트 셔플 출력 실패 정상 GC 카운트 GC 마크 스윕 Compact Count GC Number Info Threshold Exceeded GC Number Warning Threshold Exceeded GC Time GC Copy Time GC Marks Sweep Time GC Total Extra Sleep Time Logs Error Count Logs Fatal Count Logs Warn Count Memory Heap Committed Memory Heap Hap Used Memory Max 메모리 비 힙 커밋된 메모리 비 힙 최대 메모리 비힙 사용된 스레드 차단된 스레드 새 스레드 Runnable 스레드 종료 스레드 시간 지정 대기 스레드 대기 중 
+
+
+| Hadoop ResourceManager를 참조하십시오 | 클러스터 네임스페이스 서버 | 노드 이름 노드 IP입니다 | ApplicationMaster 시작 지연 평균 ApplicationMaster 시작 지연 번호 ApplicationMaster 등록 지연 평균 ApplicationMaster 등록 지연 번호 NodeManager 활성 번호 NodeManager 축소 번호 NodeManager 손실 번호 NodeManager 재부팅 번호 NodeManager 종료 번호 NodeManager 정상 번호 NodeManager 메모리 제한 NodeManager 메모리 제한 NodeManager 가상 코어 제한 사용된 용량 활성 애플리케이션 활성 사용자 집계 컨테이너 할당된 집계 컨테이너 사전 지정된 집계 컨테이너 릴리스된 집계 메모리 초 사전 제거된 집계 노드 로컬 컨테이너 할당된 애그리게이트 오프 스위치 컨테이너 할당된 애그리게이트 Ack 로컬 컨테이너 할당된 애그리게이트 가상 코어 초 사전 지정된 컨테이너 할당된 메모리 할당된 가상 코어 애플리케이션 시도 첫 번째 컨테이너 할당 지연 평균 시간 애플리케이션 시도 첫 번째 컨테이너 할당 지연 수 응용 프로그램 완료 응용 프로그램 종료 응용 프로그램 실행 중 보류 중인 응용 프로그램 제출 메모리 사용 가능 가상 코어 사용 가능 컨테이너 보류 중 메모리 보류 가상 코어 예약된 메모리 예약된 가상 코어 예약된 메모리 ApplicationMaster 사용 가상 코어 ApplicationMaster 사용 용량 GC 카운트 GC 매수 카운트 GC 마크 스윕 Compact Count GC Number Info 임계값이 GC Number Warning 임계값을 초과함 GC Time GC Copy Time GC Marks Sweep Compact Time GC Total Extra Sleep Time Logs Error Count Logs Fatal Count Logs Warn Count Memory Heap Committed Memory Heap Max Memory Heap 사용된 메모리 최대 메모리 비 힙 커밋된 메모리 비 힙 최대 메모리 비힙 사용된 스레드 차단된 스레드 새 스레드 Runnable 스레드 종료 스레드 시간 지정 대기 스레드 대기 중 
+
+
+| Hadoop DataNode를 참조하십시오 | 클러스터 네임스페이스 서버 | 노드 이름 노드 IP 클러스터 ID 버전 | Transceiver Count 전송 진행 중 캐시 용량 캐시 사용 용량 DFS 사용 예상 용량 손실 마지막 볼륨 실패 비율 블록 수 캐시 블록 수 캐시 블록 수 캐시 블록 수 실패 볼륨 수 캐시 해제 실패 용량 남은 GC 수 GC 카운트 GC 스위프 컴팩트 카운트 GC 번호 정보 임계값이 GC 숫자 경고 임계값을 초과함 GC 시간 GC 복사 시간 GC 마크 스윕 컴팩트 시간 GC 총 추가 절전 시간 로그 오류 카운트 로그 치명적 카운트 로그 로그 경고 횟수 메모리 힙 커밋된 메모리 힙 최대 메모리 힙 사용된 메모리 최대 메모리 비힙 커밋됨 메모리 비힙 최대 메모리 비힙 사용된 스레드 차단된 스레드 새 스레드 Runnable 스레드 종료 스레드 시간 지정 대기 스레드 대기 중 
+
+
+| Hadoop NameNode입니다 | 클러스터 네임스페이스 서버 | 노드 이름 노드 IP 트랜잭션 ID 마지막 로드 이후 마지막으로 쓴 시간 HA 상태 파일 시스템 상태 블록 풀 ID 클러스터 ID 컴파일 정보 고유 버전 수 버전 | 블록 용량 블록 총 용량 사용된 총 용량 사용된 용량 비 DFS 블록 손상 예상 용량 손실 총 블록 수 초과 하트비트 만료 파일 총 파일 시스템 잠금 대기열 길이 블록 누락된 블록 블록 블록 블록 1개 클라이언트 활성 데이터 노드 비활성 데이터 노드 사용 중단 비활성 데이터 노드 사용 중단 라이브 데이터 노드 해독 암호화 존 수 데이터 노드 유지 보수 데이터 노드 아래 유지 보수 파일 입력 중단 유지 보수 데이터 노드의 라이브 노드 오래된 복제 보류 시간 초과 데이터 노드 메시지 보류 블록 삭제 보류 블록 복제 블록 복제 보류 지연 블록 복제 지연 블록 예약된 복제 스냅샷 스냅샷 스냅샷 스냅샷 스냅샷 스냅샷 스냅샷 스냅샷 디렉토리 데이터 노드 오래된 파일 총 로드 마지막 체크포인트 이후 총 동기화 수 총 트랜잭션 마지막 로그 롤 블록 이후 총 동기화 볼륨 장애 총 동기화 시간 총 객체 최대 작업 블록 추가 작업 허용 스냅샷 작업 차단 일괄 처리된 작업 차단 대기 중인 작업 블록 수신 및 삭제된 작업 보고서 평균 시간 작업 블록 보고서 번호 캐시 보고서 평균 시간 캐시 보고서 번호 작업 생성 파일 작업 생성 스냅샷 작업 생성 파일 작업 삭제 스냅샷 작업 삭제 스냅샷 작업 허용 스냅샷 작업 파일 삭제/출력 추가된 파일 생성된 파일 나열 파일 이름 변경된 파일 나열 시스템 로드 시간 작업 생성 EDEK 평균 시간 작업 생성 EDEK 작업 생성 추가 데이터 노드 블록 가져오기 위치 가져오기 평균 시간 가져오기 편집 번호 가져오기 이미지 가져오기 평균 시간 가져오기 이미지 번호 가져오기 작업 가져오기 링크 대상 작업 가져오기 목록 작업 목록 확인 스냅샷 디렉토리 복제 예약되지 않은 수 이미지 평균 시간 배치 이미지 번호 작업 스냅샷 이름 바꾸기 리소스 확인 시간 평균 시간 리소스 확인 시간 안전 모드 시간 작업 스냅샷 차이 보고서 작업 스토리지 블록 보고서 복제 성공 동기화 평균 시간 작업 동기화 시간 복제 시간 제한 작업 동기화 트랜잭션 번호 EDEK 경고 시간 평균 EDEK 경고 시간 평균 블록 풀 사용 공간 캐시 용량 캐시 사용 용량 가용 블록 풀 사용 백분율 남은 스레드 사용 GC 수 GC 사본 수 GC 마크 수 GC 마크 스윕 컴팩트 카운트 GC 번호 정보 임계값이 GC 시간 초과 GC 복사 시간 GC 마크 스위프 콤팩트 시간을 초과했습니다 GC Total Extra Sleep Time Logs Error Count Logs Fatal Count Logs Info Count Logs Warn Count Memory Heap Committed Memory Heap Max Memory Hap Used Memory Max Memory Non Heap Committed Memory Non Heap Memory Non Heap Memory Non Heap H힙 Used Threads Blocked Threads New Threads Terminated Threads Timed Timed 대기 중인 스레드 
+
+
+| Hadoop JobHistoryServer를 참조하십시오 | 클러스터 네임스페이스 서버 | 노드 이름 노드 IP입니다 | GC 카운트 GC 사본 수 GC 마크 스윕 컴팩트 카운트 GC 번호 정보 임계값이 GC 번호 경고 임계값을 초과함 GC 시간 GC 복사 시간 GC 마크 스윕 컴팩트 시간 GC 총 추가 절전 시간 로그 오류 카운트 로그 치명적 카운트 로그 경고 카운트 메모리 힙 커밋됨 메모리 힙 최대 메모리 힙 사용된 메모리 최대 메모리 비 힙 커밋된 메모리 비 힙 사용된 스레드 차단된 스레드 새 스레드 Runnable 스레드 종료 스레드 시간 지정 대기 스레드 대기 
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

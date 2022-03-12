@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: task_dc_emc_recoverpoint.html 
+keywords: data collector, RecoverPoint, EMC, DELL 
+summary: Dell EMC RecoverPoint 데이터 수집기 구성 
+---
+= Dell EMC RecoverPoint 데이터 수집기
+
+
+[role="lead"]
+EMC RecoverPoint 데이터 수집기는 EMC RecoverPoint 스토리지에서 인벤토리 정보를 수집합니다. 구성을 위해 데이터 수집기는 스토리지 프로세서의 IP 주소와 읽기 전용 사용자 이름 및 암호를 필요로 합니다.
+
+EMC RecoverPoint 데이터 수집기는 RecoverPoint가 다른 스토리지 시스템 간에 조정하는 볼륨 간 복제 관계를 수집합니다. Cloud Insights는 각 RecoverPoint 클러스터의 스토리지 시스템을 보여 주며 해당 클러스터의 노드 및 스토리지 포트에 대한 인벤토리 데이터를 수집합니다. 스토리지 풀 또는 볼륨 데이터가 수집되지 않습니다.
+
+
+
+== 요구 사항
+
+이 데이터 수집기를 구성하려면 다음 정보가 필요합니다.
+
+* 스토리지 프로세서의 IP 주소 또는 정규화된 도메인 이름입니다
+* 읽기 전용 사용자 이름 및 암호
+* 포트 443을 통한 REST API 액세스
+
+
+
+
+== 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| RecoverPoint의 주소입니다 | RecoverPoint 클러스터의 IP 주소 또는 정규화된 도메인 이름입니다 
+
+
+| 사용자 이름 | RecoverPoint 클러스터의 사용자 이름입니다 
+
+
+| 암호 | RecoverPoint 클러스터에 사용되는 암호입니다 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| TCP 포트 | RecoverPoint 클러스터에 접속하는 데 사용되는 TCP 포트입니다 
+
+
+| 재고 폴링 간격(분) | 재고 조사 사이의 간격입니다. 기본값은 20분입니다. 
+
+
+| 제외된 클러스터 | 폴링 시 제외할 클러스터 ID 또는 이름의 쉼표로 구분된 목록입니다. 
+|===
+
+
+== 문제 해결
+
+이 Data Collector에 대한 추가 정보는 에서 확인할 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

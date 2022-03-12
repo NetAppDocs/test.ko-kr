@@ -1,0 +1,94 @@
+---
+sidebar: sidebar 
+permalink: task_webhook_example_pagerduty.html 
+keywords: webhook, notification, PagerDuty, integration 
+summary: 웹 후크를 생성하여 PagerDuty의 성능 또는 인벤토리 임계값을 알립니다 
+---
+= 웹 후크 PagerDuty의 예
+
+
+[role="lead"]
+Webhook을 사용하면 사용자 지정된 Webhook 채널을 사용하여 다양한 응용 프로그램에 경고 알림을 보낼 수 있습니다. 이 페이지에서는 PagerDuty에 대한 Webhook 설정에 대한 예를 제공합니다.
+
+
+NOTE: 이 페이지는 변경될 수 있는 타사 지침을 참조합니다. 을 참조하십시오 link:https://support.pagerduty.com/docs/services-and-integrations["PagerDuty 문서"] 를 참조하십시오.
+
+
+
+=== PagerDuty 설정:
+
+. PagerDuty에서 * Services > Service Directory * 로 이동한 다음 * + New Service * buttonsport를 클릭합니다
+. 이름_을 입력하고 _ API directly_를 선택합니다. 서비스 추가 _ 를 클릭합니다.
++
+image:Webhooks_PagerDutyScreen1.png["PagerDuty 화면"]
+
+. 통합 키 * 를 보려면 _Integrations_탭을 클릭하십시오. 아래에 Cloud Insights 웹 후크를 만들 때 이 키가 필요합니다.
+
+
+. 알림을 보려면 * 인시던트 * 또는 * 서비스 * 로 이동하십시오.
++
+image:Webhooks_PagerDutyScreen2.png["PagerDuty 화면"]
+
+
+
+
+
+=== Cloud Insights Webhook 생성:
+
+. Cloud Insights에서 * 관리자 > 알림 * 으로 이동하고 * Webhook * 탭을 선택합니다. 새 웹후크를 만들려면 * + 웹후크 * 를 클릭합니다.
+. 웹 후크에 "PagerDuty Trigger"와 같은 의미 있는 이름을 지정합니다. 이 웹 후크는 위험 및 경고 수준의 이벤트에 사용됩니다.
+. Template Type_드롭다운에서 * PagerDuty * 를 선택합니다.
+
+
+. _routingKey_라는 사용자 지정 매개 변수 암호를 만들고 위의 PagerDuty_Integration Key_value 로 값을 설정합니다.
++
+image:Webhooks_Custom_Secret_Routing_Key.png["라우팅 키 설정"]
+
+
+
+이 단계를 반복하여 해결된 이벤트에 대한 "PagerDuty Resolve" 웹 후크를 만듭니다.
+
+
+
+=== PagerDuty에서 Cloud Insights 필드 매핑까지
+
+다음 표와 이미지는 PagerDuty와 Cloud Insights 사이의 필드 매핑을 보여줍니다.
+
+[cols="<,<"]
+|===
+| PagerDuty | Cloud Insights 
+
+
+| 경고 키 | 경고 ID 
+
+
+| 출처 | 트리거 켜짐 
+
+
+| 구성 요소 | 메트릭 이름 
+
+
+| 그룹 | 개체 유형 
+
+
+| 클래스 | 모니터 이름 
+|===
+image:Webhooks-PagerDuty_Fields.png["CI의 PagerDuty 필드"]
+
+
+
+=== Webhook를 통한 알림
+
+Webhook를 통해 이벤트에 대해 알리려면 Cloud Insights에서 * 알림 > 모니터 * 로 이동하고 * + 모니터 * 를 클릭하여 새 를 생성합니다 link:task_create_monitor.html["모니터링"].
+
+* 메트릭을 선택하고 모니터 조건을 정의합니다.
+* 팀 알림 설정 에서 * Webhook * 전달 방법 을 선택합니다.
+* 위험 및 경고 수준 이벤트에 대해 "PagerDuty Trigger" 웹 후크를 선택합니다.
+* 해결된 이벤트에 대해 "PagerDuty Resolve"를 선택합니다.
++
+image:Webhooks_Notifications.png["Webhook 알림"]
+
+
+
+
+NOTE: PagerDuty는 해제 이벤트와 다르게 트리거 이벤트를 처리하므로 트리거 이벤트와 해결된 이벤트에 대한 별도의 알림을 설정하는 것이 좋습니다.

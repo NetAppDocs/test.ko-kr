@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: task_dc_na_storagegrid.html 
+summary: NetApp StorageGRID 데이터 수집기를 구성합니다 
+keywords: data collector, queries, create, storagegrid 
+---
+= NetApp StorageGRID 데이터 수집기
+
+
+[role="lead"]
+NetApp StorageGRID 데이터 수집기는 StorageGRID 구성의 인벤토리 및 성능 수집을 지원합니다.
+
+
+NOTE: StorageGRID는 다른 물리적 TB에서 관리 단위 비율로 측정됩니다. 40TB의 포맷되지 않은 StorageGRID 용량마다 1로 충전됩니다 link:concept_subscribing_to_cloud_insights.html#pricing["관리 장치(MU)"].
+
+
+
+== 요구 사항
+
+다음은 이 데이터 소스를 구성하기 위한 요구 사항입니다.
+
+* StorageGRID 호스트 IP 주소입니다
+* 메트릭 쿼리 및 테넌트 액세스 역할이 할당된 사용자의 사용자 이름 및 암호입니다
+* 포트 443
+
+
+
+
+== 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| StorageGRID 호스트 IP 주소입니다 | StorageGRID 어플라이언스의 관리 가상 IP 주소입니다 
+
+
+| 사용자 이름 | StorageGRID 어플라이언스에 로그인하는 데 사용되는 이름입니다 
+
+
+| 암호 | StorageGRID 어플라이언스에 로그인하는 데 사용되는 암호입니다 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| 재고 폴링 간격(분) | 기본값은 60분입니다 
+
+
+| 성능 폴링 간격(초) | 기본값은 900초입니다 
+|===
+
+
+== 문제 해결
+
+이 Data Collector에 대한 추가 정보는 에서 확인할 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

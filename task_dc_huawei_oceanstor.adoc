@@ -1,0 +1,102 @@
+---
+sidebar: sidebar 
+permalink: task_dc_huawei_oceanstor.html 
+keywords: data collector, Huawei, OceanStor, Dorado 
+summary: 'REST/HTTPS(Huawei OceanStor) 데이터 수집기 구성' 
+---
+= Huawei OceStor 데이터 수집기
+
+
+[role="lead"]
+Cloud Insights는 Huawei OceanStor(REST/HTTPS) 데이터 수집기를 사용하여 Huawei OceanStor 및 OceanStor Dorado 스토리지의 인벤토리 및 성능을 검색합니다.
+
+
+
+== 용어
+
+Cloud Insights는 Huawei OceanStor로부터 다음과 같은 인벤토리 및 성능 정보를 수집합니다. Cloud Insights에서 획득한 각 자산 유형에 대해 이 자산에 가장 일반적으로 사용되는 용어가 표시됩니다. 이 데이터 수집기를 보거나 문제를 해결할 때 다음 용어를 염두에 두십시오.
+
+[cols="2*"]
+|===
+| 공급업체/모델 기간 | Cloud Insights 용어입니다 
+
+
+| 스토리지 풀 | 스토리지 풀 
+
+
+| 파일 시스템 | 내부 볼륨 
+
+
+| 컨트롤러 | 스토리지 노드 
+
+
+| FC 포트(매핑) | 볼륨 맵 
+
+
+| 호스트 FC 이니시에이터(매핑) | 볼륨 마스크 
+
+
+| NFS/CIFS 공유입니다 | 공유 
+
+
+| iSCSI 링크 대상 | iSCSI 타겟 노드 
+
+
+| iSCSI 링크 초기자 | iSCSI 이니시에이터 노드입니다 
+
+
+| 디스크 | 디스크 
+
+
+| LUN을 클릭합니다 | 볼륨 
+|===
+
+
+== 요구 사항
+
+이 데이터 수집기를 구성하려면 다음 요구 사항이 필요합니다.
+
+* 장치 IP 주소입니다
+* OceanStor 장치 관리자에 액세스하기 위한 자격 증명
+* 포트 8088을 사용할 수 있어야 합니다
+
+
+
+
+== 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| OceanStor 호스트 IP 주소입니다 | OceanStor Device Manager의 IP 주소 또는 정규화된 도메인 이름입니다 
+
+
+| 사용자 이름 | OceanStor Device Manager에 로그인하는 데 사용되는 이름입니다 
+
+
+| 암호 | OceanStor Device Manager에 로그인하는 데 사용되는 암호입니다 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| TCP 포트 | OceanStor Device Manager에 연결하는 데 사용되는 TCP 포트입니다. 기본값은 8088입니다. 
+
+
+| 재고 폴링 간격(분) | 재고 조사 사이의 간격입니다. 기본값은 60분입니다. 
+
+
+| 성능 폴링 간격(초). | 기본값은 300초입니다. 
+|===
+
+
+== 문제 해결
+
+이 Data Collector에 대한 추가 정보는 에서 확인할 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

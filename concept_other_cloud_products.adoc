@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: concept_other_cloud_products.html 
+keywords: cloud central, cloud products, switching between 
+summary: Cloud Insights 내에서 다른 NetApp Cloud Central 제품으로 쉽게 전환할 수 있습니다. 
+---
+= 다른 Cloud Central 제품으로 전환
+
+
+[role="lead"]
+Cloud Central * 메뉴를 클릭하고 나열된 NetApp Cloud 제품 중에서 선택하여 다른 NetApp 클라우드 제품으로 전환할 수 있습니다. Cloud Central 포털 자체로도 이동할 수 있습니다.
+
+image:CloudProductsMenu.png["그 밖의 클라우드 제품"]
+
+선택한 클라우드 제품에 자동으로 인증되고 로그인됩니다.

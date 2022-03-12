@@ -1,0 +1,278 @@
+---
+sidebar: sidebar 
+permalink: reporting_schema_diagrams.html 
+keywords: Schema, DB Schema, premium, dwh, data warehouse 
+summary: 보고 스키마 다이어그램 
+---
+= Cloud Insights 보고 스키마 다이어그램
+
+
+[role="lead"]
+이 문서에서는 보고 데이터베이스에 대한 스키마 다이어그램을 제공합니다. 이 포함된 파일을 다운로드할 수도 있습니다 link:ci_reporting_database_schema.pdf["스키마 테이블"].
+
+
+NOTE: 보고 기능은 Cloud Insights에서 사용할 수 있습니다 link:concept_subscribing_to_cloud_insights.html["Premium Edition을 참조하십시오"].
+
+
+
+== 재고 데이터 마트
+
+다음 이미지는 재고 데이터마트에 대해 설명합니다.
+
+
+
+=== 스토리지
+
+image:storage.png[""]
+
+
+
+=== 스토리지 노드
+
+image:storage_node.png[""]
+
+
+
+=== SAN 패브릭
+
+image:fabric.png[""]
+
+
+
+=== 포트 연결
+
+image:connectivity.png[""]
+
+
+
+=== VM
+
+image:vm.png[""]
+
+
+
+=== NAS
+
+image:nas.png[""]
+
+
+
+=== 경로 및 위반
+
+image:logical.png[""]
+
+
+
+=== 주석
+
+image:annotations.png[""]
+
+
+
+=== 응용 프로그램
+
+image:apps_annot.png[""]
+
+
+
+=== 스토리지 및 스토리지 풀 용량
+
+image:Storage_and_Storage_Pool_Capacity_Fact.png[""]
+
+
+
+=== 볼륨 용량
+
+image:Volume_Capacity.png[""]
+
+
+
+=== VM 용량
+
+image:VM_Capacity_Fact.png[""]
+
+
+
+=== 내부 볼륨 용량
+
+image:Internal_Volume_Capacity_Fact.png[""]
+
+
+
+=== Qtree 용량
+
+image:Qtree_Capacity_Fact.png[""]
+
+
+
+=== 스토리지 용량 효율성
+
+image:efficiency.png[""]
+
+
+
+=== 스토리지 및 스토리지 풀 용량
+
+image:Storage_and_Storage_Pool_Capacity_Fact.png[""]
+
+
+
+=== 파일 시스템 활용률
+
+image:fs_util.png[""]
+
+
+
+=== 포트 용량
+
+image:ports.png[""]
+
+
+
+=== 비용 청구
+
+image:Chargeback_Fact.png[""]
+
+
+
+=== 디스크 그룹 용량
+
+image:Disk_Group_Capacity.png[""]
+
+
+
+== 성능 데이터 센터
+
+다음 이미지는 성능 데이터 마트에 대해 설명합니다.
+
+
+
+=== 애플리케이션 볼륨의 시간별 성능
+
+image:application_performance_fact.png[""]
+
+
+
+=== 내부 볼륨 시간별 성능
+
+image:host_performance_fact.png[""]
+
+
+
+=== 내부 볼륨 시간별 성능
+
+image:internal_volume_performance_fact.png[""]
+
+
+
+=== 내부 볼륨 일일 성능
+
+image:internal_volume_daily_performance_fact.png[""]
+
+
+
+=== 볼륨 시간별 성능
+
+image:vmdk_hourly_performance_fact.png[""]
+
+
+
+=== 볼륨 일일 성능
+
+image:volume_daily_performance_fact.png[""]
+
+
+
+=== Qtree 일별 성능
+
+image:QtreeDailyPerformanceFact.png[""]
+
+
+
+=== 호스트에 대한 시간별 성능 전환
+
+image:switch_performance_for_host_hourly_fact.png[""]
+
+
+
+=== 포트의 시간별 성능 전환
+
+image:switch_performance_for_port_hourly_fact.png[""]
+
+
+
+=== 스토리지에 대한 시간별 성능 전환
+
+image:switch_performance_for_storage_hourly_fact.png[""]
+
+
+
+=== 테이프에 대한 시간별 성능 전환
+
+image:switch_performance_for_tape_hourly_fact.png[""]
+
+
+
+=== VM 성능
+
+image:vm_hourly_performance_fact.png[""]
+
+
+
+=== 호스트의 VM 일일 성능
+
+image:vm_daily_performance_fact.png[""]
+
+
+
+=== 호스트에 대한 VM 시간별 성능
+
+image:vm_hourly_performance_fact.png[""]
+
+
+
+=== 호스트의 VM 일일 성능
+
+image:vm_daily_performance_fact.png[""]
+
+
+
+=== 호스트에 대한 VM 시간별 성능
+
+image:vm_hourly_performance_fact.png[""]
+
+
+
+=== VMDK 일별 성능
+
+image:vmdk_daily_performance_fact.png[""]
+
+
+
+=== VMDK의 시간별 성능
+
+image:vmdk_hourly_performance_fact.png[""]
+
+
+
+=== 스토리지 노드 시간별 성능 향상
+
+image:storage_node_hourly_performance_fact.png[""]
+
+
+
+=== 디스크 일일 성능
+
+image:disk_daily_performance_fact.png[""]
+
+
+
+=== 디스크 시간별 성능
+
+image:disk_hourly_performance_fact.png[""]
+
+
+
+== 쿠버네티스
+
+image:k8s_schema.jpg["쿠버네티스"]

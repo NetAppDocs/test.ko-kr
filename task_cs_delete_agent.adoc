@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: task_cs_delete_agent.html 
+keywords: agent, Cloud Secure, delete agent 
+summary: Cloud Secure 에이전트를 삭제하는 중입니다 
+---
+= Cloud Secure 에이전트를 삭제하는 중입니다
+
+
+[role="lead"]
+Cloud Secure 에이전트를 삭제할 때 에이전트와 연결된 모든 데이터 수집기를 먼저 삭제해야 합니다.
+
+
+
+== 상담원 삭제
+
+
+IMPORTANT: Agent를 삭제하면 Agent와 연결된 모든 Data Collector가 삭제됩니다. 다른 에이전트로 데이터 수집기를 구성하려는 경우 에이전트를 삭제하기 전에 Data Collector 구성의 백업을 만들어야 합니다.
+
+.시작하기 전에
+. 에이전트와 연결된 모든 데이터 수집기가 Cloud Secure 포털에서 삭제되었는지 확인합니다.
++
+참고: 연결된 모든 수집기가 중지 상태인 경우 이 단계를 무시하십시오.
+
+
+
+.에이전트를 삭제하는 단계:
+. 에이전트 VM에 SSH를 수행하고 다음 명령을 실행합니다. 메시지가 표시되면 "y"를 입력하여 계속합니다.
++
+....
+sudo /opt/netapp/cloudsecure/agent/install/cloudsecure-agent-uninstall.sh
+Uninstall CloudSecure Agent? [y|N]:
+....
+. Admin > Data Collector > Agents * 를 클릭합니다
++
+구성된 에이전트 목록이 표시됩니다.
+
+. 삭제하려는 상담원의 옵션 메뉴를 누릅니다.
+. 삭제 * 를 클릭합니다.
++
+시스템에 * Delete Agent * 페이지가 표시됩니다.
+
+. 삭제를 확인하려면 * 삭제 * 를 클릭합니다.
+

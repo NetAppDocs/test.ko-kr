@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: task_webhook_example_teams.html 
+keywords: webhook, notification, Microsoft, Teams, integration 
+summary: Microsoft 팀의 성능 또는 인벤토리 임계값에 대한 알림을 제공하는 웹 후크를 만듭니다 
+---
+= Webhook Microsoft 팀의 예
+
+
+[role="lead lead"]
+Webhook을 사용하면 사용자 지정된 Webhook 채널을 사용하여 다양한 응용 프로그램에 경고 알림을 보낼 수 있습니다. 이 페이지에서는 팀을 위한 Webhook을 설정하는 예를 제공합니다.
+
+
+NOTE: 이 페이지는 변경될 수 있는 타사 지침을 참조합니다. 을 참조하십시오 link:https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook["팀 문서"] 를 참조하십시오.
+
+
+
+=== 팀 설정:
+
+. 팀에서 케밥을 선택하고 들어오는 Webhook를 검색합니다.
++
+image:Webhooks_Teams_Create_Webhook.png["팀 내 수신 Webhook"]
+
+. 팀에 추가 > 팀 선택 > 커넥터 설정 * 을 선택합니다.
+. Webhook URL을 복사합니다. Cloud Insights Webhook 구성에 붙여 넣어야 합니다.
+
+
+
+
+=== Cloud Insights Webhook 생성:
+
+. Cloud Insights에서 * 관리자 > 알림 * 으로 이동하고 * Webhook * 탭을 선택합니다. 새 웹후크를 만들려면 * + 웹후크 * 를 클릭합니다.
+. Webhook에 "Teams Webhook"과 같은 의미 있는 이름을 지정합니다.
+. 템플릿 유형 _ 드롭다운에서 * 팀 * 을 선택합니다.
+
+
+image:Webhooks-Teams_example.png["팀 웹 후크 서식 파일"]
+
+. 위의 URL을 _url_필드에 붙여 넣습니다.
+
+
+
+
+=== Webhook를 통한 알림
+
+Webhook를 통해 이벤트에 대해 알리려면 Cloud Insights에서 * 알림 > 모니터 * 로 이동하고 * + 모니터 * 를 클릭하여 새 를 생성합니다 link:task_create_monitor.html["모니터링"].
+
+* 메트릭을 선택하고 모니터 조건을 정의합니다.
+* 팀 알림 설정 에서 * Webhook * 전달 방법 을 선택합니다.
+* 원하는 이벤트(위험, 경고, 해결됨)에 대해 "팀" 웹 후크를 선택합니다.
++
+image:Webhooks_Teams_Notifications.png["Webhook 알림"]
+
+

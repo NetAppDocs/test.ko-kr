@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_consul.html 
+keywords: telegraf, installation, install, consul 
+summary: 영사 데이터 수집기 구성 
+---
+= 데이터 수집기 영사
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 Consul으로부터 메트릭을 수집합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. 서비스 * 에서 영술 을 선택합니다.
++
+컬렉션에 대한 Agent를 구성하지 않은 경우 메시지가 표시됩니다 link:task_config_telegraf_agent.html["에이전트를 설치합니다"] 있습니다.
+
++
+에이전트가 이미 구성되어 있는 경우 해당 운영 체제 또는 플랫폼을 선택하고 * 계속 * 을 클릭합니다.
+
+. SUL Configuration 화면의 지침에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+
+
+== 설정
+
+정보는 에서 찾을 수 있습니다 link:https://www.consul.io/docs/index.html["영사 문서"].
+
+
+
+== 영사의 객체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| 영사 | 네임스페이스 확인 ID 서비스 노드 | 노드 IP 노드 OS 노드 UUID 노드 이름 서비스 이름 이름 이름 확인 서비스 ID 상태 | 심각한 통과 경고 
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

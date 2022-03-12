@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_dcos.html 
+keywords: telegraf, installation, install, dcos 
+summary: DCO 구성 
+---
+= DC/OS Data Collector
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 DC/OS에서 메트릭을 수집합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. 서비스 * 에서 * DC/OS * 를 선택합니다.
++
+컬렉션에 대한 Agent를 구성하지 않은 경우 메시지가 표시됩니다 link:task_config_telegraf_agent.html["에이전트를 설치합니다"] 있습니다.
+
++
+에이전트가 이미 구성되어 있는 경우 해당 운영 체제 또는 플랫폼을 선택하고 * 계속 * 을 클릭합니다.
+
+. DC/OS Configuration(DC/OS 구성) 화면의 지침에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+
+
+== 설정
+
+설정 정보는 에서 찾을 수 있습니다 https://docs.mesosphere.com["DC/OS 설명서"].
+
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트 | 식별자 | 속성 | 데이터 요소 
+
+
+| DCO_NODE | DCO_CONTAINER DCO_APP | 클러스터 호스트 이름 경로(파일 시스템 필드에만 해당) 인터페이스(네트워크 필드에만 해당) container_id task_name | infloat(system_uptime) cpu_cornes(float) cpu_user(float) cpu_idle(float) cpu_wait(float) load_1min(float) load_5min(float) load_15min(float) filesystem_capacity_capacity(int_used_bytes(int) inode inode inode 사용 가능한 inode_free_ytes(inode) inode( inode_free_ytes) infloat_byte( inode) infloat) inode( infloat) infloat) byte( infloat) network_in_packets (float) network_out_packets (float) network_in_drop (float) network_in_errors (float) network_out_errors (float) process_count (float) 
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

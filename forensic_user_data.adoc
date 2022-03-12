@@ -1,0 +1,91 @@
+---
+sidebar: sidebar 
+permalink: forensic_user_data.html 
+keywords: Forensic, user, user detail 
+summary: 포렌식 사용자 데이터 
+---
+= Forensic 사용자 데이터
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media
+
+
+[role="lead"]
+사용자 페이지에서는 Cloud Secure에서 모니터링하는 사용자를 식별합니다.
+
+이 페이지에서 사용할 수 있는 데이터에는 다음이 포함됩니다.
+
+* Cloud Secure에서 모니터링하는 각 사용자는 에 대한 링크를 통해 모니터링할 수 있습니다 link:user_profile.html["사용자 프로필"].
+* 사용자가 수행한 작업에 의해 발생하는 경고입니다. 경고 심각도는 다음과 같이 식별됩니다. image::critical.png[Critical]+\image::warning.png[Warning]+\image::low.png[Low]+\
+* 사용자가 마지막으로 수행한 활동입니다.
+* 사용자의 위치 - 국가 및 주
+* 사용자가 속한 커뮤니티 수입니다.
+
+
+
+
+== Forensic 사용자 데이터 필터링
+
+다음과 같이 Forensic 활동 기록 데이터를 필터링할 수 있습니다.
+
+* 경고
++
+** 없음
+** 낮음
+** 경고
+** 심각
+
+
+* 관련 커뮤니티
++
+** 미정
+
+
+* 커뮤니티 수
++
+** 숫자 값 또는 범위입니다
+
+
+* 마지막 활동
++
+** 시간 또는 시간 범위입니다
+
+
+* 위치
++
+** 작업이 수행된 IP 주소입니다
+
+
+* 경고
++
+** 없음
+** 낮음
+** 경고
+** 심각
+** 관련 커뮤니티
+
+
+* 커뮤니티 수
++
+** 숫자 값 또는 범위입니다
+
+
+* 마지막 활동
++
+** 시간 또는 시간 범위입니다
+
+
+* 위치
++
+** 작업이 수행된 IP 주소 *
+** 사용자
+** 사용자 ID입니다
+
+
+* 엔티티가 액세스된 위치입니다
+* 요소의 경로입니다
+* 작업이 발생한 시간입니다
+* 작업을 수행하는 사용자입니다
+

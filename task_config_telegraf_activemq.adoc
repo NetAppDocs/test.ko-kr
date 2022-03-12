@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_activemq.html 
+keywords: telegraf, installation, install, ActiveMQ 
+summary: HTTP 데이터 수집기 구성 
+---
+= ActiveMQ 데이터 수집기
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 ActiveMQ에서 메트릭을 수집합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. 서비스 * 에서 ActiveMQ 를 선택합니다.
++
+Telegraf 에이전트가 설치된 운영 체제 또는 플랫폼을 선택합니다.
+
+. 수집용 에이전트를 아직 설치하지 않았거나 다른 운영 체제 또는 플랫폼용 에이전트를 설치하려는 경우, _지침 표시_를 클릭하여 를 확장합니다 link:task_config_telegraf_agent.html["에이전트 설치"] 지침.
+. 이 데이터 수집기에 사용할 Agent Access 키를 선택합니다. Agent 액세스 키 * 버튼을 클릭하여 새 Agent 액세스 키를 추가할 수 있습니다. 모범 사례: OS/플랫폼별로 데이터 수집기를 그룹화하려는 경우에만 다른 에이전트 액세스 키를 사용하십시오.
+. 구성 단계에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+image:ActiveMQDCConfigWindows.png["ActiveMQ 구성"]
+
+
+
+== 설정
+
+정보는 에서 찾을 수 있습니다 http://activemq.apache.org/getting-started.html["ActiveMQ 문서"]
+
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| ActiveMQ 대기열 | 네임스페이스 대기열 포트 서버 | 노드 이름 노드 IP 노드 UUID | 소비자 수 대기열 대기열 수 대기열 크기 
+
+
+| ActiveMQ 가입자 | 클라이언트 ID 연결 ID 포트 서버 네임스페이스 | 활성 대상 노드 이름 노드 IP 노드 UUID 노드 OS 선택기 가입입니다 | 발송된 대기열 수 디스패치 대기열 크기 대기열 대기열 수 보류 대기열 크기 
+
+
+| ActiveMQ 주제 | Topic Port Server 네임스페이스 | 노드 이름 노드 IP 노드 UUID 노드 OS | 소비자 수 대기열 대기열 수 크기 
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

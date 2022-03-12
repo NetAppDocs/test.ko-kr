@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: task_cs_getting_started.html 
+keywords: collectors, data collectors, configure, introduction, browsers 
+summary: 몇 가지 간단한 단계를 통해 Cloud Secure를 사용할 수 있습니다 
+---
+= Cloud Secure 시작하기
+
+
+Cloud Secure를 사용하여 사용자 활동을 모니터링하기 전에 완료해야 하는 구성 작업이 있습니다.
+
+Cloud Secure 시스템은 에이전트를 사용하여 스토리지 시스템에서 액세스 데이터를 수집하고 디렉토리 서비스 서버에서 사용자 정보를 수집합니다.
+
+데이터 수집을 시작하려면 먼저 다음을 구성해야 합니다.
+
+[cols="2*"]
+|===
+
+
+| 작업 | 관련 정보 
+
+
+| Agent를 구성합니다  a| 
+link:concept_cs_agent_requirements.html["상담원 요구 사항"]
+
+link:task_cs_add_agent.html["상담원 추가"]
+
+link:https://netapp.hubs.vidyard.com/watch/Lce7EaGg7NZfvCUw4Jwy5P?["* 비디오 *: 에이전트 배포"]
+
+
+
+| 사용자 디렉터리 커넥터를 구성합니다 | link:task_config_user_dir_connect.html["사용자 디렉토리 커넥터를 추가합니다"]
+
+link:https://netapp.hubs.vidyard.com/watch/NEmbmYrFjCHvPps7QMy8me?["* 비디오 *: Active Directory 연결"] 
+
+
+| 데이터 수집기를 구성합니다 | Admin > Data Collector * 를 클릭하고 구성하려는 데이터 수집기를 클릭합니다. 설명서의 Data Collector 공급업체 참조 섹션을 참조하십시오.link:https://netapp.hubs.vidyard.com/watch/YSQrcYA7DKXbj1UGeLYnSF?["* 비디오 *: ONTAP SVM 연결"] 
+
+
+| 사용자 계정을 생성합니다 | link:concept_user_roles.html["사용자 계정 관리"] 
+
+
+| 문제 해결 | link:https://netapp.hubs.vidyard.com/watch/Fs8N2w9wBtsFGrhRH9X85U?["* 비디오 *: 문제 해결"] 
+|===

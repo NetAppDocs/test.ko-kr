@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: task_dc_google_cloud.html 
+summary: Google Compute 데이터 수집기를 구성합니다 
+keywords: data collector, queries, create 
+---
+= NetApp Google Compute 데이터 수집기입니다
+
+
+[role="lead"]
+이 데이터 수집기는 Google Compute 클라우드 플랫폼 구성의 인벤토리 및 성능 수집을 지원합니다. 이 수집기는 하나의 Google 조직 내의 모든 프로젝트 내의 모든 컴퓨팅 리소스를 검색합니다. Cloud Insights를 사용하여 검색하려는 Google 조직이 여러 개인 경우 조직당 하나의 Cloud Insights Collector를 배포하려고 합니다.
+
+
+
+== 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| 조직 ID입니다 | 이 수집기로 검색할 조직 ID입니다. 서비스 계정이 둘 이상의 조직을 볼 수 있는 경우 이 필드는 필수입니다 
+
+
+| GCP 프로젝트를 ID로 필터링하려면 '제외' 또는 '포함'을 선택하십시오 | Cloud Insights에 가져올 프로젝트 리소스를 제한하려는 경우 
+
+
+| 프로젝트 ID | "제외 선택"..." 값의 값에 따라 검색 또는 검색에서 필터링하려는 프로젝트 ID 목록입니다. 기본 목록은 비어 있습니다 
+
+
+| 클라이언트 ID입니다 | Google Cloud Platform 구성의 클라이언트 ID입니다 
+
+
+| 여기에 Google 자격 증명 파일의 내용을 복사하여 붙여 넣습니다 | 클라우드 플랫폼 계정에 대한 Google 자격 증명을 이 필드에 복사합니다 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| 재고 폴링 간격(분) | 기본값은 60분입니다 
+
+
+| '제외' 또는 '포함'을 선택하여 레이블별로 VM 필터링에 적용합니다 | 데이터를 수집할 때 레이블별로 VM을 포함할지 제외할지 여부를 지정합니다. '포함'을 선택한 경우 라벨 키 필드는 비워 둘 수 없습니다. 
+
+
+| VM을 필터링할 키 및 값에 레이블을 지정합니다 | VM의 레이블 키 및 값과 일치하는 키와 값을 필터링하여 포함/제외할 VM(및 연결된 디스크)을 선택하려면 * + 필터 레이블 * 을 클릭합니다. 레이블 키는 필수 항목이며 레이블 값은 선택 사항입니다. 레이블 값이 비어 있으면 레이블 키와 일치하는 한 VM이 필터링됩니다. 
+
+
+| 성능 폴링 간격(초) | 기본값은 1800초입니다 
+|===
+
+
+== 문제 해결
+
+이 Data Collector에 대한 추가 정보는 에서 확인할 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

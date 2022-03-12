@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_redis.html 
+keywords: telegraf, installation, install, redis 
+summary: Redis 데이터 수집기 구성 
+---
+= Redis Data Collector를 참조하십시오
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 Redis에서 메트릭을 수집합니다. Redis는 데이터베이스, 캐시 및 메시지 브로커로 사용되는 오픈 소스 인메모리 데이터 구조 저장소로, 문자열, 해시, 목록, 집합 등의 데이터 구조를 지원합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. 서비스 * 에서 Redis 를 선택합니다.
++
+Telegraf 에이전트가 설치된 운영 체제 또는 플랫폼을 선택합니다.
+
+. 수집용 에이전트를 아직 설치하지 않았거나 다른 운영 체제 또는 플랫폼용 에이전트를 설치하려는 경우, _지침 표시_를 클릭하여 를 확장합니다 link:task_config_telegraf_agent.html["에이전트 설치"] 지침.
+. 이 데이터 수집기에 사용할 Agent Access 키를 선택합니다. Agent 액세스 키 * 버튼을 클릭하여 새 Agent 액세스 키를 추가할 수 있습니다. 모범 사례: OS/플랫폼별로 데이터 수집기를 그룹화하려는 경우에만 다른 에이전트 액세스 키를 사용하십시오.
+. 구성 단계에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+image:RedisDCConfigWindows.png["Redis Data Collector 구성"]
+
+
+
+== 설정
+
+정보는 에서 찾을 수 있습니다 link:https://redis.io/documentation["Redis 문서"].
+
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| 레드입니다 | 네임스페이스 서버 |  |  
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

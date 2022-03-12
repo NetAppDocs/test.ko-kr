@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: task_display_widget_legends.html 
+summary: 대시보드 위젯에 범례 표시 
+keywords: dashboard, widget, legends 
+---
+= 위젯 범례 표시 중
+:toc: macro
+:hardbreaks:
+:toclevels: 2
+:toc: 
+:toclevels: 2
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+대시보드의 위젯은 범례와 함께 또는 범례 없이 표시할 수 있습니다.
+
+대시보드를 표시할 때 위젯에서 * 옵션 * 버튼을 클릭하고 메뉴에서 * 범례 표시 * 를 선택하여 위젯의 범례를 설정하거나 해제할 수 있습니다.
+
+위젯에 표시된 데이터가 변경되면 해당 위젯에 대한 범례가 동적으로 업데이트됩니다.
+
+범례가 표시될 때 범례가 나타내는 자산의 랜딩 페이지를 탐색할 수 있으면 범례가 해당 자산 페이지에 대한 링크로 표시됩니다.

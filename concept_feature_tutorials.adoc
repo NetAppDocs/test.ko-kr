@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: concept_feature_tutorials.html 
+summary: Cloud Insights에는 다양한 작업을 수행하는 방법을 보여주는 자습서가 있습니다. 
+keywords: onboarding, getting started, video, tutorial, resolution, dashboard, query, troubleshooting 
+---
+= 피처 튜터리얼
+
+
+[role="lead"]
+Cloud Insights에는 데이터를 빠르고 쉽게 찾고, 문제를 해결하고, 기업 환경에 대한 통찰력을 제공할 수 있는 유용한 기능이 포함되어 있습니다. 강력한 쿼리를 사용하여 데이터를 쉽게 찾고, 대시보드에서 데이터를 시각화하고, 설정한 데이터 임계값에 대한 전자 메일 알림을 보낼 수 있습니다.
+
+Cloud Insights에는 이러한 기능을 이해하고 비즈니스 통찰력 전략을 보다 잘 구현할 수 있도록 도와주는 여러 비디오 자습서가 포함되어 있습니다. Cloud Insights 환경에 액세스할 수 있는 모든 사용자는 이러한 자습서를 활용할 수 있습니다.
+
+
+
+== 소개
+
+Cloud Insights의 작동 방식을 설명하는 간단한 자습서를 시청하십시오.
+
+video::howTo.mp4[]
+
+
+== 체크리스트 및 비디오 자습서
+
+Cloud Insights 사이트에 표시되는 * 시작 체크리스트 * 에는 몇 가지 유용한 작업과 개념 목록이 포함되어 있습니다. 체크리스트에서 항목을 선택하면 해당 개념에 적합한 Cloud Insights 페이지로 이동합니다. 예를 들어, _대시보드 만들기_항목을 클릭하면 Cloud Insights* 대시보드* 페이지가 열립니다.
+
+image:OnboardingChecklist.png["자습서 체크리스트 진행"]
+
+페이지 상단에는 대시보드를 만드는 방법을 보여주는 비디오 자습서에 대한 링크가 있습니다. 동영상을 원하는 횟수만큼 볼 수 있습니다. 해당 비디오에 대해 이 _link를 다시 표시하지 않습니다. 비디오를 해제할 때까지 대시보드 페이지로 이동할 때마다 사용할 수 있습니다.
+
+image:Startup-DashboardWatchVideo.png["비디오 링크 보기"]
+
+비디오를 한 번 이상 시청한 후 체크리스트의 _ 대시보드 생성 _ 항목이 체크 아웃되어 튜토리얼을 완료했음을 나타냅니다. 그런 다음 다음 다음 자습서로 진행할 수 있습니다.
+
+
+NOTE: 원하는 순서대로 튜터리얼을 볼 수 있습니다.
+
+
+
+=== 점검 목록을 해제합니다
+
+점검 목록 맨 아래에 있는 _다시 표시하지 않음_링크를 클릭할 때까지 시작 점검 목록이 사이트에 표시됩니다. 체크리스트를 누락한 후에도 메시지 머리글 표시줄에서 각 항목을 해제할 때까지 각 해당 Cloud Insights 페이지에서 자습서를 계속 사용할 수 있습니다.
+
+
+
+== 자습서를 봅니다
+
+
+
+=== 데이터 쿼리
+
+video::Queries.mp4[]
+
+
+=== 대시보드 생성
+
+video::Dashboards.mp4[]
+
+
+=== 문제 해결
+
+video::Troubleshooting.mp4[]
+
+
+=== 장치 확인
+
+video::AHR_small.mp4[]

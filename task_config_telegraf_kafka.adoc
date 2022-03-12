@@ -1,0 +1,87 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_kafka.html 
+keywords: telegraf, installation, install, kafka 
+summary: Kafka 데이터 수집기 구성 
+---
+= Kafka 데이터 수집기
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 Kafka로부터 메트릭을 수집합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. 서비스 * 에서 Kafka를 선택합니다.
++
+Telegraf 에이전트가 설치된 운영 체제 또는 플랫폼을 선택합니다.
+
+. 수집용 에이전트를 아직 설치하지 않았거나 다른 운영 체제 또는 플랫폼용 에이전트를 설치하려는 경우, _지침 표시_를 클릭하여 를 확장합니다 link:task_config_telegraf_agent.html["에이전트 설치"] 지침.
+. 이 데이터 수집기에 사용할 Agent Access 키를 선택합니다. Agent 액세스 키 * 버튼을 클릭하여 새 Agent 액세스 키를 추가할 수 있습니다. 모범 사례: OS/플랫폼별로 데이터 수집기를 그룹화하려는 경우에만 다른 에이전트 액세스 키를 사용하십시오.
+. 구성 단계에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+image:KafkaDCConfigWindows.png["Kafka 구성"]
+
+
+
+== 설정
+
+Kafka 플러그인은 Telegraf의 Jolokia 플러그인을 기반으로 합니다. 모든 Kafka 브로커로부터 정보를 수집해야 하는 요구 사항과 같이 JMX는 졸로키아를 통해 모든 구성 요소에 대해 구성 및 노출되어야 합니다.
+
+
+
+==== 호환성
+
+Kafka 버전 0.11.0.2에 따라 구성이 개발되었습니다.
+
+
+
+==== 설정 중입니다
+
+아래의 모든 지침은 Kafka 설치 위치가 '/opt/Kafka'라고 가정합니다. 설치 위치를 반영하도록 아래 지침을 조정할 수 있습니다.
+
+
+
+==== 졸로키아 에이전트 용기
+
+졸로키아 에이전트 JAR 파일의 버전이 필요합니다 link:https://jolokia.org/download.html["다운로드되었습니다"]. 시험 대상 버전은 졸로키아 에이전트 1.6.0이었습니다.
+
+아래 지침에서는 다운로드한 jar 파일(jolokia-jvm-1.6.0-agent.jar)이 '/opt/Kafka/libs/' 위치에 있다고 가정합니다.
+
+
+
+==== Kafka Brokers의
+
+Kafka Brokers가 Jolokia API를 사용하도록 구성하려면 'Kafka-run-class.sh' 호출 바로 앞의 <Kafka_home>/bin/Kafka-server-start.sh에서 다음을 추가할 수 있습니다.
+
+[listing]
+----
+export JMX_PORT=9999
+export RMI_HOSTNAME=`hostname -I`
+export KAFKA_JMX_OPTS="-javaagent:/opt/kafka/libs/jolokia-jvm-1.6.0-agent.jar=port=8778,host=0.0.0.0  -Dcom.sun.management.jmxremote.password.file=/opt/kafka/config/jmxremote.password -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=$RMI_HOSTNAME -Dcom.sun.management.jmxremote.rmi.port=$JMX_PORT"
+----
+위의 예는 'hostname -i'를 사용하여 'RMI_HOSTNAME' 환경 변수를 설정하는 것입니다. 여러 IP 시스템에서 RMI 연결에 관심 있는 IP를 수집하기 위해 이 설정을 변경해야 합니다.
+
+JMX(위 9999) 및 Jolokia(8778)에 대해 다른 포트를 선택할 수 있습니다. 졸로키아를 잠그기 위한 내부 IP가 있는 경우 "모두 캐치" 0.0.0.0을 자신의 IP로 대체할 수 있습니다. 이 IP는 Telegraf 플러그인에서 액세스할 수 있어야 합니다. 인증을 원하지 않는 경우 '-Dcom.sun.management.jmxremote.authenticate=false' 옵션을 사용할 수 있습니다. 사용에 따르는 위험은 사용자가 부담합니다.
+
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| Kafka 브로커 | 클러스터 네임스페이스 브로커 | 노드 이름 노드 IP입니다 | 복제본 관리자 Fetcher 최대 Lag ZooKeeper 클라이언트 연결 ZooKeeper 클라이언트 연결(15m 속도) ZooKeeper 클라이언트 연결(5m 속도) ZooKeeper 클라이언트 연결(평균 속도) ZooKeeper 클라이언트 연결(1m 속도) 복제본 관리자 파티션 수 스레드 수 데몬 스레드 수 피크 스레드 수 현재 스레드 카운트 시작된 총 오프라인 파티션 요청 생성 총 시간(50 백분위수) 요청 생성 총 시간(75번째 백분위수) 요청 생성 총 시간(95번째 백분위수) 요청 생성 총 시간(98백분위수) 요청 생성 총 시간(999번째 백분위수) 생성 요청 총 시간(99번째 백분위수) 생성 요청 총 시간 생성 요청 총 시간 최대 생성 요청 총 시간 평균 생성 요청 총 시간 최소 생성 요청 총 시간 Stddev 복제본 관리자 ISR 축소 복제본 관리자 ISR 축소(15m 비율) 복제본 관리자 ISR 축소(5m 속도) 복제본 관리자 ISR 축소 (평균 속도) 복제본 관리자 ISR 축소(1m 속도) 요청 처리기 평균 유휴 요청 처리기 평균 유휴 상태(15m 속도) 요청 처리기 평균 유휴 상태(5m 속도) 요청 처리기 평균 유휴 상태(평균 속도) 요청 처리기 평균 유휴 상태(1m 속도) 가비지 수집 G1 이전 세대 카운트 가비지 수집 G1 이전 세대 시간 가비지 수집 G1 이전 세대 카운트 가비지 수집 G1 젊은 세대 시간 ZooKeeper 읽기 전용 연결 ZooKeeper 읽기 전용 연결(15m 속도) ZooKeeper 읽기 전용 연결(5m 속도) ZooKeeper 읽기 전용 연결(평균 속도) ZooKeeper 읽기 전용 연결 (1m 비율) 네트워크 프로세서 평균 유휴 요청 Follower 총 시간(50% 백분위수) 요청 Fetch Follower 총 시간(75% 백분위수) 요청 Follower 총 시간(95% 백분위수) 요청 Fetch Follower 총 시간(98th 백분위수) 요청 Follower 총 시간(999%) 요청 Follower 총 시간(99th 백분위수) 요청 Follower 총 시간 요청 Fetch Follower 총 시간 최대 요청 Follower 총 시간 평균 요청 Fetch Follower 총 시간 최소 요청 Follower 총 시간 최소 요청 Follower Stddev 요청이 생성 대기 중인 총 시간 Purgatory 네트워크 요청 Fetch Consumer Network Requests Fetch Consumer(5m 비율) 네트워크 요청 소비자 가져오기(15m 비율) 네트워크 요청 소비자 가져오기 (평균 비율) 네트워크 요청 소비자 가져오기 (1m 비율) 불결한 지도자 선거 (15m 비율) 불결한 지도자 선거 (5m 비율) 불결한 지도자 선거 (평균 비율) 불결한 지도자 선거 (1m 비율) 활성 컨트롤러 힙 메모리 커밋된 힙 메모리 초기화 힙 메모리 사용된 최대 힙 메모리 ZooKeeper 세션 만료 ZooKeeper 세션 만료(15m 속도) ZooKeeper 세션 만료(5m 속도) ZooKeeper 세션 만료(평균 속도) ZooKeeper 세션 만료(1m 속도) ZooKeeper 인증 실패 ZooKeeper 인증 실패(15m 속도) ZooKeeper 인증 실패(5m 속도) ZooKeeper 인증 실패(평균 비율) ZooKeeper 인증 실패(1m 비율) 리더 선거 시간(백분위수 50) 리더 선거 시간(백분위수 75) 리더 선거 시간(95번째 백분위수) 리더 선거 시간(90번째 백분위수) 리더 선거 시간(999번째 백분위수) 리더 선거시간 (5m 비율) 리더 선거시간 최대 리더 선거시간 평균 리더 선거시간 (평균 비율) 리더 선거시간 최소 리더 선거시간 (1m 비율) 리더 선거시간 (stddev) 네트워크 요청 Follower 네트워크 요청 Follower (15m 비율) 네트워크 요청 Follower (5m 비율) Follower (5m 비율) 네트워크 요청 Follower(평균 속도) 네트워크 요청 Follower(1m 속도) 브로커 주제 메시지 Broker 주제 메시지(15m 속도) 브로커 주제 메시지(5m 속도) 브로커 주제 메시지(평균 속도) 브로커 주제 메시지(1m 속도) 브로커 항목 바이트 (15m 비율) 브로커의 항목 바이트 항목 (5m 속도) 브로커 주제 바이트 (평균 속도) 브로커 주제 바이트 (1m 속도) ZooKeeper Disconnects Count ZooKeeper Disconnects (15m 속도) ZooKeeper Disconnects (평균 속도) ZooKeeper Disconnects (1m 속도) ZooKeeper Disconnects (1m속도) 네트워크 요청 소비자 총 시간 (50 백분위수) 가져오기 (75th 백분위수) 네트워크 요청 소비자 총 시간 가져오기(95번째 백분위수) 네트워크 요청 소비자 총 시간 가져오기(98번째 백분위수) 네트워크 요청 소비자 총 시간 가져오기(999번째 백분위수) 네트워크 요청 고객 총 시간 가져오기(99th 백분위수) 네트워크 요청 소비자 총 시간 네트워크 요청 가져오기 소비자 총 시간 최대 네트워크 요청 가져오기 소비자 총 시간 평균 네트워크 요청 가져오기 소비자 총 시간 최소 네트워크 요청 소비자 총 시간 Stddev LeaderCount 요청 대기 중 요청 구매 브로커 항목 바이트 아웃 브로커 항목 바이트 아웃(15m 비율) 브로커 주제 바이트 아웃(5m 속도) 브로커 주제 바이트 아웃(평균 속도) 브로커 주제 바이트 아웃(1m 비율) ZooKeeper 인증 ZooKeeper 인증(15m 비율) ZooKeeper 인증(5m 속도) ZooKeeper 인증(평균 속도) ZooKeeper 인증 요청 생성 카운트 요청 생성(15m 속도) 요청 생성(5m 속도) 요청 생성(5m 속도) 요청 생성 (평균 속도) 요청 생성(1m 속도) 복제본 관리자 ISR 복제본 관리자 확장 ISR 확장(15m 속도) 복제본 관리자 ISR 확장(5m 속도) 복제본 관리자 ISR 확장(평균 속도) 복제본 관리자가 ISR(1m 속도) 복제본 관리자를 복제 파티션에서 확장합니다 
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

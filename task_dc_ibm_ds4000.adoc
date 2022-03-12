@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: task_dc_ibm_ds4000.html 
+keywords: data collector, IBM, DS4000 
+summary: IBM TotalStorage DS4000 데이터 수집기 
+---
+= IBM TotalStorage DS4000 데이터 수집기
+
+
+[role="lead"]
+이 데이터 수집기는 IBM DS4000 스토리지 시스템에서 인벤토리 및 성능 정보를 가져옵니다. 두 가지 구성(펌웨어 6.x 및 펌웨어 7.x+)이 있으며 두 구성 모두 동일한 값을 갖습니다.
+
+
+
+== 용어
+
+Cloud Insightst는 IBM DS4000 데이터 수집기에서 다음과 같은 인벤토리 정보를 가져옵니다. 획득한 각 자산 유형에 대해 이 자산에 가장 일반적으로 사용되는 용어가 표시됩니다. 이 데이터 수집기를 보거나 문제를 해결할 때 다음 용어를 염두에 두십시오.
+
+[cols="2*"]
+|===
+| 공급업체/모델 기간 | Cloud Insights 용어입니다 
+
+
+| 디스크 | 디스크 
+
+
+| 볼륨 그룹 | 디스크 그룹 
+
+
+| 스토리지 | 스토리지 
+
+
+| 컨트롤러 | 스토리지 노드 
+
+
+| 볼륨 그룹 | 스토리지 풀 
+
+
+| 볼륨 | 볼륨 
+|===
+참고: 이러한 용어 매핑은 일반적인 용어 매핑일 뿐이며 이 데이터 수집기의 모든 경우를 나타내는 것은 아닙니다.
+
+
+
+== 요구 사항
+
+* 각 DS5 또는 FAStT 스토리지의 IP 주소입니다
+* 어레이에 있는 두 컨트롤러의 IP 주소를 Ping하여 액세스 검증을 합니다
+* 포트 요구 사항: 2463
+
+
+
+
+== 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| 쉼표로 구분된 Array SANtricity 컨트롤러 IP 목록입니다 | 스토리지 컨트롤러의 IP 주소 및/또는 정규화된 도메인 이름입니다 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| 재고 폴링 간격(분) | 기본값은 30분입니다 
+
+
+| 성능 폴링 간격 최대 3600초 | 기본값은 300초입니다 
+|===
+
+
+== 문제 해결
+
+이 Data Collector에 대한 추가 정보는 에서 확인할 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

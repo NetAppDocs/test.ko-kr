@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_flink.html 
+keywords: telegraf, installation, install, flink 
+summary: Flink 데이터 수집기 구성 
+---
+= Flink Data Collector
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 Flink에서 메트릭을 수집합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. 서비스 * 에서 Flink 를 선택합니다.
++
+Telegraf 에이전트가 설치된 운영 체제 또는 플랫폼을 선택합니다.
+
+. 수집용 에이전트를 아직 설치하지 않았거나 다른 운영 체제 또는 플랫폼용 에이전트를 설치하려는 경우, _지침 표시_를 클릭하여 를 확장합니다 link:task_config_telegraf_agent.html["에이전트 설치"] 지침.
+. 이 데이터 수집기에 사용할 Agent Access 키를 선택합니다. Agent 액세스 키 * 버튼을 클릭하여 새 Agent 액세스 키를 추가할 수 있습니다. 모범 사례: OS/플랫폼별로 데이터 수집기를 그룹화하려는 경우에만 다른 에이전트 액세스 키를 사용하십시오.
+. 구성 단계에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+image:FlinkDCConfigWindows.png["Flink 구성"]
+
+
+
+== 설정
+
+전체 Flink 배포에는 다음 구성 요소가 포함됩니다.
+
+JobManager: Flink 운영 시스템입니다. 일련의 TaskManager를 조정합니다. High Availability 설정에서 시스템에 JobManager가 두 개 이상 있습니다. TaskManager: Flink 연산자를 실행하는 위치입니다. Flink 플러그인은 Telegraf의 Jolokia 플러그인을 기반으로 합니다. 모든 Flink 구성 요소에서 정보를 수집하는 요구 사항과 같이 JMX는 모든 구성 요소에서 Jolokia를 통해 구성 및 노출되어야 합니다.
+
+
+
+==== 호환성
+
+구성은 Flink 버전 1.7.0을 기준으로 개발되었습니다.
+
+
+
+==== 설정 중입니다
+
+
+
+===== 졸로키아 에이전트 용기
+
+모든 개별 구성 요소의 경우 Jolokia 에이전트 JAR 파일 버전을 다운로드해야 합니다. 에 대해 테스트한 버전은 입니다 link:https://jolokia.org/download.html["졸로키아 에이전트 1.6.0"].
+
+아래 지침에서는 다운로드한 jar 파일(jolokia-jvm-1.6.0-agent.jar)이 '/opt/Flink/lib/' 위치에 있다고 가정합니다.
+
+
+
+===== 작업 관리자
+
+JobManager를 구성하여 Jolokia API를 표시하려면 노드에서 다음 환경 변수를 설정한 다음 JobManager를 다시 시작하십시오.
+
+ export FLINK_ENV_JAVA_OPTS="-javaagent:/opt/flink/lib/jolokia-jvm-1.6.0-agent.jar=port=8778,host=0.0.0.0"
+졸로키아를 위한 다른 포트를 선택할 수 있습니다 (8778). 졸로키아를 잠그기 위한 내부 IP가 있는 경우 "모두 캐치" 0.0.0.0을 자신의 IP로 대체할 수 있습니다. 이 IP는 Telegraf 플러그인에서 액세스할 수 있어야 합니다.
+
+
+
+===== 작업 관리자
+
+Jolokia API를 노출하도록 TaskManager를 구성하려면 노드에서 다음 환경 변수를 설정한 다음 TaskManager를 다시 시작해야 합니다.
+
+ export FLINK_ENV_JAVA_OPTS="-javaagent:/opt/flink/lib/jolokia-jvm-1.6.0-agent.jar=port=8778,host=0.0.0.0"
+졸로키아를 위한 다른 포트를 선택할 수 있습니다 (8778). 졸로키아를 잠그기 위한 내부 IP가 있는 경우 "모두 캐치" 0.0.0.0을 자신의 IP로 대체할 수 있습니다. 이 IP는 Telegraf 플러그인에서 액세스할 수 있어야 합니다.
+
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| Flink 작업 관리자 | 클러스터 네임스페이스 서버 | 노드 이름 작업 관리자 ID 노드 IP입니다 | 네트워크 사용 가능 메모리 세그먼트 네트워크 총 메모리 세그먼트 가비지 컬렉션 PS MarkSweep Count 가비지 컬렉션 PS MarkSweep 시간 가비지 컬렉션 PS 스카버기 수 가비지 컬렉션 PS 스카버기 시간 힙 메모리 커밋된 힙 메모리 최대 힙 메모리 사용된 스레드 카운트 스레드 피크 스레드 카운트 스레드 카운트 스레드 카운트 스레드 카운트 총 시작 
+
+
+| Flink 작업 | 클러스터 네임스페이스 서버 작업 ID입니다 | 노드 이름 작업 이름 노드 IP 마지막 체크포인트 외부 경로 재시작 시간 | 다운타임 전체 재시작 마지막 체크포인트 정렬 버퍼 마지막 체크포인트 기간 마지막 체크포인트 크기 완료된 체크포인트 수 실패한 체크포인트 수 진행 중인 체크포인트 수 체크포인트 가동 시간 수 
+
+
+| Flink 작업 관리자 | 클러스터 네임스페이스 서버 | 노드 이름 노드 IP입니다 | 가비지 수집 PS MarkSweep Count 가비지 수집 PS MarkSweep Time 가비지 수집 PS 청소 횟수 가비지 수집 PS 청소 시간 힙 메모리 커밋된 힙 메모리 힙 메모리 최대 힙 메모리 사용된 메모리 등록된 작업 관리자 수 실행 작업 슬롯 사용 가능한 작업 슬롯 총 스레드 수 데몬 스레드 수 최대 스레드 수 스레드 수 총계 시작됨 
+
+
+| Flink 작업 | 클러스터 네임스페이스 작업 ID 작업 ID입니다 | 서버 노드 이름 작업 이름 하위 작업 인덱스 작업 시도 ID 작업 시도 수 작업 이름 작업 관리자 ID 노드 IP 현재 입력 워터마크 | 풀 사용 버퍼의 버퍼 대기열 길이 버퍼 아웃 풀 사용 버퍼 아웃 대기열 길이 로컬 수 버퍼의 버퍼 수 로컬/초 단위 버퍼 수 로컬/초 단위 버퍼 수 원격 초당 원격 수 원격 수 버퍼 수 원격 per second의 버퍼 수 두 번째 Rate Number Buffers Out Number Buffers Out per Second Count Number Buffers Out per Second Rate Local Number Bytes in Local Per Second Rate Local Per Second Rate Number Bytes In Remote Number Bytes in Remote Per Second Count Number Number in Remote. Number Bytes In Remote. Number Number Number Bytes In Second. Remote. Number Count Number Bytes in Second 초당 속도 수 바이트 아웃 초당 바이트 수 초당 바이트 수 초당 바이트 수 수 초당 레코드 수 초당 레코드 수 수 초당 레코드 수 수 수 레코드 수 초당 레코드 수 레코드 수 레코드 수 초당 레코드 수 수 레코드 수 초당 레코드 수 아웃 속도 수 
+
+
+| Flink 작업 연산자 | 클러스터 네임스페이스 작업 ID 운영자 ID 작업 ID입니다 | 서버 노드 이름 작업 이름 연산자 이름 하위 작업 인덱스 작업 시도 ID 작업 시도 번호 작업 이름 작업 관리자 ID 노드 IP | 현재 입력 워터마크 현재 출력 워터마크 초당 레코드 수 초당 레코드 수 초당 레코드 수 초당 레코드 수 레코드 수 초당 레코드 수 레코드 수 초당 레코드 수 초당 레코드 수 수 초당 레코드 수 처리 수 지연 레코드 수 삭제된 할당된 파티션 바이트 소비 속도 커밋 지연 시간 평균 커밋 지연 시간 최대 커밋 속도 Commit 실패 Commit 성공 연결 종료 속도 연결 수 연결 생성 속도 카운트 지연 시간 평균 가져오기 지연 시간 최대 가져오기 속도 가져오기 평균 페치 크기 최대 페치 스로틀 시간 평균 페치 스로틀 시간 최대 하트비트 속도 수신 바이트 속도 IO 비율 평균 IO 시간(ns) IO 대기 비율 IO 대기 시간 평균(ns) 연결 속도 연결 시간 평균 마지막 하트비트 전 네트워크 IO 속도 발신 바이트 속도 레코드 소비 속도 레코드 지연 요청 평균 요청 속도 요청 크기 평균 요청 크기 최대 응답 속도 동기화 속도 동기화 시간 평균 하트비트 응답 최대 조인 시간 최대 동기화 시간 최대 
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.

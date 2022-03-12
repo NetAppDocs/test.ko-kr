@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: task_config_user_dir_connect.html 
+keywords: collector, configure, LDAP, Active Directory 
+summary: Cloud Secure Active Directory 사용자 디렉터리 수집기 구성 
+---
+= AD(Active Directory) 사용자 디렉토리 수집기 구성
+
+
+[role="lead"]
+Active Directory 서버에서 사용자 속성을 수집하도록 Cloud Secure를 구성할 수 있습니다.
+
+.시작하기 전에
+* 이 작업을 수행하려면 Cloud Insights 관리자 또는 계정 소유자여야 합니다.
+* Active Directory 서버를 호스팅하는 서버의 IP 주소가 있어야 합니다.
+* 사용자 디렉터리 커넥터를 구성하기 전에 Agent를 구성해야 합니다.
+
+
+.사용자 디렉토리 수집기를 구성하는 단계입니다
+. Cloud Secure 메뉴에서 * 관리자 > 데이터 수집기 > 사용자 디렉토리 수집기 > + 사용자 디렉토리 수집기 * 를 클릭하고 * Active Directory * 를 선택합니다
++
+사용자 디렉토리 추가 화면이 표시됩니다.
+
+
+
+다음 표에 필요한 데이터를 입력하여 사용자 디렉토리 수집기를 구성합니다.
+
+[cols="2*"]
+|===
+
+
+| 이름 | 설명 
+
+
+| 이름 | 사용자 디렉토리의 고유 이름입니다. 예: _GlobalADCollector_ 
+
+
+| 에이전트 | 목록에서 구성된 에이전트를 선택합니다 
+
+
+| 서버 IP/도메인 이름 | Active Directory를 호스팅하는 서버의 IP 주소 또는 FQDN(정규화된 도메인 이름)입니다 
+
+
+| 포리스트 이름 | 디렉터리 구조의 포리스트 수준입니다. 포리스트 이름을 사용하면 SVM에 있는 것과 같은 _x.x.y.z_=>직접 도메인 이름을 사용할 수 있습니다. [예: hq.companyname.com]_dc=x, dc=y, dc=z_=> 상대 고유 이름 [예: dc=HQ, dc=CompanyName, dc=com] 또는 다음과 같이 지정할 수 있습니다. _OU=engineering,DC=HQ,DC=CompanyName,DC=com_[특정 OU 엔지니어링으로 필터링하기]_CN=username,OU=engineering,DC=CompanyName,DC=NetApp,DC=com_[OU<engineering>에서 특정 사용자만 가져오려면]_CN=Acrobat=Users,CN=Users,DC=Users,DC=Users,DC=CompanyName=Active,MA_DC=Users,CompanyName=Trusted,DC=Active_DC=CompanyName=CompanyName=Users=Active,DC=CompanyName=CompanyName=CompanyName=Users,DC=CompanyName=CompanyName=A,DC=Users,DC=CompanyName= 
+
+
+| DN 바인딩 | 사용자가 디렉터리를 검색할 수 있습니다. 예: _username@companyname.com_ 또는 _username@domainname.com_ 
+
+
+| 암호를 바인딩합니다 | 디렉터리 서버 암호(예: Bind DN에서 사용되는 사용자 이름의 암호) 
+
+
+| 프로토콜 | LDAP, LDAPS, LDAP-START-TLS 
+
+
+| 포트 | 포트를 선택합니다 
+|===
+Active Directory에서 기본 속성 이름이 수정된 경우 다음 Directory Server 필수 속성을 입력합니다. 이러한 속성 이름은 대부분 Active Directory에서 _not_modified입니다. 이 경우 기본 속성 이름을 사용하여 간단하게 진행할 수 있습니다.
+
+[cols="2*"]
+|===
+
+
+| 속성 | Directory Server의 속성 이름입니다 
+
+
+| 표시 이름 | 이름 
+
+
+| SID | 객체 ID입니다 
+
+
+| 사용자 이름 | sAMAccountName 
+|===
+다음 특성을 추가하려면 선택적 특성 포함 을 클릭합니다.
+
+[cols="2*"]
+|===
+
+
+| 속성 | Directory Server의 속성 이름입니다 
+
+
+| 이메일 주소 | 메일 
+
+
+| 전화 번호 | 전화 번호 
+
+
+| 역할 | 제목 
+
+
+| 국가 | CO 
+
+
+| 상태 | 상태 
+
+
+| 부서 | 부서 
+
+
+| 사진 | 축소판 그림 
+
+
+| 관리자 DN | 관리자 
+
+
+| 그룹 | 멤버 
+|===
+
+
+== 사용자 디렉토리 수집기 구성을 테스트하는 중입니다
+
+다음 절차를 사용하여 LDAP 사용자 권한 및 속성 정의의 유효성을 검사할 수 있습니다.
+
+* 다음 명령을 사용하여 Cloud Secure LDAP 사용자 권한의 유효성을 검사합니다.
++
+"ldapsearch-o LDIF-Wrap=no-lll-x-b" dc=netapp,dc=com"-h 10.235.40.29-p 389-D\Administrator@netapp.com -W"
+
+* AD 탐색기를 사용하여 AD 데이터베이스를 탐색하고, 개체 속성 및 특성을 보고, 사용 권한을 보고, 개체의 스키마를 보고, 저장하고 다시 실행할 수 있는 정교한 검색을 실행할 수 있습니다.
++
+** 설치합니다 link:https://docs.microsoft.com/en-us/sysinternals/downloads/adexplorer["AD 탐색기"] AD 서버에 연결할 수 있는 모든 Windows 시스템에서
+** AD 디렉토리 서버의 사용자 이름/암호를 사용하여 AD 서버에 연결합니다.
+
+
+
+
+image:cs_ADExample.png["AD 연결"]
+
+
+
+== 사용자 디렉토리 수집기 구성 오류 문제 해결
+
+다음 표에서는 수집기 구성 중에 발생할 수 있는 알려진 문제와 해결 방법을 설명합니다.
+
+[cols="2*"]
+|===
+| 문제: | 해상도: 
+
+
+| 사용자 디렉토리 커넥터를 추가하면 '오류' 상태가 됩니다. "LDAP 서버에 대해 잘못된 자격 증명이 제공되었습니다."라는 오류가 표시됩니다. | 잘못된 사용자 이름 또는 암호가 제공되었습니다. 올바른 사용자 이름 및 암호를 편집하고 제공하십시오. 
+
+
+| 사용자 디렉토리 커넥터를 추가하면 '오류' 상태가 됩니다. "DN=DC=HQ, DC=domainname, DC=com에 해당하는 객체를 포리스트 이름으로 가져오지 못했습니다."라는 오류가 표시됩니다. | 잘못된 포리스트 이름이 제공되었습니다. 올바른 포리스트 이름을 편집하고 제공하십시오. 
+
+
+| 도메인 사용자의 선택적 특성이 Cloud Secure 사용자 프로필 페이지에 나타나지 않습니다. | 이는 CloudSecure에 추가된 선택적 속성의 이름과 Active Directory의 실제 속성 이름이 일치하지 않기 때문일 수 있습니다. 올바른 선택적 속성 이름을 편집하고 제공하십시오. 
+
+
+| "LDAP 사용자를 검색하지 못했습니다. 실패 원인: 서버에 연결할 수 없습니다. 연결이 null입니다." | _Restart_ 단추를 클릭하여 수집기를 다시 시작합니다. 
+
+
+| 사용자 디렉토리 커넥터를 추가하면 '오류' 상태가 됩니다. | 필수 필드(서버, 포리스트-이름, 바인드-DN, 바인드-암호)에 대해 유효한 값을 제공했는지 확인합니다. bind-DN 입력이 항상 'Administrator@<domain_forest_name>' 또는 도메인 관리자 권한이 있는 사용자 계정으로 제공되는지 확인합니다. 
+
+
+| 사용자 디렉터리 커넥터를 추가하면 '다시 시도 중' 상태가 됩니다. "Collector의 상태를 정의할 수 없습니다. 원인 TCP 명령 [Connect(localhost:35012, None, List(), some(,seconds), true)] 오류가 java.net.ConnectionException:Connection refused 때문에 실패했습니다." | AD 서버에 대해 잘못된 IP 또는 FQDN이 제공되었습니다. 올바른 IP 주소 또는 FQDN을 편집하고 입력합니다. 
+
+
+| 사용자 디렉토리 커넥터를 추가하면 '오류' 상태가 됩니다. "LDAP 연결을 설정하지 못했습니다."라는 오류가 표시됩니다. | AD 서버에 대해 잘못된 IP 또는 FQDN이 제공되었습니다. 올바른 IP 주소 또는 FQDN을 편집하고 입력합니다. 
+
+
+| 사용자 디렉토리 커넥터를 추가하면 '오류' 상태가 됩니다. "설정을 로드하지 못했습니다. 원인: DataSource 구성에 오류가 있습니다. 특정 이유: /connector/conf/application.conf: 70: ldap.ldap-port에 숫자가 아닌 유형 문자열이 있습니다." | 잘못된 포트 값이 제공되었습니다. AD 서버에 대한 기본 포트 값 또는 올바른 포트 번호를 사용해 보십시오. 
+
+
+| 나는 필수 속성을 시작했는데 효과가 있었습니다. 옵션 특성 데이터를 추가한 후 선택적 특성 데이터를 AD에서 가져오지 않습니다. | 이는 CloudSecure에 추가된 옵션 속성과 Active Directory의 실제 속성 이름이 일치하지 않기 때문일 수 있습니다. 올바른 필수 또는 선택적 속성 이름을 편집하고 제공하십시오. 
+
+
+| Collector를 다시 시작한 후 AD 동기화는 언제 발생합니까? | 수집기가 다시 시작된 후 즉시 AD 동기화가 수행됩니다. 약 30만 명의 사용자가 있는 사용자 데이터를 가져오는 데 약 15분이 소요되며, 12시간마다 자동으로 새로 고쳐집니다. 
+
+
+| 사용자 데이터가 AD에서 CloudSecure로 동기화됩니다. 언제 데이터가 삭제됩니까? | 새로 고침이 없는 경우 사용자 데이터는 13개월 동안 유지됩니다. 테넌트가 삭제되면 데이터가 삭제됩니다. 
+
+
+| 사용자 디렉토리 커넥터를 사용하면 '오류' 상태가 됩니다. "커넥터가 오류 상태입니다. 서비스 이름: usersLdap. 실패 원인: LDAP 사용자를 검색하지 못했습니다. 실패 원인:80090308:LdapErr:DSID-0C090453, 설명:AcceptSecurityContext 오류, 데이터 52e, v3839" | 잘못된 포리스트 이름이 제공되었습니다. 올바른 포리스트 이름을 제공하는 방법은 위의 을 참조하십시오. 
+
+
+| 전화 번호가 사용자 프로필 페이지에 채워지지 않습니다. | 이는 Active Directory의 속성 매핑 문제 때문일 수 있습니다. Active Directory에서 사용자 정보를 가져오는 특정 Active Directory 수집기를 편집합니다. 2.알림 옵션 속성에 따라 "전화 번호" 필드 이름이 Active Directory 속성 '전화 번호'에 매핑되어 있습니다. 4.이제 위에 설명된 대로 Active Directory 탐색기 도구를 사용하여 Active Directory를 탐색하고 올바른 속성 이름을 확인하십시오. Active Directory에 사용자의 전화 번호가 있는 '전화 번호'라는 속성이 있는지 확인합니다. 5.Active Directory에서 'phonenumber'로 수정되었다고 가정해 보겠습니다. 그런 다음 CloudSecure 사용자 디렉토리 수집기를 편집합니다. 옵션 속성 섹션에서 '전화 번호'를 '전화 번호'로 바꿉니다. Active Directory Collector를 저장하면 수집기가 다시 시작되고 사용자의 전화 번호가 표시되며 사용자 프로필 페이지에 동일한 번호가 표시됩니다. 
+
+
+| AD(Active Directory) 서버에서 암호화 인증서(SSL)가 활성화된 경우 Cloud Secure 사용자 디렉토리 수집기는 AD 서버에 연결할 수 없습니다. | 사용자 디렉토리 수집기를 구성하기 전에 AD 서버 암호화를 비활성화하십시오. 사용자 세부 정보를 가져오면 13개월 동안 표시됩니다. 사용자 세부 정보를 가져온 후 AD 서버의 연결이 끊기면 AD에서 새로 추가된 사용자를 가져오지 않습니다. 다시 가져오려면 사용자 디렉토리 수집기를 AD에 연결해야 합니다. 
+|===

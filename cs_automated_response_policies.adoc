@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: cs_automated_response_policies.html 
+keywords: alert, snapshot, ransomware, attack 
+summary: '잠재적 공격(예: 랜섬웨어) 및/또는 활동 경고에 대해 자동화된 응답 정책을 설정할 수 있습니다' 
+---
+= 자동 응답 정책
+
+
+[role="lead"]
+응답 정책은 공격 또는 비정상적인 사용자 동작이 발생하는 경우 스냅샷을 생성하거나 사용자 액세스를 제한하는 등의 작업을 트리거합니다.
+
+특정 장치 또는 모든 장치에 정책을 설정할 수 있습니다. 응답 정책을 설정하려면 * Admin > Automated Response Policies * 를 선택하고 해당 * + Policy + 버튼을 클릭합니다. 공격에 대한 정책 또는 경고에 대한 정책을 만들 수 있습니다.
+
+image:AutomatedAttackPolicy.png["공격 정책 생성"]
+
+고유한 이름으로 정책을 저장해야 합니다.
+
+자동 응답 작업(예: 스냅샷 생성)을 사용하지 않으려면 해당 작업을 선택 해제하고 정책을 저장하면 됩니다.
+
+지정된 디바이스 또는 모든 디바이스(선택된 경우)에 대해 알림이 트리거되면 자동 응답 정책이 데이터의 스냅샷을 생성합니다. 에서 스냅샷 상태를 볼 수 있습니다 link:cs_alert_data.html#the-alert-details-page["경고 세부 정보 페이지"].
+
+를 참조하십시오 link:cs_restrict_user_access.html["사용자 액세스 제한"] 페이지로 이동하여 IP를 통한 사용자 액세스 제한에 대한 자세한 내용을 확인하십시오.
+
+정책 드롭다운 메뉴에서 옵션을 선택하여 자동 응답 정책을 수정하거나 일시 중지할 수 있습니다.
+
+Cloud Secure는 스냅샷 제거 설정에 따라 하루에 한 번씩 스냅샷을 자동으로 삭제합니다.
+
+image:CloudSecure_SnapshotPurgeSettings.png["스냅샷 제거 설정"]

@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_with_cloud_secure.html 
+summary: Cloud Secure 시작하기. 
+keywords: invite, roles, data collector, agent 
+---
+= Cloud Secure 시작하기
+
+
+Cloud Secure에 등록하고 처음으로 환경에 로그인한 후에는 데이터 액세스 정보의 수집 및 분석을 시작하기 전에 완료해야 하는 구성 단계가 있습니다.
+
+
+
+== Agent를 설치합니다
+
+상담원은 Cloud Secure에서 분석할 데이터를 수집해야 합니다. 사용자 환경의 서버 또는 VM에 Agent 소프트웨어를 설치합니다. 단일 Agent를 여러 데이터 수집기에 사용할 수 있습니다.
+
+* 을 참조하십시오 link:concept_cs_agent_requirements.html["상담원 요구 사항"] 및  를 눌러 Agent를 설치합니다.
+
+
+
+
+== 데이터 수집기 구성
+
+Cloud Secure는 사용자 디렉토리 수집기에서 데이터를 수집하여 사용자 정보를 수집하고 스토리지 시스템에서 데이터를 수집합니다. Cloud Secure는 데이터를 사용하여 스토리지 시스템의 엔터티에 대한 사용자 액세스를 분석합니다.
+
+* 사용자 디렉터리 커넥터를 구성하려면 을 참조하십시오. link:task_config_user_dir_connect.html["사용자 디렉토리 수집기 구성"]
+* Data Collector를 구성하려면 각 특정 Data Collector의 왼쪽 메뉴에 있는 설명서를 참조하십시오.
+

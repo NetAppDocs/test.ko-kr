@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: task_dc_fujitsu_eternus.html 
+keywords: data collector, Fujitsu, Eternus 
+summary: Fujitsu ETERNUS 데이터 수집기 구성 중 
+---
+= Fujitsu ETERNUS 데이터 수집기
+
+
+[role="lead"]
+Fujitsu ETERNUS 데이터 수집기는 스토리지 시스템에 대한 관리 수준 액세스를 사용하여 인벤토리 데이터를 가져옵니다.
+
+
+
+== 용어
+
+Cloud Insights는 Fujitsu ETERNUS 스토리지에서 다음 인벤토리 정보를 가져옵니다. Cloud Insights에서 획득한 각 자산 유형에 대해 이 자산에 가장 일반적으로 사용되는 용어가 표시됩니다. 이 데이터 수집기를 보거나 문제를 해결할 때 다음 용어를 염두에 두십시오.
+
+[cols="2*"]
+|===
+| 공급업체/모델 기간 | Cloud Insights 용어입니다 
+
+
+| 디스크 | 디스크 
+
+
+| 스토리지 | 스토리지 
+
+
+| 씬 풀, 유연한 계층 풀, RAID 그룹 | 스토리지 풀 
+
+
+| 표준 볼륨, 스냅 데이터 볼륨(SDV), 스냅 데이터 풀 볼륨(SDPV), 씬 프로비저닝 볼륨(TPV), 유연한 계층 볼륨(FTV), 와이드 스트라이핑 볼륨(WSV) | 볼륨 
+
+
+| 채널 어댑터 | 컨트롤러 
+|===
+참고: 일반적인 용어 매핑일 뿐이며 이 데이터 수집의 모든 경우를 나타내는 것은 아닙니다.
+
+
+
+== 요구 사항
+
+이 데이터 수집기를 구성하려면 다음이 필요합니다.
+
+* ETERNUS 저장소의 IP 주소로, 쉼표로 구분될 수 없습니다
+* SSH 관리 수준 사용자 이름 및 암호
+* 포트 22
+* 페이지 스크롤이 비활성화되어 있는지 확인합니다(clienv -show -more -scroll disable).
+
+
+
+
+== 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| ETERNUS 스토리지의 IP 주소입니다 | ETERNUS 스토리지의 IP 주소입니다 
+
+
+| 사용자 이름 | ETERNUS 스토리지에 대한 사용자 이름입니다 
+
+
+| 암호 | ETERNUS 저장 장치의 암호입니다 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| 재고 폴링 간격(분) | 기본값은 20분입니다. 
+|===
+
+
+== 문제 해결
+
+이 데이터 수집기에서 문제가 발생할 경우 다음과 같은 방법을 시도해 보십시오.
+
+
+
+==== 인벤토리
+
+[cols="2*"]
+|===
+| 문제: | 다음을 시도해 보십시오. 
+
+
+| "Error Retrieving data(데이터 검색 오류)" 및 "Error finding Prompt CLI(프롬프트 프롬프트 CLI를 찾는 동안 오류 발생)" 또는 "Error finding prompt at end of shell results(쉘 결과 | 발생 원인: 스토리지 시스템에 페이지 스크롤이 활성화되어 있습니다. 가능한 해결 방법: * set clienv -show -more -scroll disable 명령을 실행하여 페이지 스크롤을 해제해 보십시오 
+
+
+| "Connecting error(연결 오류)"와 "Failed to instantiate an SSH connection to storage(스토리지에 대한 SSH 연결을 인스턴스화하지 못했습니다)" 또는 "Failed to instantiate a connection to VirtualCenter(VirtualCenter 연결을 인스턴스화하지 못했습니다)"라는 오류 메시지 | 가능한 원인: * 잘못된 자격 증명. * 잘못된 IP 주소입니다. * 네트워크 문제. * 스토리지가 중단되거나 응답하지 않을 수 있습니다. 가능한 해결 방법: * 입력한 자격 증명 및 IP 주소를 확인합니다. * SSH 클라이언트를 사용하여 스토리지와 통신을 시도합니다. 
+|===
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: kubernetes_node_detail.html 
+keywords: kubernetes, pods, clusters, nodes. troubleshooting, planning 
+summary: Kubernetes 노드 세부 정보 페이지는 백엔드 PV 및 Pod 스토리지에 대한 통찰력을 제공합니다. 
+---
+= Kubernetes 노드 세부 정보 페이지
+
+
+[role="lead"]
+Kubernetes Explorer에서 노드 아이콘을 클릭하여 해당 노드에 대한 세부 정보 페이지를 열 수 있습니다. 이 페이지에서는 노드에 대한 정보를 확인하고 VM, Pod 및 컨테이너 정보를 탐색할 수 있습니다.
+
+image:KubernetesNodeFiltering.png["필터링을 보여 주는 Kubernetes 노드 세부 정보 페이지"]
+
+
+
+==== 노드의 Pod 및 영구 볼륨 탐색
+
+Cloud Insights는 Kubernetes 환경의 백엔드 스토리지에 대한 가시성을 제공하므로 Kubernetes Pod 및 PVS(Persistent Volumes)에 대한 통찰력을 얻을 수 있습니다. PV 카운터를 통해 단일 Pod에서 PV로, 그리고 백엔드 스토리지 장치로 가는 모든 방법으로 IOPS, 지연 시간 및 처리량과 같은 PV 카운터를 추적할 수 있습니다.
+
+PV 레벨에서 Cloud Insights는 백엔드(PV 유형에 따라 내부 볼륨 또는 볼륨) 용량 정보(합계, 사용, 사용된 비율)와 내부 볼륨 스냅샷 수를 수집합니다. Pod에서 스토리지 수준까지 백엔드 용량과 내부 볼륨 스냅샷 수를 수집합니다.
+
+볼륨 또는 내부 볼륨 랜딩 페이지에는 다음 두 개의 표가 표시됩니다.
+
+image:Kubernetes_PV_Table.png["Kubernetes PV 테이블"]
+image:Kubernetes_Pod_Table.png["Kubernetes Pod 테이블"]
+
+
+NOTE: 볼륨 또는 내부 볼륨 랜딩 페이지를 사용자 지정한 경우 PV 및 Pod 테이블이 자동으로 표시되지 않을 수 있습니다. 이러한 테이블을 보려면 페이지를 기본값으로 되돌려야 합니다. 이때 PV 및 Pod 테이블이 표시됩니다. 그런 다음 원하는 대로 페이지를 다시 사용자 지정할 수 있습니다.
+
+이러한 새 테이블을 활용하려면 현재 Kubernetes 에이전트를 제거하고 새로 설치하는 것이 좋습니다. 또한 Kubbe-State-Metrics 버전 2.1.0 이상을 설치해야 합니다.
+
+
+
+==== Kubernetes 노드에서 VM 링크까지
+
+Kubernetes 노드 페이지에서 노드의 VM 페이지를 클릭하여 열 수 있습니다. VM 페이지에는 노드 자체에 대한 링크도 포함되어 있습니다.
+
+image:Kubernetes_Node_Page_with_VM_Link.png["VM 링크를 보여 주는 Kubernetes 노드 페이지"]
+image:Kubernetes_VM_Page_with_Node_Link.png["노드 링크를 보여주는 Kubernetes VM 페이지"]

@@ -1,0 +1,125 @@
+---
+sidebar: sidebar 
+permalink: concept_requesting_support.html 
+summary: 기술 자료 문서를 보거나 NetApp 커뮤니티에 연결하거나, 비디오를 보거나, 지원 요청을 위한 티켓을 열 수 있습니다. 
+keywords: support, knowledgebase, documentation, community, chat, videos, help, contact 
+---
+= 지원을 요청하는 중입니다
+
+
+
+toc::[]
+Cloud Insights에서 도움말 > 지원 * 을 클릭하여 지원 옵션에 액세스할 수 있습니다. 사용 가능한 지원 옵션은 평가판 모드인지 구독 모드인지에 따라 다릅니다.
+
+image:SupportPageExample-NA.png["지원 페이지"]
+
+
+
+== 지원 권한 활성화 중
+
+Cloud Insights는 평가판 모드로 실행할 때 셀프 서비스 및 이메일 지원을 제공합니다. 서비스에 가입한 후에는 지원 권한을 활성화하는 것이 좋습니다. 지원 권한을 활성화하면 온라인 채팅, 웹 티켓 시스템 및 전화를 통해 기술 지원에 액세스할 수 있습니다. 기본 지원 모드는 등록이 완료될 때까지 셀프 서비스로 설정됩니다. 을 참조하십시오 link:#obtaining-support-information["세부 정보"] 아래에 있습니다.
+
+초기 구독 프로세스 중에 Cloud Insights 인스턴스에서는 "950"으로 시작하는 20자리의 NetApp 일련 번호를 생성합니다. 이 NetApp 일련 번호는 계정과 연결된 Cloud Insights 구독을 나타냅니다. 지원 자격을 활성화하려면 NetApp 일련 번호를 등록해야 합니다. NetApp에서는 두 가지 지원 등록 옵션을 제공합니다.
+
+. 기존 NetApp Support 사이트(NSS) SSO 계정을 가진 사용자(예: 현재 NetApp 고객)
+. 기존 NetApp Support Site(NSS) SSO 계정이 없는 새로운 NetApp 고객
+
+
+
+
+==== 옵션 1: 기존 NSS(NetApp Support Site) SSO 계정을 가진 사용자를 위한 단계
+
+.단계
+. NetApp 등록 웹 사이트로 이동합니다 https://register.netapp.com[]
+. "NetApp 고객으로 이미 등록되어 있습니다"를 선택하고 제품 라인으로 _Cloud Insights_를 선택합니다. 청구 공급자(NetApp 또는 AWS)를 선택하고 Cloud Insights 사용자 인터페이스 내의 "도움말 > 지원" 메뉴를 참조하여 일련 번호와 NetApp 구독 이름 또는 AWS 고객 ID를 제공하십시오.
++
+image:SupportPage_SN_Section-NA.png["SN_화면"]
+
+. 기존 고객 등록 양식을 작성하고 * 제출 * 을 클릭합니다.
++
+image:ExistingCustomerRegExample.png["기존 고객 양식"]
+
+. 오류가 발생하지 않으면 "Registration Submitted successfully(등록 제출됨)" 페이지로 이동합니다. 등록에 사용되는 NSS SSO 사용자 이름과 연결된 이메일 주소는 몇 분 이내에 "Your product is now eligible for support"라는 이메일을 받게 됩니다.
+. Cloud Insights NetApp 일련 번호에 대한 일회성 등록입니다.
+
+
+
+
+==== 옵션 2: 기존 NetApp Support 사이트(NSS) SSO 계정이 없는 새로운 NetApp 고객을 위한 단계
+
+.단계
+. NetApp 등록 웹 사이트로 이동합니다 https://register.netapp.com[]
+. "등록된 NetApp 고객이 아닙니다."를 선택하고 아래 예시 양식에 필요한 정보를 입력합니다.
+
+
+image:NewCustomerRegExample.png["새 고객 양식"]
+
+. 제품 라인으로 _ Cloud Insights _ 을(를) 선택합니다. 청구 공급자(NetApp 또는 AWS)를 선택하고 Cloud Insights 사용자 인터페이스 내의 "도움말 > 지원" 메뉴를 참조하여 일련 번호와 NetApp 구독 이름 또는 AWS 고객 ID를 제공하십시오.
++
+image:SupportPage_SN_Section-NA.png["SN_화면"]
+
+. 오류가 발생하지 않으면 "Registration Submitted successfully(등록 제출됨)" 페이지로 이동합니다. 등록에 사용되는 NSS SSO 사용자 이름과 연결된 이메일 주소는 몇 시간 이내에 "Your product is now eligible for support"라는 이메일을 받게 됩니다.
+. 또한 새로운 NetApp 고객은 NSS(NetApp Support Site) 사용자 계정을 생성하여 향후 등록을 해야 하며 기술 지원 채팅 및 웹 티켓 지원을 위한 지원 포털에 액세스해야 합니다. 이 링크는 에 있습니다 https://mysupport.netapp.com/eservice/public/now.do[]. 새로 등록한 Cloud Insights 일련 번호를 제공하여 프로세스를 신속하게 처리할 수 있습니다.
+. Cloud Insights NetApp 일련 번호에 대한 1회 등록입니다.
+
+
+
+
+== 지원 정보 얻기
+
+NetApp은 다양한 방법으로 Cloud Insights를 지원합니다. 기술 자료(KB) 기사 또는 NetApp 커뮤니티 등 광범위한 무료 셀프 지원 옵션이 24x7 제공됩니다. Cloud Insights 에디션(기본, 표준, 프리미엄)을 구독하는 사용자의 경우 전화 또는 웹 발권 서비스를 통해 기술 지원을 받을 수 있습니다. NSS(NetApp Support Site) SSO 계정은 케이스 관리와 함께 웹 티켓에 필요합니다.
+
+
+
+=== 셀프 서비스 지원:
+
+이러한 지원 옵션은 평가판 모드에서 사용할 수 있으며 연중무휴 24시간 무료로 제공됩니다.
+
+* *link:https://kb.netapp.com["기술 자료"]*
++
+이 섹션의 링크를 클릭하면 NetApp Knowledgebase로 이동합니다. 여기에서 문서를 검색할 수 있습니다. link:https://kb.netapp.com/app/browse/a_status/published/channelRecordID/HOW_TO/currentSelectedID/RN_PRODUCT_473/isProductSelected/true/isRecommendationAllowed/true/pageSize/10/productRecordID/RN_PRODUCT_473/sortColumn/publishDate/sortDirection/DESC/truncate/200/type/browse["방법"], , 또는  Cloud Insights 관련 정보입니다.
+
+* *link:https://docs.netapp.com/us-en/cloudinsights/["문서화"]*
++
+설명서 링크를 클릭하면 이 설명서 센터로 이동합니다.
+
+* *link:https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS["커뮤니티"]*
++
+커뮤니티 링크를 클릭하면 NetApp Cloud Insights 커뮤니티에서 동료 및 전문가와 연결할 수 있습니다.
+
+
+
+또한 링크를 통해 제공할 수 있습니다 link:mailto:ng-cloudinsights-customerfeedback@netapp.com["* 피드백 *"] Cloud Insights 개선을 위해 필요한 도움을 드릴 수 있습니다.
+
+
+
+=== 구독 지원
+
+위의 자체 지원 옵션 외에도, 모니터링된 NetApp 제품 또는 서비스에 대한 Cloud Insights 가입 또는 유료 지원 서비스가 있는 경우 NetApp 지원 엔지니어와 협력하여 문제를 해결할 수 있습니다.
+
+
+NOTE: 에 등록하려면 등록해야 합니다 <<Activating support entitlement and accessing support,지원을 활성화합니다>> NetApp Cloud 제품: 등록하려면 NetApp로 이동하십시오 link:https://register.netapp.com["클라우드 데이터 서비스 지원 등록"].
+
+지원 세션 중에 NetApp 지원 엔지니어가 Cloud Insights 환경에 액세스할 수 있도록 확인란을 선택하는 것이 좋습니다. 그러면 엔지니어가 문제를 해결하고 신속하게 해결할 수 있습니다. 문제가 해결되거나 지원 세션이 종료된 경우 확인란을 선택 취소할 수 있습니다.
+
+다음 방법 중 하나를 사용하여 지원을 요청할 수 있습니다. 다음 지원 옵션을 사용하려면 Cloud Insights에 가입되어 있어야 합니다.
+
+* link:https://www.netapp.com/us/contact-us/support.aspx["* 전화 *"]
+* link:https://mysupport.netapp.com/portal?_nfpb=true&_st=initialPage=true&_pageLabel=submitcase["* 지원 티켓 *"]
+
+
+을 클릭하여 영업 지원을 요청할 수도 있습니다 link:https://www.netapp.com/us/forms/sales-inquiry/cloud-insights-sales-inquiries.aspx["* 영업팀에 문의 *"] 링크.
+
+Cloud Insights 일련 번호는 서비스 내에서 도움말 > 지원* 메뉴에서 확인할 수 있습니다. 서비스에 액세스하는 데 문제가 있고 이전에 NetApp에 일련 번호를 등록한 경우 다음과 같이 NetApp Support 사이트에서 Cloud Insights 일련 번호 목록을 볼 수도 있습니다.
+
+* mysupport.netapp.com 에 로그인합니다
+* 제품 > 내 제품 메뉴 탭에서 제품군 “SaaS Cloud Insights”를 사용하여 등록된 모든 일련 번호를 찾습니다.
+
+
+image:Support_View_SN.png["지원 SN을 봅니다"]
+
+
+
+== Cloud Insights 데이터 수집기 지원 매트릭스
+
+에서 지원되는 Data Collector에 대한 정보와 세부 정보를 보거나 다운로드할 수 있습니다 link:CloudInsightsDataCollectorSupportMatrix.pdf["* Cloud Insights 데이터 수집기 지원 매트릭스 *, 역할 = "외부""].

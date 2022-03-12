@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: forensic_entity_detail.html 
+keywords: Forensic, entity, entity overview, entity behavior, entities 
+summary: 법의학 엔터티 페이지 
+---
+= 포렌식 엔터티 페이지
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+Forensics Entities 페이지에는 사용자 환경의 엔티티 활동에 대한 자세한 정보가 제공됩니다.
+
+
+
+== 엔터티 정보 검사
+
+Forensics > Activity Forensics * 를 클릭하고 _Entities_탭을 클릭하여 Entities 페이지에 액세스합니다.
+
+이 페이지에서는 사용자 환경의 엔티티 활동에 대한 개요를 제공하고 다음 정보를 강조 표시합니다. * 분당 _ 개의 고유 엔터티가 표시된 그래프 * 액세스된 _ * 액세스 엔터티 유형의 차트 * 전체 엔터티 수 중 _ 상위 50개 엔터티의 분류 *
+
+image:CS-Entities-Page.png["엔터티 페이지"]
+
+목록에서 엔티티를 클릭하면 엔티티의 개요 페이지가 열리고 이름, 유형, 장치 이름, 가장 많이 액세스되는 위치 IP 및 경로 등의 세부 정보와 사용자, IP, 경로 등의 엔터티 동작이 표시됩니다. 엔티티에 마지막으로 액세스한 시간입니다.
+
+image:CS-entity-detail-page.png["엔티티 개요 페이지"]

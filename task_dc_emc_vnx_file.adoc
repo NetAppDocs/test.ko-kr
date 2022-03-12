@@ -1,0 +1,99 @@
+---
+sidebar: sidebar 
+permalink: task_dc_emc_vnx_file.html 
+keywords: data collector, Celerra, EMC, DELL, VNX File 
+summary: Dell EMC Celerra 데이터 수집기 구성 
+---
+= Dell EMC VNX File(이전의 Celerra Unified Storage System) 데이터 수집기
+
+
+[role="lead"]
+이 데이터 수집기는 VNX File Storage System에서 인벤토리 정보를 가져옵니다. 구성을 위해 이 데이터 수집기는 스토리지 프로세서의 IP 주소와 읽기 전용 사용자 이름 및 암호가 필요합니다.
+
+
+
+== 용어
+
+Cloud Insights는 VNX File 데이터 수집기에서 다음과 같은 인벤토리 정보를 가져옵니다. Cloud Insights에서 획득한 각 자산 유형에 대해 이 자산에 가장 일반적으로 사용되는 용어가 표시됩니다. 이 데이터 수집기를 보거나 문제를 해결할 때 다음 용어를 염두에 두십시오.
+
+[cols="2*"]
+|===
+| 공급업체/모델 기간 | Cloud Insights 용어입니다 
+
+
+| Celerra Network Server/Celerra 스토리지 풀입니다 | 스토리지 풀 
+
+
+| 파일 시스템 | 내부 볼륨 
+
+
+| Data Mover입니다 | 컨트롤러 
+
+
+| Data Mover에 마운트된 파일 시스템입니다 | 파일 공유 
+
+
+| CIFS 및 NFS 엑스포트 | 공유 
+
+
+| 디스크 볼륨 | 백엔드 LUN 
+|===
+참고: 이러한 용어 매핑은 일반적인 용어 매핑일 뿐이며 이 데이터 수집기의 모든 경우를 나타내는 것은 아닙니다.
+
+
+
+== 요구 사항
+
+이 데이터 수집기를 구성하려면 다음이 필요합니다.
+
+* 스토리지 프로세서의 IP 주소입니다
+* 읽기 전용 사용자 이름 및 암호
+* SSH 포트 22
+
+
+
+
+== 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| VNX File IP 주소입니다 | VNX File 디바이스의 IP 주소 또는 정규화된 도메인 이름입니다 
+
+
+| 사용자 이름 | VNX File 디바이스에 로그인하는 데 사용되는 이름입니다 
+
+
+| 암호 | VNX File 디바이스에 로그인하는 데 사용되는 암호입니다 
+|===
+
+
+== 고급 구성
+
+[cols="2*"]
+|===
+| 필드에 입력합니다 | 설명 
+
+
+| 재고 폴링 간격(분) | 재고 조사 사이의 간격입니다. 기본값은 20분입니다. 
+|===
+
+
+== 문제 해결
+
+이 데이터 수집기에서 문제가 발생할 경우 다음과 같은 방법을 시도해 보십시오.
+
+
+
+==== 인벤토리
+
+[cols="2*"]
+|===
+| 문제: | 다음을 시도해 보십시오. 
+
+
+| 오류: DART 업데이트가 진행되는 동안 계속할 수 없습니다 | 가능한 해결 방법: 데이터 수집기를 일시 중지하고 DART 업그레이드가 완료될 때까지 기다린 후 다른 획득 요청을 시도하십시오. 
+|===
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지 또는 에 있습니다 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["Data Collector 지원 매트릭스"].

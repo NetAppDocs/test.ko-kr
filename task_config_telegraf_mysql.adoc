@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_mysql.html 
+keywords: telegraf, installation, install, mysql 
+summary: MySQL 데이터 수집기 구성 
+---
+= MySQL 데이터 수집기
+
+
+[role="lead"]
+Cloud Insights는 이 데이터 수집기를 사용하여 MySQL에서 메트릭을 수집합니다.
+
+
+
+== 설치
+
+. 관리자 > 데이터 수집기 * 에서 * + 데이터 수집기 * 를 클릭합니다. 서비스 * 에서 MySQL을 선택합니다.
++
+Telegraf 에이전트가 설치된 운영 체제 또는 플랫폼을 선택합니다.
+
+. 수집용 에이전트를 아직 설치하지 않았거나 다른 운영 체제 또는 플랫폼용 에이전트를 설치하려는 경우, _지침 표시_를 클릭하여 를 확장합니다 link:task_config_telegraf_agent.html["에이전트 설치"] 지침.
+. 이 데이터 수집기에 사용할 Agent Access 키를 선택합니다. Agent 액세스 키 * 버튼을 클릭하여 새 Agent 액세스 키를 추가할 수 있습니다. 모범 사례: OS/플랫폼별로 데이터 수집기를 그룹화하려는 경우에만 다른 에이전트 액세스 키를 사용하십시오.
+. 구성 단계에 따라 데이터 수집기를 구성합니다. 지침은 데이터 수집에 사용하는 운영 체제 또는 플랫폼의 유형에 따라 다릅니다.
+
+
+image:MySQLDCConfigWindows.png["MySQL 구성"]
+
+
+
+== 설정
+
+정보는 에서 찾을 수 있습니다 link:https://dev.mysql.com/doc/["MySQL 설명서"].
+
+
+
+== 개체 및 카운터
+
+다음 개체와 해당 카운터가 수집됩니다.
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 오브젝트: | 식별자: | 특성: | 데이터 요소: 
+
+
+| MySQL | 네임스페이스 MySQL Server | 노드 IP 노드 이름 | 중단된 클라이언트(초당) 중단된 연결(초당) RX 바이트(초당) TX 바이트(초당) 명령 Admin(초당) 명령 alter 이벤트 명령 alter 함수 명령 alter instance 명령 alter 프로시저 명령 alter 서버 명령 alter 테이블 명령 alter 테이블 공간 명령 alter 사용자 명령 alter 사용자 명령 alter 명령 assign to keycache 명령 시작 명령 binlog 명령 호출 프로시저 명령 변경 변경 마스터 명령 변경 Repl 필터 명령 검사 명령 체크섬 명령 실행 명령 생성 DB 명령 생성 이벤트 명령 생성 인덱스 명령 생성 프로시저 명령 생성 서버 명령 생성 테이블 명령 생성 트리거 명령 생성 UDF 명령 생성 사용자 명령 생성 보기 명령 생성 뷰 명령 생성 탈할당 SQL 연결 오류 생성된 TMP 디스크 테이블 지연 오류 플러시 명령 수락 처리기 커밋 InnoDB 버퍼 풀 바이트 데이터 키 블록이 플러시되지 않음 키 읽기 요청 키 쓰기 요청 키 쓰기 최대 실행 시간 초과 최대 사용된 연결 수 초과된 최대 파일 성능 스키마 계정 손실된 준비된 Stmt Count Qcache Free Blocks 쿼리 질문 전체 조인 선택 범위 선택 검사 선택 스캔 테이블 잠금 즉시 을 선택합니다 
+|===
+
+
+== 문제 해결
+
+추가 정보는 에서 찾을 수 있습니다 link:concept_requesting_support.html["지원"] 페이지.
