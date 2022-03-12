@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>test | NetApp Documentation</title>
+    <atom:link href="https://docs.netapp.com/ko-kr/test/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>https://docs.netapp.com/ko-kr/test</link>
+    <description>The latest updates from NetApp Documentation</description>
+    <language>ko-kr</language>
+    <ttl>60</ttl>
+    <pubDate>Sat, 12 Mar 2022 06:41:09 +0000</pubDate>
+    <lastBuildDate>Sat, 12 Mar 2022 06:41:09 +0000</lastBuildDate>
+    
+    
+    
+    <item>
+      <title>Cloud Insights의 새로운 기능 (12 Mar 2022)</title>
+      <pubDate>Sat, 12 Mar 2022 06:38:34 +0000</pubDate>
+      <link>https://docs.netapp.com/ko-kr/test/concept_whats_new.html?time=1647067114</link>
+      <guid isPermaLink="false">Sat, 12 Mar 2022 06:38:34 +0000</guid>
+      <description><![CDATA[ Cloud Insights에서 사용할 수 있는 새로운 기능 ]]></description>
+    </item>
+    
+    
+  </channel>
+</rss>

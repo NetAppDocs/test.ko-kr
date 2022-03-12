@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head class="at-element-marker">
+  <title>7-Mode 데이터 수집기에서 작동하는 NetApp Data ONTAP</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="7-Mode 데이터 수집기에서 작동하는 NetApp Data ONTAP" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/ko-kr/test/task_dc_na_7mode.html" />
+	<meta property="og:description" content="NetApp 7-Mode 데이터 수집기 구성 중" />
+  <meta property="og:image" content="https://docs.netapp.com/ko-kr/test/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="NetApp 7-Mode 데이터 수집기 구성 중">
+  <meta name="keywords" content=" data collector, 7-mode, NetApp"><meta name="robots" content="noindex" /><!-- Icons -->
+  <link rel="icon" href="/ko-kr/test/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Controls AsciiDoctor Admonition Blocks -->
+  <link rel="stylesheet" type="text/css" href="/ko-kr/test/css/font-awesome.min.css">
+
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/ko-kr/test/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel="stylesheet" type="text/css" href="/ko-kr/test/css/netapp.css">
+
+  <!-- WWW CSS Content -->
+  <link rel="stylesheet" type="text/css" href="/ko-kr/test/css/www-luci-dotcom.min.css">
+  <link rel="stylesheet" type="text/css" href="/ko-kr/test/css/www-netapp-dotcom.css">
+  <link rel="stylesheet" href="/ko-kr/test/css/www-netapp-library-critical.min.css" media="all" >
+  <link rel="stylesheet" href="/ko-kr/test/css/www-netapp-library-non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="/ko-kr/test/css/www-netapp-library-global-header-footer.min.css">
+
+  <!-- NetApp IE Customizations -->
+  <link rel="stylesheet" href='/ko-kr/test/css/na-utility.css' type='text/css'>
+  <link rel="stylesheet" href='/ko-kr/test/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/ko-kr/test/css/clouddocs.css' type='text/css'>
+  <link rel='stylesheet' href='/ko-kr/test/css/na-pagenav.css' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/ko-kr/test/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/ko-kr/test/css/tabbed-blocks.css" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/ko-kr/test/js/na-search.js'></script><script src='/ko-kr/test/js/na-pagenav.js'></script><link rel='stylesheet' href='/ko-kr/test/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/ko-kr/test/css/prism-netapp.css' type='text/css'>
+
+
+  <script src='/ko-kr/test/js/na-utility.js'></script>
+  <script src='/ko-kr/test/js/clouddocs.js'></script>
+  <script>
+  if (document.location.hostname === "docs.netapp.com") {
+    var head = document.getElementsByTagName('head')[0];
+    var adobe = document.createElement("script");
+    adobe.type = "text/javascript";
+    adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
+    head.appendChild(adobe);
+  }
+  </script>
+  <script src='/ko-kr/test/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/ko-kr/test/js/toc.js'></script>
+  <script src='/ko-kr/test/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-81697994-3"></script>
+  <script>
+  if (document.location.hostname === "docs.netapp.com") {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-81697994-3');
+  }
+  </script>
+  <script src='/ko-kr/test/js/version-dropdown.js'></script>
+  <script src='/ko-kr/test/js/FileSaver.min.js'></script>
+  <script src='/ko-kr/test/js/jszip-utils.min.js'></script>
+  <script src='/ko-kr/test/js/jszip.min.js'></script>
+  <script src='/ko-kr/test/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  <div class="page-nav-toolbar">
+    <div id="version-dropdown"></div>
+    <div class="page-nav-contribute"  >
+      <a target="_blank" href="https://github.com/NetAppDocs/test/issues/new?body=Page%3A%20[7-Mode 데이터 수집기에서 작동하는 NetApp Data ONTAP](https://docs.netapp.com/ko-kr/test/task_dc_na_7mode.html)" class="page-nav-contribute-link" role="button"><img src="/ko-kr/test/images/discuss-sm.svg" class="github-icon" />문서 변경 요청</a>
+      <a target="_blank" href="https://github.com/NetAppDocs/test/blob/main/task_dc_na_7mode.adoc" class="page-nav-contribute-link" role="button"><img src="/ko-kr/test/images/edit-sm.svg" class="github-icon" />이 페이지 편집</a>
+      <a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/ko-kr/test/images/article-sm.svg" class="github-icon" />기여하는 방법 자세히 알아보기</a>
+    </div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">이 페이지의 내용</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">제품 및 솔루션</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">지원 및 교육</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">커뮤니티</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">블로그</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">고객 성공 사례</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">연락처</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">연락처</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/ko-kr/test/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/ko-kr/test/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/ko-kr/test/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/ko-kr/test/search.html"
+          data-type="widget" 
+          data-placeholder="설명서 검색" 
+          data-no-results-found="{query}에 대한 결과를 찾을 수 없음" 
+          data-did-you-mean="{suggestion}을(를) 검색해보십시오." 
+          data-no-results-found-did-you-mean="{query}에 대한 결과를 찾을 수 없습니다. {suggestion}을(를) 검색하려 하셨습니까?" 
+          data-results-found="{hitCount}개의 결과를 찾음"  
+          data-sk-es-pf-indexes=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="ie-i18n" class="n-property-bar__lang-selector">
+      <div id="ie-i18n-menu">
+      <span class="ie-i18n-lang">한국어</span>
+        <button class="ie-i18n-icon-container" type="button">
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+      <div id="n-property-navigation-bar__menu--language-selector" class="ie-i18n-results-container n-menu n-menu--v3 n-menu--is-active" style="display: none;">
+        <div class="n-language-selector-menu">
+          <ul class="n-menu__list">
+            <li class="n-menu__list-column">
+              <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ko-kr/test/task_dc_na_7mode.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/us-en/test/task_dc_na_7mode.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ja-jp/test/task_dc_na_7mode.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-cn/test/task_dc_na_7mode.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                </li></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <div class="sidebar-nav-container">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/index.html">
+        Cloud Insights 설명서
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_whats_new.html">
+        새로운 기능
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_cloud_insights_onboarding_1.html">
+        Cloud Insights에 등록 중입니다
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 보안</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/security_overview.html">
+        보안 사례
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/security_information_and_region.html">
+        저장 내용 및 위치
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 시작하기</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_feature_tutorials.html">
+        피처 튜터리얼
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 데이터 수집 중</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_getting_started_with_cloud_insights.html">
+        개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_acquisition_unit_requirements.html">
+        획득 장치 요구 사항
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_configure_acquisition_unit.html">
+        획득 장치 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_agent.html">
+        Agent 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_configure_data_collectors.html">
+        데이터 수집기 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_determining_data_collector_acq_status.html">
+        Data Collector 획득 상태 확인
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_view_configured_data_collectors.html">
+        구성된 데이터 수집기 관리
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_research_failed_collector.html">
+        데이터 수집기 오류를 조사합니다
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_import_from_dashboard_gallery.html">
+        권장 대시보드 가져오기
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_user_roles.html">
+        사용자 계정 및 역할
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_other_cloud_products.html">
+        다른 Cloud Central 제품으로 전환
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/data_collector_list.html">
+        Data Collector 목록
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_subscribing_to_cloud_insights.html">
+        Cloud Insights 구독
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 자동 장치 해상도</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_device_resolution_overview.html">
+        장치 해상도 개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_device_resolution_rules.html">
+        장치 해상도 규칙
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_device_resolution_fibre_channel.html">
+        파이버 채널 장치 해상도
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_device_resolution_ip.html">
+        IP 장치 해상도
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_device_resolution_preferences.html">
+        장치 해상도 기본 설정 지정
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_device_resolution_regex_examples.html">
+        정규식 예
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 대시보드 만들기</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_dashboards_overview.html">
+        대시보드 개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_dashboard_features.html">
+        대시보드의 기능
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 대시보드 예제</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dashboard_example_VM_performance.html">
+        가상 시스템 성능
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_dashboard_best_practices.html">
+        대시보드 모범 사례
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Kubernetes 탐색기</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/kubernetes_landing_page.html">
+        Kubernetes 개요 페이지
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/kubernetes_cluster_detail.html">
+        Kubernetes 클러스터 페이지
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 쿼리 작업</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_querying_assets.html">
+        자산 쿼리
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_query.html">
+        쿼리 만들기
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_view_queries.html">
+        사용 가능한 쿼리 보기
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_export_query_results.html">
+        쿼리 결과를 .csv로 내보내는 중입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_modify_delete_query.html">
+        쿼리 수정 또는 삭제
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_query_assign_multiple_applicationss.html">
+        개체에 여러 응용 프로그램/주석 할당
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_query_copy_table_values.html">
+        클립보드로 테이블 값 복사
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_log_explorer.html">
+        로그를 쿼리하는 중입니다
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 주석 작업</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_defining_annotations.html">
+        주석 정의
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_annotation.html">
+        주석 사용
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_annotation_rules.html">
+        주석 규칙 사용
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_annotation_import.html">
+        API를 사용하여 주석 불러오기
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 응용 프로그램 작업</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_about_applications.html">
+        응용 프로그램 개념
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_application.html">
+        응용 프로그램 구성
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 모니터링 및 경고</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_monitor.html">
+        모니터 생성 중
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_view_and_manage_alerts.html">
+        경고 보기 및 관리
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_notifications_email.html">
+        알림 수신자 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_system_monitors.html">
+        시스템 정의 모니터
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/API_Overview.html">
+        API 사용
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_webhook.html">
+        Webhook 알림
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 환경 모니터링</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_audit.html">
+        이벤트 감사
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_ttl_and_downsampling.html">
+        TTL 및 다운샘플링
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 자산 페이지 정보</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_asset_page_overview.html">
+        자산 페이지 개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_in_context_filters.html">
+        개체에 대한 컨텍스트 내 필터링
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_asset_summary_section.html">
+        요약 토폴로지 섹션
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_asset_expert_view_section.html">
+        전문가 보기 섹션
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_asset_user_data_section.html">
+        사용자 데이터 섹션
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_asset_alerts_section.html">
+        관련 경고 섹션
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_searching_assets.html">
+        자산 검색에 대한 힌트 및 팁
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 보고</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_overview.html">
+        보고 개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_user_roles.html">
+        보고 사용자 역할
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_predefined_reports.html">
+        사전 정의된 보고서 사용
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_storage_manager_dashboard.html">
+        Storage Manager 대시보드
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_create_example.html">
+        예제 보고서 만들기
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_managing_reports.html">
+        보고서 관리
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_creating_custom_reports.html">
+        사용자 지정 보고서
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_creating_custom_reports.html#reporting-data-models">
+        제공합니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_querying_database.html">
+        보고 데이터베이스 API
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_data_retention.html">
+        데이터 보존
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_schema_diagrams.html">
+        스키마 다이어그램
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reference_schemas.html">
+        스키마 테이블
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Cloud Secure</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/cs_intro.html">
+        Cloud Secure 정보
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 시작하기</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_cs_getting_started.html">
+        Cloud Secure 시작하기
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_cs_agent_requirements.html">
+        Cloud Secure 에이전트 요구 사항
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_cs_add_agent.html">
+        Cloud Secure 에이전트 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_cs_delete_agent.html">
+        Cloud Secure 에이전트를 삭제하는 중입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_user_dir_connect.html">
+        AD Directory Collector 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_user_dir_connect_ldap.html">
+        LDAP 디렉토리 수집기 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_cs_amazon_fsx.html">
+        NetApp ONTAP Collector용 Amazon FSX 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_add_collector_svm.html">
+        ONTAP SVM Data Collector 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_cs_incloud.html">
+        Cloud ONTAP 데이터 수집기 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_cs_user_management.html">
+        Cloud Secure 사용자 관리
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_cs_event_rate_checker.html">
+        이벤트 속도 검사기
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/cs_alert_data.html">
+        경고
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 법의학</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/forensic_activity_history.html">
+        활동 포렌식 - 모든 활동
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/forensic_entity_detail.html">
+        활동 포렌식 - 엔티티
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/forensic_user_overview.html">
+        사용자
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/cs_automated_response_policies.html">
+        자동 응답 정책
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/cs_restrict_user_access.html">
+        사용자 액세스를 제한합니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_cs_attack_simulator.html">
+        랜섬웨어 공격 시뮬레이션
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/cs_notifications_email.html">
+        알림
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_cs_api.html">
+        Cloud Secure API를 참조하십시오
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_activeiq.html">
+        Active IQ
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 문제 해결</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_troubleshooting_general_problems.html">
+        일반 문제 해결
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_troubleshooting_linux_acquisition_unit_problems.html">
+        Linux 획득 장치 문제 해결
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_troubleshooting_windows_acquisition_unit_problems.html">
+        Windows 획득 장치 문제 해결
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_research_failed_collector.html">
+        데이터 수집기 오류 조사
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 참조 지원</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_requesting_support.html">
+        지원을 요청하는 중입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reference_data_collector_support_matrix.html">
+        Data Collector 지원 매트릭스
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Data Collector 참조 - 인프라</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_data_collector_reference.html">
+        공급업체 참조 개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_amazon_ec2.html">
+        설치하고
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ms_azure.html">
+        Azure를 지원합니다
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Broadcom의</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_brocade_bna.html">
+        Brocade 네트워크 자문업체
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_brocade_fc_switch.html">
+        파이버 채널 스위치
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_cisco_fc_switch.html">
+        Cisco의
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Dell</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_dell_xc_series.html">
+        XC 시리즈
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Dell EMC</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_datadomain.html">
+        Data Domain을 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_ecs.html">
+        ECS를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_isilon.html">
+        파워 스케일
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_powerstore.html">
+        PowerStore
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_recoverpoint.html">
+        RecoverPoint를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_scaleio.html">
+        ScaleIO를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_unity.html">
+        Unity(VNXe)
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_vmax_powermax.html">
+        VMAX/PowerMax
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_vnx_block.html">
+        VNX 블록(CLARiX)
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_vnx_file.html">
+        VNX 파일(Celerra)
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_vnx_unified.html">
+        VNX 유니파이드
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_vplex.html">
+        VPLEX
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_xio.html">
+        XtremIO
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_fujitsu_eternus.html">
+        Fujitsu
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_google_cloud.html">
+        구글
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> HP 엔터프라이즈</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hp_3par.html">
+        HP Alletra 9000 및 Primera
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hpe_commandview.html">
+        HP Command View AE
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hpe_nimble.html">
+        HPE Alletra 6000
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Hitachi Data Systems를 통해</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hds_commandsuite.html">
+        HDS Command Suite
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hds_nas.html">
+        HDS HNAS입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hds_ops_center.html">
+        HDS 운영 센터
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_infinidat_infinibox.html">
+        Infinidat
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_huawei_oceanstor.html">
+        Huawei
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> IBM을 선택합니다</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_cleversafe.html">
+        클리버세이프
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_cs.html">
+        CS 시리즈
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_ds.html">
+        시스템 스토리지 DS8000 시리즈
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_powervm.html">
+        PowerVM
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_svc.html">
+        SAN 볼륨 컨트롤러(SVC)
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_xiv.html">
+        XIV/A9000
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_lenovo.html">
+        레노버
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 마이크로소프트</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ms_anf.html">
+        Azure NetApp Files
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ms_hyperv.html">
+        Hyper-V
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 넷엡</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_astra_data_store.html">
+        Astra 데이터 저장소
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_cloud_connection.html">
+        ONTAP 9.9+용 클라우드 연결
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_cloud_volumes_ontap.html">
+        Cloud Volumes ONTAP
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_cloud_volumes.html">
+        AWS용 Cloud Volumes Services
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_cdot.html">
+        ONTAP 데이터 관리 소프트웨어
+      </a></li><li class="  active "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_7mode.html">
+        Data ONTAP 7-Mode를 지원합니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_eseries.html">
+        E-Series 를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_hci.html">
+        NetApp HCI 관리 서버
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_solidfire.html">
+        SolidFire
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_storagegrid.html">
+        StorageGRID
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_nutanix.html">
+        말씀해 주십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_openstack.html">
+        더 적합하였습니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_oracle_zfs.html">
+        오라클
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_pure_flasharray.html">
+        퓨어
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_redhat_virtualization.html">
+        Red Hat
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_vmware.html">
+        VMware
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Data Collector 참조 - 서비스</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_node.html">
+        호스트/노드
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_activemq.html">
+        ActiveMQ
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_apache.html">
+        아파치
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_consul.html">
+        영사
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_couchbase.html">
+        바로 Couchbase입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_couchdb.html">
+        Couchbase
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_docker.html">
+        Docker 를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_elasticsearch.html">
+        Elasticsearch(Elasticsearch)
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_flink.html">
+        플링크
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_hadoop.html">
+        하둡
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_haproxy.html">
+        HAProxy
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_jvm.html">
+        자바
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_kafka.html">
+        카프카
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_kapacitor.html">
+        Kapacitor
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_kibana.html">
+        키바나
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_agent.html#kubernetes">
+        쿠버네티스
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_memcached.html">
+        멤캐시드
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_mongodb.html">
+        MongoDB
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_mysql.html">
+        MySQL
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_netstat.html">
+        netstat
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_nginx.html">
+        Nginx
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_openzfs.html">
+        OpenZFS 를 선택합니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_postgresql.html">
+        PostgreSQL
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_puppetagent.html">
+        인형
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_redis.html">
+        레드입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_rethinkdb.html">
+        RethinkDB를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_zookeeper.html">
+        ZooKeeper
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reference_object_icons.html">
+        개체 아이콘 참조
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reference_legal_notices.html">
+        법적 고지
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content">
+      <div class="ie-utility">
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/ko-kr/test/">Cloud&nbsp;Insights</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/ko-kr/test/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> 본 한국어 번역은 사용자 편의를 위해 제공되는 기계 번역입니다. 영어 버전과 한국어 버전이 서로 어긋나는 경우에는 언제나 영어 버전이 우선합니다. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">7-Mode 데이터 수집기에서 작동하는 NetApp Data ONTAP</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-03-12 06:38:34 +0000">03/12/2022</time>
+    
+  
+
+<span>기여자
+</span>
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>7-Mode에서 작동하는 Data ONTAP 소프트웨어를 사용하는 스토리지 시스템의 경우, 7-Mode 데이터 수집기를 사용합니다. 이 수집기는 CLI를 사용하여 용량 및 성능 데이터를 얻습니다.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="용어">용어</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Insights는 NetApp 7-Mode 데이터 수집기에서 다음 인벤토리 정보를 수집합니다. 획득한 각 자산 유형에 대해 이 자산에 가장 일반적으로 사용되는 용어가 표시됩니다. 이 데이터 수집기를 보거나 문제를 해결할 때 다음 용어를 염두에 두십시오.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">공급업체/모델 기간</th>
+<th class="tableblock halign-left valign-top">Cloud Insights 용어입니다</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">디스크</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">디스크</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RAID 그룹</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">디스크 그룹</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">파일러</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">스토리지</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">파일러</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">스토리지 노드</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">집계</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">스토리지 풀</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LUN을 클릭합니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">볼륨</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">볼륨</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">내부 볼륨</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>참고: 이러한 용어 매핑은 일반적인 용어 매핑일 뿐이며 이 데이터 수집기의 모든 경우를 나타내는 것은 아닙니다.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="요구-사항">요구 사항</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>이 데이터 수집기를 구성하고 사용하려면 다음이 필요합니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>FAS 스토리지 컨트롤러 및 파트너의 IP 주소입니다.</p>
+</li>
+<li>
+<p>포트 443</p>
+</li>
+<li>
+<p>7-Mode에서 다음 역할 기능을 지원하는 컨트롤러 및 파트너 컨트롤러에 대한 사용자 지정 관리자 레벨 사용자 이름 및 암호:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>"API- *": OnCommand Insight에서 모든 NetApp 스토리지 API 명령을 실행할 수 있도록 허용합니다.</p>
+</li>
+<li>
+<p>"login-http-admin": OnCommand Insight이 HTTP를 통해 NetApp 스토리지에 연결할 수 있도록 허용하려면 이 옵션을 사용하십시오.</p>
+</li>
+<li>
+<p>"security-api-vFiler": OnCommand Insight가 NetApp 스토리지 API 명령을 실행하여 vFiler 유닛 정보를 검색할 수 있도록 합니다.</p>
+</li>
+<li>
+<p>"CLI-options": 스토리지 시스템 옵션을 읽으려면 이 옵션을 사용합니다.</p>
+</li>
+<li>
+<p>"CLI-LUN": LUN 관리를 위한 다음 명령에 액세스합니다. 지정된 LUN 또는 LUN 클래스의 상태(LUN 경로, 크기, 온라인/오프라인 상태 및 공유 상태)를 표시합니다.</p>
+</li>
+<li>
+<p>"CLI-df": 사용 가능한 디스크 공간을 표시하려면 이 옵션을 사용합니다.</p>
+</li>
+<li>
+<p>"CLI-ifconfig": 인터페이스 및 IP 주소를 표시하려면 이 옵션을 사용합니다.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="구성">구성</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">필드에 입력합니다</th>
+<th class="tableblock halign-left valign-top">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">스토리지 시스템의 주소입니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NetApp 스토리지 시스템의 IP 주소 또는 정규화된 도메인 이름입니다</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 이름</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NetApp 스토리지 시스템의 사용자 이름입니다</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">암호</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NetApp 스토리지 시스템의 암호입니다</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">클러스터의 HA 파트너의 주소입니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HA 파트너에 대한 IP 주소 또는 정규화된 도메인 이름입니다</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">클러스터에 있는 HA 파트너의 사용자 이름입니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HA 파트너의 사용자 이름입니다</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">클러스터에 있는 HA 파트너 파일러의 암호</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HA 파트너의 암호입니다</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="고급-구성">고급 구성</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">필드에 입력합니다</th>
+<th class="tableblock halign-left valign-top">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">재고 폴링 간격(분)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">재고 조사 사이의 간격입니다. 기본값은 20분입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">연결 유형</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS 또는 HTTP도 기본 포트를 표시합니다</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">연결 포트를 재정의합니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">비어 있는 경우 연결 유형 필드에서 기본 포트를 사용하고, 그렇지 않으면 사용할 연결 포트를 입력합니다</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">성능 폴링 간격(초)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">성능 폴링 간격입니다. 기본값은 300초입니다.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="스토리지-시스템-접속입니다">스토리지 시스템 접속입니다</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>이 데이터 수집기에 대한 기본 관리 사용자를 사용하는 대신 NetApp 스토리지 시스템에서 직접 관리 권한을 가진 사용자를 구성하여 데이터 수집기가 NetApp 스토리지 시스템에서 데이터를 획득할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>NetApp 스토리지 시스템에 연결하려면 스토리지 시스템이 있는 기본 pfiler를 획득할 때 지정된 사용자가 다음 조건을 충족해야 합니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>사용자는 vfiler0(루트 파일러/pfiler)에 있어야 합니다.</p>
+<div class="paragraph">
+<p>스토리지 시스템은 기본 pfiler를 획득할 때 획득됩니다.</p>
+</div>
+</li>
+<li>
+<p>다음 명령은 사용자 역할 기능을 정의합니다.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>"API- *": Cloud Insights에서 모든 NetApp 스토리지 API 명령을 실행할 수 있도록 허용합니다.</p>
+<div class="paragraph">
+<p>ZAPI를 사용하려면 이 명령이 필요합니다.</p>
+</div>
+</li>
+<li>
+<p>"login-http-admin": Cloud Insights이 HTTP를 통해 NetApp 스토리지에 연결할 수 있도록 허용하려면 이 옵션을 사용하십시오. ZAPI를 사용하려면 이 명령이 필요합니다.</p>
+</li>
+<li>
+<p>"security-api-vFiler": Cloud Insights가 NetApp 스토리지 API 명령을 실행하여 vFiler 유닛 정보를 검색할 수 있도록 합니다.</p>
+</li>
+<li>
+<p>"CLI-options": "options" 명령에 대해 사용되며 파트너 IP 및 활성화된 라이센스에 사용됩니다.</p>
+</li>
+<li>
+<p>"CLI-LUN": LUN 관리를 위해 다음 명령을 사용합니다. 지정된 LUN 또는 LUN 클래스의 상태(LUN 경로, 크기, 온라인/오프라인 상태 및 공유 상태)를 표시합니다.</p>
+</li>
+<li>
+<p>"CLI-df": "df-s", "df-r", "df-a-r" 명령의 경우 및 사용 가능한 공간을 표시하는 데 사용됩니다.</p>
+</li>
+<li>
+<p>"CLI-ifconfig": "ifconfig -a" 명령용이며 파일러 IP 주소를 가져오는 데 사용됩니다.</p>
+</li>
+<li>
+<p>"CLI-rdfile": "rdfile /etc/netgroup" 명령에 대해, 넷그룹을 가져오는 데 사용됩니다.</p>
+</li>
+<li>
+<p>"CLI-date": "date" 명령을 기준으로, 스냅샷 복사본을 얻기 위한 전체 날짜를 얻는 데 사용됩니다.</p>
+</li>
+<li>
+<p>"CLI-snap": "snap list" 명령에 사용되며 스냅샷 복사본을 가져오는 데 사용됩니다.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>CLI-date 또는 CLI-snap 권한이 제공되지 않는 경우, 획득이 완료될 수 있지만 스냅샷 복사본은 보고되지 않습니다.</p>
+</div>
+<div class="paragraph">
+<p>7-Mode 데이터 소스를 성공적으로 획득하고 스토리지 시스템에 경고가 표시되지 않도록 하려면 다음 명령 문자열 중 하나를 사용하여 사용자 역할을 정의해야 합니다. 여기에 나열된 두 번째 문자열은 첫 번째 문자열의 간소화된 버전입니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>login-http-admin, api- *, security-api-vfile, CLI-rdfile, CLI-options, CLI-df, CLI-lun, CLI-ifconfig, CLI-date, CLI-snap, _</p>
+</li>
+<li>
+<p>login-http-admin, api- *, security-api-vfile, CLI -</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="문제-해결">문제 해결</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>이 데이터 수집기에서 문제가 발생할 경우 다음과 같은 방법을 시도해 보십시오.</p>
+</div>
+<div class="sect3">
+<h4 id="인벤토리">인벤토리</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">문제:</th>
+<th class="tableblock halign-left valign-top">다음을 시도해 보십시오.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수신 401 HTTP 응답 또는 13003 ZAPI 오류 코드 및 ZAPI는 "불충분한 권한" 또는 "이 명령에 대해 인증되지 않음"을 반환합니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 이름과 암호, 사용자 권한/권한을 확인합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"명령 실행 실패" 오류</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자가 장치에 대해 다음 권한을 가지고 있는지 확인합니다. • API- * • CLI-날짜 • CLI-df • CLI-ifconfig • CLI-LUN • CLI-operations • CLI-rdfile • CLI-snap • login-http-admin • security-api-vFiler 또한 ONTAP 버전이 Cloud Insights에서 지원되는지 여부를 확인하고 사용된 자격 증명이 장치 자격 증명과 일치하는지 확인합니다</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">클러스터 버전이 8.1 미만임</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">클러스터 최소 지원 버전은 8.1입니다. 최소 지원 버전으로 업그레이드하십시오.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZAPI는 "cluster role is not cluster_mgmt LIF" 를 반환합니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AU는 클러스터 관리 IP와 통신해야 합니다. IP를 확인하고 필요한 경우 다른 IP로 변경합니다</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">오류: “7 모드 파일러는 지원되지 않습니다.”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이 데이터 수집기를 사용하여 7 모드 파일러를 검색할 경우 이 문제가 발생할 수 있습니다. 대신 IP를 cDOT 파일러를 가리키도록 변경합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">재시도 후 ZAPI 명령이 실패합니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AU가 클러스터와 통신 문제를 겪고 있습니다. 네트워크, 포트 번호 및 IP 주소를 확인합니다. 또한 사용자는 AU 시스템의 명령줄에서 명령을 실행해야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AU가 ZAPI에 연결하지 못했습니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP/포트 연결을 확인하고 ZAPI 구성을 어설션합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AU가 HTTP를 통해 ZAPI에 연결하지 못했습니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZAPI 포트가 일반 텍스트를 허용하는지 확인합니다. AU가 SSL 소켓에 일반 텍스트를 보내려고 하면 통신이 실패합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSLException 과 통신이 실패합니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AU가 파일러의 일반 텍스트 포트로 SSL을 전송하려고 합니다. ZAPI 포트가 SSL을 허용하는지 또는 다른 포트를 사용하는지 확인합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">추가 연결 오류: ZAPI 응답에는 오류 코드 13001, "데이터베이스가 열려 있지 않습니다." ZAPI 오류 코드가 60이고 응답에는 "API가 시간에 완료되지 않았습니다."가 포함되어 있습니다. ZAPI 응답에는 "initialize_session() returned NULL environment" ZAPI가 포함되어 있습니다. ZAPI 오류 코드는 14007이고 응답에는 "노드가 정상 상태가 아닙니다"가 포함되어 있습니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">네트워크, 포트 번호 및 IP 주소를 확인합니다. 또한 사용자는 AU 시스템의 명령줄에서 명령을 실행해야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZAPI에서 소켓 시간 초과 오류</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">파일러 연결 및/또는 시간 초과를 확인하십시오.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"C Mode 클러스터는 7 Mode 데이터 소스에서 지원되지 않습니다." 오류</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP를 확인하고 IP를 7-Mode 클러스터로 변경합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"vFiler에 연결하지 못했습니다" 오류</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">구입 사용자 기능에는 최소한 API-* security-api-vFiler login-http-admin 파일러가 최소 ONTAPI 버전 1.7을 실행하고 있는지 확인합니다.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>추가 정보는 에서 찾을 수 있습니다 <a href="concept_requesting_support.html">"지원"</a> 페이지 또는 에 있습니다 <a href="https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf">"Data Collector 지원 매트릭스"</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+            <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+
+</ul>
+</div>
+<div class="n-footer__social-links">
+<ul class="n-footer__social-link-list">
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com" target="_blank" title="blog" alt="blog">
+<span class="n-footer__social-link-text">blog</span>
+<svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+  <title>blog@</title>
+  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#blog"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/" target="_blank" title="community" alt="community">
+<span class="n-footer__social-link-text">community</span>
+<svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+<title>community@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#comments"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp" target="_blank" title="twitter" alt="twitter">
+<span class="n-footer__social-link-text">twitter</span>
+<svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+<title>twitter@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#twitter"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp" target="_blank" title="facebook" alt="facebook">
+<span class="n-footer__social-link-text">facebook</span>
+<svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+<title>facebook@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#facebook"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-linkedin" href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+<span class="n-footer__social-link-text">linkedin</span>
+<svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+<title>linkedin@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#linkedin"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-youtube" href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+<span class="n-footer__social-link-text">youtube</span>
+<svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+<title>youtube@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#youtube"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-slideshare" href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+<span class="n-footer__social-link-text">slideshare</span>
+<svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+<title>slideshare@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#slideshare"></use>
+</svg>
+
+</a>
+</li>
+</ul>
+</div>
+
+</div>
+<div class="n-footer__bottom-right">
+  <p class="n-footer__fine-print">웹 사이트에 대한 피드백이 있으십니까?<a target="_self" href="javascript:netapp_mailto()" class="n-footer__copyright">의견을 공유해 주십시오</a>
+  <a href="https://docs.netapp.com/ko-kr/announcements/" class="n-footer__copyright">공지 사항</a>
+  </p>
+</div>
+</div>
+</div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/ko-kr/test/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/ko-kr/test/js/prism.js'></script>
+      <script type="text/javascript" src='/ko-kr/test/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/ko-kr/test/js/www-ntap.js'></script>
+    <script src='/ko-kr/test/js/tabbed-blocks.js'></script>
+  </body></html>

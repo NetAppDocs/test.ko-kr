@@ -1,0 +1,2594 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head class="at-element-marker">
+  <title>Agent가 데이터를 수집하도록 구성</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Agent가 데이터를 수집하도록 구성" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/ko-kr/test/task_config_telegraf_agent.html" />
+	<meta property="og:description" content="Cloud Insights는 통합 데이터 수집을 위한 에이전트로 Teleraf를 지원하며 Windows, Linux, macOS 및 Kubernetes에서 구성할 수 있습니다." />
+  <meta property="og:image" content="https://docs.netapp.com/ko-kr/test/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Cloud Insights는 통합 데이터 수집을 위한 에이전트로 Teleraf를 지원하며 Windows, Linux, macOS 및 Kubernetes에서 구성할 수 있습니다.">
+  <meta name="keywords" content=" telegraf, installation, install, agent, telegraf agent"><meta name="robots" content="noindex" /><!-- Icons -->
+  <link rel="icon" href="/ko-kr/test/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Controls AsciiDoctor Admonition Blocks -->
+  <link rel="stylesheet" type="text/css" href="/ko-kr/test/css/font-awesome.min.css">
+
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/ko-kr/test/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel="stylesheet" type="text/css" href="/ko-kr/test/css/netapp.css">
+
+  <!-- WWW CSS Content -->
+  <link rel="stylesheet" type="text/css" href="/ko-kr/test/css/www-luci-dotcom.min.css">
+  <link rel="stylesheet" type="text/css" href="/ko-kr/test/css/www-netapp-dotcom.css">
+  <link rel="stylesheet" href="/ko-kr/test/css/www-netapp-library-critical.min.css" media="all" >
+  <link rel="stylesheet" href="/ko-kr/test/css/www-netapp-library-non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="/ko-kr/test/css/www-netapp-library-global-header-footer.min.css">
+
+  <!-- NetApp IE Customizations -->
+  <link rel="stylesheet" href='/ko-kr/test/css/na-utility.css' type='text/css'>
+  <link rel="stylesheet" href='/ko-kr/test/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/ko-kr/test/css/clouddocs.css' type='text/css'>
+  <link rel='stylesheet' href='/ko-kr/test/css/na-pagenav.css' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/ko-kr/test/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/ko-kr/test/css/tabbed-blocks.css" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/ko-kr/test/js/na-search.js'></script><script src='/ko-kr/test/js/na-pagenav.js'></script><link rel='stylesheet' href='/ko-kr/test/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/ko-kr/test/css/prism-netapp.css' type='text/css'>
+
+
+  <script src='/ko-kr/test/js/na-utility.js'></script>
+  <script src='/ko-kr/test/js/clouddocs.js'></script>
+  <script>
+  if (document.location.hostname === "docs.netapp.com") {
+    var head = document.getElementsByTagName('head')[0];
+    var adobe = document.createElement("script");
+    adobe.type = "text/javascript";
+    adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
+    head.appendChild(adobe);
+  }
+  </script>
+  <script src='/ko-kr/test/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/ko-kr/test/js/toc.js'></script>
+  <script src='/ko-kr/test/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-81697994-3"></script>
+  <script>
+  if (document.location.hostname === "docs.netapp.com") {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-81697994-3');
+  }
+  </script>
+  <script src='/ko-kr/test/js/version-dropdown.js'></script>
+  <script src='/ko-kr/test/js/FileSaver.min.js'></script>
+  <script src='/ko-kr/test/js/jszip-utils.min.js'></script>
+  <script src='/ko-kr/test/js/jszip.min.js'></script>
+  <script src='/ko-kr/test/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  <div class="page-nav-toolbar">
+    <div id="version-dropdown"></div>
+    <div class="page-nav-contribute"  >
+      <a target="_blank" href="https://github.com/NetAppDocs/test/issues/new?body=Page%3A%20[Agent가 데이터를 수집하도록 구성](https://docs.netapp.com/ko-kr/test/task_config_telegraf_agent.html)" class="page-nav-contribute-link" role="button"><img src="/ko-kr/test/images/discuss-sm.svg" class="github-icon" />문서 변경 요청</a>
+      <a target="_blank" href="https://github.com/NetAppDocs/test/blob/main/task_config_telegraf_agent.adoc" class="page-nav-contribute-link" role="button"><img src="/ko-kr/test/images/edit-sm.svg" class="github-icon" />이 페이지 편집</a>
+      <a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/ko-kr/test/images/article-sm.svg" class="github-icon" />기여하는 방법 자세히 알아보기</a>
+    </div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">이 페이지의 내용</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">제품 및 솔루션</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">지원 및 교육</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">커뮤니티</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">블로그</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">고객 성공 사례</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">연락처</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">연락처</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/ko-kr/test/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/ko-kr/test/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/ko-kr/test/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/ko-kr/test/search.html"
+          data-type="widget" 
+          data-placeholder="설명서 검색" 
+          data-no-results-found="{query}에 대한 결과를 찾을 수 없음" 
+          data-did-you-mean="{suggestion}을(를) 검색해보십시오." 
+          data-no-results-found-did-you-mean="{query}에 대한 결과를 찾을 수 없습니다. {suggestion}을(를) 검색하려 하셨습니까?" 
+          data-results-found="{hitCount}개의 결과를 찾음"  
+          data-sk-es-pf-indexes=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="ie-i18n" class="n-property-bar__lang-selector">
+      <div id="ie-i18n-menu">
+      <span class="ie-i18n-lang">한국어</span>
+        <button class="ie-i18n-icon-container" type="button">
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+      <div id="n-property-navigation-bar__menu--language-selector" class="ie-i18n-results-container n-menu n-menu--v3 n-menu--is-active" style="display: none;">
+        <div class="n-language-selector-menu">
+          <ul class="n-menu__list">
+            <li class="n-menu__list-column">
+              <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ko-kr/test/task_config_telegraf_agent.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/us-en/test/task_config_telegraf_agent.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ja-jp/test/task_config_telegraf_agent.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-cn/test/task_config_telegraf_agent.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                </li></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <div class="sidebar-nav-container">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/index.html">
+        Cloud Insights 설명서
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_whats_new.html">
+        새로운 기능
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_cloud_insights_onboarding_1.html">
+        Cloud Insights에 등록 중입니다
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 보안</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/security_overview.html">
+        보안 사례
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/security_information_and_region.html">
+        저장 내용 및 위치
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 시작하기</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_feature_tutorials.html">
+        피처 튜터리얼
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 데이터 수집 중</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_getting_started_with_cloud_insights.html">
+        개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_acquisition_unit_requirements.html">
+        획득 장치 요구 사항
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_configure_acquisition_unit.html">
+        획득 장치 구성
+      </a></li><li class="  active "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_agent.html">
+        Agent 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_configure_data_collectors.html">
+        데이터 수집기 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_determining_data_collector_acq_status.html">
+        Data Collector 획득 상태 확인
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_view_configured_data_collectors.html">
+        구성된 데이터 수집기 관리
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_research_failed_collector.html">
+        데이터 수집기 오류를 조사합니다
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_import_from_dashboard_gallery.html">
+        권장 대시보드 가져오기
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_user_roles.html">
+        사용자 계정 및 역할
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_other_cloud_products.html">
+        다른 Cloud Central 제품으로 전환
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/data_collector_list.html">
+        Data Collector 목록
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_subscribing_to_cloud_insights.html">
+        Cloud Insights 구독
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 자동 장치 해상도</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_device_resolution_overview.html">
+        장치 해상도 개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_device_resolution_rules.html">
+        장치 해상도 규칙
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_device_resolution_fibre_channel.html">
+        파이버 채널 장치 해상도
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_device_resolution_ip.html">
+        IP 장치 해상도
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_device_resolution_preferences.html">
+        장치 해상도 기본 설정 지정
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_device_resolution_regex_examples.html">
+        정규식 예
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 대시보드 만들기</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_dashboards_overview.html">
+        대시보드 개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_dashboard_features.html">
+        대시보드의 기능
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 대시보드 예제</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dashboard_example_VM_performance.html">
+        가상 시스템 성능
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_dashboard_best_practices.html">
+        대시보드 모범 사례
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Kubernetes 탐색기</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/kubernetes_landing_page.html">
+        Kubernetes 개요 페이지
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/kubernetes_cluster_detail.html">
+        Kubernetes 클러스터 페이지
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 쿼리 작업</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_querying_assets.html">
+        자산 쿼리
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_query.html">
+        쿼리 만들기
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_view_queries.html">
+        사용 가능한 쿼리 보기
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_export_query_results.html">
+        쿼리 결과를 .csv로 내보내는 중입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_modify_delete_query.html">
+        쿼리 수정 또는 삭제
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_query_assign_multiple_applicationss.html">
+        개체에 여러 응용 프로그램/주석 할당
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_query_copy_table_values.html">
+        클립보드로 테이블 값 복사
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_log_explorer.html">
+        로그를 쿼리하는 중입니다
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 주석 작업</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_defining_annotations.html">
+        주석 정의
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_annotation.html">
+        주석 사용
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_annotation_rules.html">
+        주석 규칙 사용
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_annotation_import.html">
+        API를 사용하여 주석 불러오기
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 응용 프로그램 작업</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_about_applications.html">
+        응용 프로그램 개념
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_application.html">
+        응용 프로그램 구성
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 모니터링 및 경고</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_monitor.html">
+        모니터 생성 중
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_view_and_manage_alerts.html">
+        경고 보기 및 관리
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_notifications_email.html">
+        알림 수신자 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_system_monitors.html">
+        시스템 정의 모니터
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/API_Overview.html">
+        API 사용
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_create_webhook.html">
+        Webhook 알림
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 환경 모니터링</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_audit.html">
+        이벤트 감사
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_ttl_and_downsampling.html">
+        TTL 및 다운샘플링
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 자산 페이지 정보</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_asset_page_overview.html">
+        자산 페이지 개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_in_context_filters.html">
+        개체에 대한 컨텍스트 내 필터링
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_asset_summary_section.html">
+        요약 토폴로지 섹션
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_asset_expert_view_section.html">
+        전문가 보기 섹션
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_asset_user_data_section.html">
+        사용자 데이터 섹션
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_asset_alerts_section.html">
+        관련 경고 섹션
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_searching_assets.html">
+        자산 검색에 대한 힌트 및 팁
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 보고</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_overview.html">
+        보고 개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_user_roles.html">
+        보고 사용자 역할
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_predefined_reports.html">
+        사전 정의된 보고서 사용
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_storage_manager_dashboard.html">
+        Storage Manager 대시보드
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_create_example.html">
+        예제 보고서 만들기
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_managing_reports.html">
+        보고서 관리
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_creating_custom_reports.html">
+        사용자 지정 보고서
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_creating_custom_reports.html#reporting-data-models">
+        제공합니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_querying_database.html">
+        보고 데이터베이스 API
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_data_retention.html">
+        데이터 보존
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reporting_schema_diagrams.html">
+        스키마 다이어그램
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reference_schemas.html">
+        스키마 테이블
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Cloud Secure</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/cs_intro.html">
+        Cloud Secure 정보
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 시작하기</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_cs_getting_started.html">
+        Cloud Secure 시작하기
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_cs_agent_requirements.html">
+        Cloud Secure 에이전트 요구 사항
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_cs_add_agent.html">
+        Cloud Secure 에이전트 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_cs_delete_agent.html">
+        Cloud Secure 에이전트를 삭제하는 중입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_user_dir_connect.html">
+        AD Directory Collector 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_user_dir_connect_ldap.html">
+        LDAP 디렉토리 수집기 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_cs_amazon_fsx.html">
+        NetApp ONTAP Collector용 Amazon FSX 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_add_collector_svm.html">
+        ONTAP SVM Data Collector 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_cs_incloud.html">
+        Cloud ONTAP 데이터 수집기 구성
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_cs_user_management.html">
+        Cloud Secure 사용자 관리
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_cs_event_rate_checker.html">
+        이벤트 속도 검사기
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/cs_alert_data.html">
+        경고
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 법의학</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/forensic_activity_history.html">
+        활동 포렌식 - 모든 활동
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/forensic_entity_detail.html">
+        활동 포렌식 - 엔티티
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/forensic_user_overview.html">
+        사용자
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/cs_automated_response_policies.html">
+        자동 응답 정책
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/cs_restrict_user_access.html">
+        사용자 액세스를 제한합니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_cs_attack_simulator.html">
+        랜섬웨어 공격 시뮬레이션
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/cs_notifications_email.html">
+        알림
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_cs_api.html">
+        Cloud Secure API를 참조하십시오
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_activeiq.html">
+        Active IQ
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 문제 해결</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_troubleshooting_general_problems.html">
+        일반 문제 해결
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_troubleshooting_linux_acquisition_unit_problems.html">
+        Linux 획득 장치 문제 해결
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_troubleshooting_windows_acquisition_unit_problems.html">
+        Windows 획득 장치 문제 해결
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_research_failed_collector.html">
+        데이터 수집기 오류 조사
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 참조 지원</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_requesting_support.html">
+        지원을 요청하는 중입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reference_data_collector_support_matrix.html">
+        Data Collector 지원 매트릭스
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Data Collector 참조 - 인프라</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/concept_data_collector_reference.html">
+        공급업체 참조 개요
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_amazon_ec2.html">
+        설치하고
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ms_azure.html">
+        Azure를 지원합니다
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Broadcom의</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_brocade_bna.html">
+        Brocade 네트워크 자문업체
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_brocade_fc_switch.html">
+        파이버 채널 스위치
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_cisco_fc_switch.html">
+        Cisco의
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Dell</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_dell_xc_series.html">
+        XC 시리즈
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Dell EMC</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_datadomain.html">
+        Data Domain을 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_ecs.html">
+        ECS를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_isilon.html">
+        파워 스케일
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_powerstore.html">
+        PowerStore
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_recoverpoint.html">
+        RecoverPoint를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_scaleio.html">
+        ScaleIO를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_unity.html">
+        Unity(VNXe)
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_vmax_powermax.html">
+        VMAX/PowerMax
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_vnx_block.html">
+        VNX 블록(CLARiX)
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_vnx_file.html">
+        VNX 파일(Celerra)
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_vnx_unified.html">
+        VNX 유니파이드
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_vplex.html">
+        VPLEX
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_emc_xio.html">
+        XtremIO
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_fujitsu_eternus.html">
+        Fujitsu
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_google_cloud.html">
+        구글
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> HP 엔터프라이즈</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hp_3par.html">
+        HP Alletra 9000 및 Primera
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hpe_commandview.html">
+        HP Command View AE
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hpe_nimble.html">
+        HPE Alletra 6000
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Hitachi Data Systems를 통해</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hds_commandsuite.html">
+        HDS Command Suite
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hds_nas.html">
+        HDS HNAS입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_hds_ops_center.html">
+        HDS 운영 센터
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_infinidat_infinibox.html">
+        Infinidat
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_huawei_oceanstor.html">
+        Huawei
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> IBM을 선택합니다</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_cleversafe.html">
+        클리버세이프
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_cs.html">
+        CS 시리즈
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_ds.html">
+        시스템 스토리지 DS8000 시리즈
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_powervm.html">
+        PowerVM
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_svc.html">
+        SAN 볼륨 컨트롤러(SVC)
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ibm_xiv.html">
+        XIV/A9000
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_lenovo.html">
+        레노버
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 마이크로소프트</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ms_anf.html">
+        Azure NetApp Files
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_ms_hyperv.html">
+        Hyper-V
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 넷엡</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_astra_data_store.html">
+        Astra 데이터 저장소
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_cloud_connection.html">
+        ONTAP 9.9+용 클라우드 연결
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_cloud_volumes_ontap.html">
+        Cloud Volumes ONTAP
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_cloud_volumes.html">
+        AWS용 Cloud Volumes Services
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_cdot.html">
+        ONTAP 데이터 관리 소프트웨어
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_7mode.html">
+        Data ONTAP 7-Mode를 지원합니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_eseries.html">
+        E-Series 를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_hci.html">
+        NetApp HCI 관리 서버
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_solidfire.html">
+        SolidFire
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_na_storagegrid.html">
+        StorageGRID
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_nutanix.html">
+        말씀해 주십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_openstack.html">
+        더 적합하였습니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_oracle_zfs.html">
+        오라클
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_pure_flasharray.html">
+        퓨어
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_redhat_virtualization.html">
+        Red Hat
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_dc_vmware.html">
+        VMware
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Data Collector 참조 - 서비스</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_node.html">
+        호스트/노드
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_activemq.html">
+        ActiveMQ
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_apache.html">
+        아파치
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_consul.html">
+        영사
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_couchbase.html">
+        바로 Couchbase입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_couchdb.html">
+        Couchbase
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_docker.html">
+        Docker 를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_elasticsearch.html">
+        Elasticsearch(Elasticsearch)
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_flink.html">
+        플링크
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_hadoop.html">
+        하둡
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_haproxy.html">
+        HAProxy
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_jvm.html">
+        자바
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_kafka.html">
+        카프카
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_kapacitor.html">
+        Kapacitor
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_kibana.html">
+        키바나
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_agent.html#kubernetes">
+        쿠버네티스
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_memcached.html">
+        멤캐시드
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_mongodb.html">
+        MongoDB
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_mysql.html">
+        MySQL
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_netstat.html">
+        netstat
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_nginx.html">
+        Nginx
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_openzfs.html">
+        OpenZFS 를 선택합니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_postgresql.html">
+        PostgreSQL
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_puppetagent.html">
+        인형
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_redis.html">
+        레드입니다
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_rethinkdb.html">
+        RethinkDB를 참조하십시오
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/task_config_telegraf_zookeeper.html">
+        ZooKeeper
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reference_object_icons.html">
+        개체 아이콘 참조
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ko-kr/test/reference_legal_notices.html">
+        법적 고지
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content">
+      <div class="ie-utility">
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/ko-kr/test/">Cloud&nbsp;Insights</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/ko-kr/test/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> 본 한국어 번역은 사용자 편의를 위해 제공되는 기계 번역입니다. 영어 버전과 한국어 버전이 서로 어긋나는 경우에는 언제나 영어 버전이 우선합니다. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Agent가 데이터를 수집하도록 구성</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-03-12 06:38:34 +0000">03/12/2022</time>
+    
+  
+
+<span>기여자
+</span>
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Cloud Insights는 을 사용합니다 <a href="https://docs.influxdata.com/telegraf/v1.19/">"텔레그라프"</a> 통합 데이터 수집을 위한 에이전트로 사용됩니다. Telegraf는 메트릭, 이벤트 및 로그를 수집 및 보고하는 데 사용할 수 있는 플러그인 기반 서버 에이전트입니다. 입력 플러그인은 시스템/OS에 직접 액세스하거나 타사 API를 호출하거나 구성된 스트림(예 Kafka, statsd 등). 출력 플러그인은 에이전트에서 Cloud Insights로 수집된 메트릭, 이벤트 및 로그를 전송하는 데 사용됩니다.</p>
+</div>
+<div class="paragraph">
+<p>Cloud Insights의 최신 Telegraf 버전은 * 1.19.3 * 입니다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+정확한 감사 및 데이터 보고를 위해 * NTP(Network Time Protocol) * 또는 * SNTP(Simple Network Time Protocol) * 를 사용하여 Agent 시스템의 시간을 동기화하는 것이 좋습니다.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+Agent를 설치하기 전에 설치 파일을 확인하려면 의 아래 섹션을 참조하십시오 <a href="#Verifying Checksums">[Verifying Checksums]</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="agent-설치">Agent 설치</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>서비스 데이터 수집기를 설치하고 아직 Agent를 구성하지 않은 경우 해당 운영 체제에 대한 Agent를 먼저 설치하라는 메시지가 표시됩니다. 이 항목에서는 다음과 같은 운영 체제에 Telegraf 에이전트를 설치하는 지침을 제공합니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#windows">Windows</a></p>
+</li>
+<li>
+<p><a href="#RHEL and CentOS">[RHEL and CentOS]</a></p>
+</li>
+<li>
+<p><a href="#Ubuntu and Debian">[Ubuntu and Debian]</a></p>
+</li>
+<li>
+<p><a href="#macos">macOS</a></p>
+</li>
+<li>
+<p><a href="#Kubernetes">[Kubernetes]</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>사용 중인 플랫폼에 관계없이 에이전트를 설치하려면 먼저 다음을 수행해야 합니다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>에이전트에 사용할 호스트에 로그인합니다.</p>
+</li>
+<li>
+<p>Cloud Insights 사이트에 로그인하고 * 관리자 &gt; 데이터 수집기 * 로 이동합니다.</p>
+</li>
+<li>
+<p>Data Collector * 를 클릭하고 설치할 데이터 수집기를 선택합니다.</p>
+</li>
+<li>
+<p>호스트에 적합한 플랫폼 선택(Windows, Linux, macOS 등)</p>
+</li>
+<li>
+<p>각 플랫폼의 나머지 단계를 따릅니다.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+호스트에 에이전트를 설치한 후에는 해당 호스트에 에이전트를 다시 설치할 필요가 없습니다.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/tip.svg" alt="팁">
+</td>
+<td class="content">
+서버/VM에 에이전트를 설치한 경우 Cloud Insights는 사용자가 구성한 모든 데이터 수집기에서 취합할 뿐만 아니라 해당 시스템으로부터 메트릭을 수집합니다. 이러한 메트릭은 로 수집됩니다 <a href="task_config_telegraf_node.html">""노드" 메트릭"</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+프록시를 사용하는 경우 Telegraf 에이전트를 설치하기 전에 해당 플랫폼의 프록시 지침을 읽으십시오.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="windows">Windows</h3>
+<div class="paragraph">
+<p><span class="image"><img src="AgentInstallWindows.png" alt="Windows Agent 설치"></span></p>
+</div>
+<div class="ulist">
+<div class="title">전제 조건:</div>
+<ul>
+<li>
+<p>PowerShell을 설치해야 합니다</p>
+</li>
+<li>
+<p>프록시 뒤에 있는 경우 * Windows*용 프록시 지원 구성 섹션의 지침을 따르십시오.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Windows에서 에이전트를 설치하는 단계:</div>
+<ol class="arabic">
+<li>
+<p>상담원 액세스 키를 선택합니다.</p>
+</li>
+<li>
+<p>에이전트 설치 대화 상자에서 명령 블록을 복사합니다. 클립보드 아이콘을 클릭하여 명령을 빠르게 클립보드에 복사할 수 있습니다.</p>
+</li>
+<li>
+<p>PowerShell 창을 엽니다</p>
+</li>
+<li>
+<p>명령을 PowerShell 창에 붙여넣고 Enter 키를 누릅니다.</p>
+</li>
+<li>
+<p>명령은 적절한 에이전트 설치 프로그램을 다운로드하고 설치하고 기본 구성을 설정합니다. 완료되면 에이전트 서비스가 다시 시작됩니다. 명령에 고유한 키가 있으며 24시간 동안 유효합니다.</p>
+</li>
+<li>
+<p>마침 * 또는 * 계속 * 을 클릭합니다</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>에이전트를 설치한 후 다음 명령을 사용하여 서비스를 시작/중지할 수 있습니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Start-Service telegraf
+Stop-Service telegraf</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="windows에-대한-프록시-지원-구성">Windows에 대한 프록시 지원 구성</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+아래 단계에서는 _http_proxy/https_proxy_environment 변수를 설정하는 데 필요한 작업을 간략히 설명합니다. 일부 프록시 환경에서는 _no_proxy 환경_변수를 설정해야 할 수도 있습니다.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>프록시 뒤에 있는 시스템의 경우, 다음과 같이 Telegraf 에이전트를 설치하기 전에 _https_proxy_and/or_http_proxy_environment 변수 * 를 설정하십시오.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[System.Environment]::SetEnvironmentVariable(“https_proxy”, “&lt;proxy_server&gt;:&lt;proxy_port&gt;”, [System.EnvironmentVariableTarget]::Machine)</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="agent를-제거합니다">Agent를 제거합니다</h4>
+<div class="paragraph">
+<p>Windows에서 에이전트를 제거하려면 PowerShell 창에서 다음을 수행합니다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Telegraf 서비스를 중지하고 삭제합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre>Stop-Service telegraf
+sc.exe delete telegraf</pre>
+</div>
+</div>
+</li>
+<li>
+<p>trustore에서 인증서를 제거합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre>cd Cert:\CurrentUser\Root
+rm E5FB7B68C08B1CA902708584C274F8EFC7BE8ABC</pre>
+</div>
+</div>
+</li>
+<li>
+<p>C:\Program Files\Telegraf_폴더를 삭제하여 바이너리, 로그 및 구성 파일을 제거합니다</p>
+</li>
+<li>
+<p>레지스트리에서 _SYSTEM\CurrentControlSet\Services\EventLog\Application\Telegraf_key를 제거합니다</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="agent-업그레이드-중">Agent 업그레이드 중</h4>
+<div class="paragraph">
+<p>Telegraf 에이전트를 업그레이드하려면 다음을 수행합니다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Telegraf 서비스를 중지하고 삭제합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre>Stop-Service telegraf
+sc.exe delete telegraf</pre>
+</div>
+</div>
+</li>
+<li>
+<p>레지스트리에서 _SYSTEM\CurrentControlSet\Services\EventLog\Application\Telegraf_key를 삭제합니다</p>
+</li>
+<li>
+<p>Delete_C:\Program Files\Telegraf\Telegraf.conf _</p>
+</li>
+<li>
+<p>Delete_C:\Program Files\Telegraf\Telegraf.exe_</p>
+</li>
+<li>
+<p><a href="#windows">"새 에이전트를 설치합니다"</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rhel-및-centos">RHEL 및 CentOS</h3>
+<div class="paragraph">
+<p><span class="image"><img src="Agent_Requirements_Rhel.png" alt="RHEL/CentOS 에이전트 설치"></span></p>
+</div>
+<div class="ulist">
+<div class="title">전제 조건:</div>
+<ul>
+<li>
+<p>curl, sudo, ping, sha256sum, openssl, 그리고 디미데드도 있습니다</p>
+</li>
+<li>
+<p>프록시 뒤에 있는 경우 * RHEL/CentOS*용 프록시 지원 구성 섹션의 지침을 따르십시오.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">RHEL/CentOS에 에이전트를 설치하는 단계:</div>
+<ol class="arabic">
+<li>
+<p>상담원 액세스 키를 선택합니다.</p>
+</li>
+<li>
+<p>에이전트 설치 대화 상자에서 명령 블록을 복사합니다. 클립보드 아이콘을 클릭하여 명령을 빠르게 클립보드에 복사할 수 있습니다.</p>
+</li>
+<li>
+<p>Bash 창을 엽니다</p>
+</li>
+<li>
+<p>Bash 창에 명령을 붙여넣고 Enter 키를 누릅니다.</p>
+</li>
+<li>
+<p>명령은 적절한 에이전트 설치 프로그램을 다운로드하고 설치하고 기본 구성을 설정합니다. 완료되면 에이전트 서비스가 다시 시작됩니다. 명령에 고유한 키가 있으며 24시간 동안 유효합니다.</p>
+</li>
+<li>
+<p>마침 * 또는 * 계속 * 을 클릭합니다</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>에이전트를 설치한 후 다음 명령을 사용하여 서비스를 시작/중지할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>운영 체제에서 systemd(CentOS 7+ 및 RHEL 7+)를 사용하는 경우:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sudo systemctl start telegraf
+sudo systemctl stop telegraf</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>운영 체제에서 systemd(CentOS 7+ 및 RHEL 7+)를 사용하지 않는 경우:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sudo service telegraf start
+sudo service telegraf stop</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rhelcentos에-대한-프록시-지원-구성">RHEL/CentOS에 대한 프록시 지원 구성</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+아래 단계에서는 _http_proxy/https_proxy_environment 변수를 설정하는 데 필요한 작업을 간략히 설명합니다. 일부 프록시 환경에서는 _no_proxy 환경_변수를 설정해야 할 수도 있습니다.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>프록시 뒤에 있는 시스템의 경우 Telegraf 에이전트를 설치하기 전에 * 다음 단계를 수행하십시오.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>현재 사용자에 대한 _https_proxy_and/or_http_proxy_environment 변수를 설정합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre> export https_proxy=&lt;proxy_server&gt;:&lt;proxy_port&gt;
+. /etc/default/Telegraf_를 생성하고 _https_proxy_and/or_http_proxy_variable 에 대한 정의를 삽입합니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>https_proxy=&lt;proxy_server&gt;:&lt;proxy_port&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="agent를-제거합니다-2">Agent를 제거합니다</h4>
+<div class="paragraph">
+<p>RHEL/CentOS에서 에이전트를 제거하려면 Bash 터미널에서 다음을 수행합니다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Telegraf 서비스 중지:</p>
+<div class="literalblock">
+<div class="content">
+<pre>systemctl stop telegraf (If your operating system is using systemd (CentOS 7+ and RHEL 7+)
+/etc/init.d/telegraf stop (for systems without systemd support)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Telegraf 에이전트를 제거합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre> yum remove telegraf
+. 뒤에 남아 있을 수 있는 구성 또는 로그 파일을 제거합니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>rm -rf /etc/telegraf*
+rm -rf /var/log/telegraf*</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="agent-업그레이드-중-2">Agent 업그레이드 중</h4>
+<div class="paragraph">
+<p>Telegraf 에이전트를 업그레이드하려면 다음을 수행합니다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Telegraf 서비스 중지:</p>
+<div class="literalblock">
+<div class="content">
+<pre>systemctl stop telegraf (If your operating system is using systemd (CentOS 7+ and RHEL 7+)
+/etc/init.d/telegraf stop (for systems without systemd support)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>이전 Telegraf 에이전트를 제거합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre> yum remove telegraf
+. link:#rhel-and-centos["새 에이전트를 설치합니다"].</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ubuntu-및-debian">Ubuntu 및 Debian</h3>
+<div class="paragraph">
+<p><span class="image"><img src="Agent_Requirements_Ubuntu.png" alt="Ubuntu/Debian Agent 설치"></span></p>
+</div>
+<div class="ulist">
+<div class="title">전제 조건:</div>
+<ul>
+<li>
+<p>curl, sudo, ping, sha256sum, openssl, 그리고 디미데드도 있습니다</p>
+</li>
+<li>
+<p>프록시 뒤에 있는 경우 Ubuntu/Debian*용 프록시 지원 구성 섹션의 지침을 따르십시오.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Debian 또는 Ubuntu에 에이전트를 설치하는 단계:</div>
+<ol class="arabic">
+<li>
+<p>상담원 액세스 키를 선택합니다.</p>
+</li>
+<li>
+<p>에이전트 설치 대화 상자에서 명령 블록을 복사합니다. 클립보드 아이콘을 클릭하여 명령을 빠르게 클립보드에 복사할 수 있습니다.</p>
+</li>
+<li>
+<p>Bash 창을 엽니다</p>
+</li>
+<li>
+<p>Bash 창에 명령을 붙여넣고 Enter 키를 누릅니다.</p>
+</li>
+<li>
+<p>명령은 적절한 에이전트 설치 프로그램을 다운로드하고 설치하고 기본 구성을 설정합니다. 완료되면 에이전트 서비스가 다시 시작됩니다. 명령에 고유한 키가 있으며 24시간 동안 유효합니다.</p>
+</li>
+<li>
+<p>마침 * 또는 * 계속 * 을 클릭합니다</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>에이전트를 설치한 후 다음 명령을 사용하여 서비스를 시작/중지할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>운영 체제에서 systemd를 사용하는 경우:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sudo systemctl start telegraf
+sudo systemctl stop telegraf</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>운영 체제에서 systemd를 사용하지 않는 경우:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sudo service telegraf start
+sudo service telegraf stop</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ubuntudebian에-대한-프록시-지원-구성">Ubuntu/Debian에 대한 프록시 지원 구성</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+아래 단계에서는 _http_proxy/https_proxy_environment 변수를 설정하는 데 필요한 작업을 간략히 설명합니다. 일부 프록시 환경에서는 _no_proxy 환경_변수를 설정해야 할 수도 있습니다.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>프록시 뒤에 있는 시스템의 경우 Telegraf 에이전트를 설치하기 전에 * 다음 단계를 수행하십시오.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>현재 사용자에 대한 _https_proxy_and/or_http_proxy_environment 변수를 설정합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre> export https_proxy=&lt;proxy_server&gt;:&lt;proxy_port&gt;
+. /etc/default/telgraf를 만들고 _https_proxy_and/or_http_proxy_variable에 대한 정의를 삽입합니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>https_proxy=&lt;proxy_server&gt;:&lt;proxy_port&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="agent를-제거합니다-3">Agent를 제거합니다</h4>
+<div class="paragraph">
+<p>Ubuntu/Debian에서 에이전트를 제거하려면 Bash 터미널에서 다음을 실행합니다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Telegraf 서비스 중지:</p>
+<div class="literalblock">
+<div class="content">
+<pre>systemctl stop telegraf (If your operating system is using systemd)
+/etc/init.d/telegraf stop (for systems without systemd support)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Telegraf 에이전트를 제거합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre> dpkg -r telegraf
+. 뒤에 남아 있을 수 있는 구성 또는 로그 파일을 제거합니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>rm -rf /etc/telegraf*
+rm -rf /var/log/telegraf*</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="agent-업그레이드-중-3">Agent 업그레이드 중</h4>
+<div class="paragraph">
+<p>Telegraf 에이전트를 업그레이드하려면 다음을 수행합니다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Telegraf 서비스 중지:</p>
+<div class="literalblock">
+<div class="content">
+<pre>systemctl stop telegraf (If your operating system is using systemd)
+/etc/init.d/telegraf stop (for systems without systemd support)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>이전 Telegraf 에이전트를 제거합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre> dpkg -r telegraf
+. link:#ubuntu-and-debian["새 에이전트를 설치합니다"].</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="macos">macOS</h3>
+<div class="paragraph">
+<p><span class="image"><img src="Agent_Requirements_Macos.png" alt="macOS 에이전트 설치"></span></p>
+</div>
+<div class="ulist">
+<div class="title">전제 조건:</div>
+<ul>
+<li>
+<p>curl, sudo, openssl 및 shasum 명령을 사용할 수 있어야 합니다</p>
+</li>
+<li>
+<p>프록시 뒤에 있는 경우 * macOS * 용 프록시 지원 구성 섹션의 지침을 따르십시오.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">macOS에서 에이전트를 설치하는 단계:</div>
+<ol class="arabic">
+<li>
+<p>상담원 액세스 키를 선택합니다.</p>
+</li>
+<li>
+<p>에이전트 설치 대화 상자에서 명령 블록을 복사합니다. 클립보드 아이콘을 클릭하여 명령을 빠르게 클립보드에 복사할 수 있습니다.</p>
+</li>
+<li>
+<p>Bash 창을 엽니다</p>
+</li>
+<li>
+<p>Bash 창에 명령을 붙여넣고 Enter 키를 누릅니다.</p>
+</li>
+<li>
+<p>명령은 적절한 에이전트 설치 프로그램을 다운로드하고 설치하고 기본 구성을 설정합니다. 완료되면 에이전트 서비스가 다시 시작됩니다. 명령에 고유한 키가 있으며 24시간 동안 유효합니다.</p>
+</li>
+<li>
+<p>이전에 HomeBrew를 사용하여 Telegraf 에이전트를 설치한 경우 설치 제거하라는 메시지가 표시됩니다. 이전에 설치된 Telegraf 에이전트를 제거한 후 위의 5단계에서 명령을 다시 실행합니다.</p>
+</li>
+<li>
+<p>마침 * 또는 * 계속 * 을 클릭합니다</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>에이전트를 설치한 후 다음 명령을 사용하여 서비스를 시작/중지할 수 있습니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sudo launchctl start telegraf
+sudo launchctl stop telegraf</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="macos에-대한-프록시-지원을-구성합니다">macOS에 대한 프록시 지원을 구성합니다</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+아래 단계에서는 _http_proxy/https_proxy_environment 변수를 설정하는 데 필요한 작업을 간략히 설명합니다. 일부 프록시 환경에서는 _no_proxy 환경_변수를 설정해야 할 수도 있습니다.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>프록시 뒤에 상주하는 시스템의 경우, Telegraf 에이전트를 설치하기 전에 현재 사용자의 _https_proxy_and/or_http_proxy_environment 변수를 * 로 설정하려면 다음을 수행하십시오.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> export https_proxy=&lt;proxy_server&gt;:&lt;proxy_port&gt;
+* Telegraf 에이전트를 설치한 후 _/Applications/Telegraf.app/Contents/telegraf.plist_: 에서 적절한 _https_proxy_and/또는 _http_proxy_variable 를 추가하고 설정합니다</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>…
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+   &lt;key&gt;EnvironmentVariables&lt;/key&gt;
+   &lt;dict&gt;
+          &lt;key&gt;https_proxy&lt;/key&gt;
+          &lt;string&gt;&lt;proxy_server&gt;:&lt;proxy_port&gt;&lt;/string&gt;
+   &lt;/dict&gt;
+   &lt;key&gt;Program&lt;/key&gt;
+   &lt;string&gt;/Applications/telegraf.app/Contents/MacOS/telegraf&lt;/string&gt;
+   &lt;key&gt;Label&lt;/key&gt;
+   &lt;string&gt;telegraf&lt;/string&gt;
+   &lt;key&gt;ProgramArguments&lt;/key&gt;
+   &lt;array&gt;
+     &lt;string&gt;/Applications/telegraf.app/Contents/MacOS/telegraf&lt;/string&gt;
+     &lt;string&gt;--config&lt;/string&gt;
+     &lt;string&gt;/usr/local/etc/telegraf.conf&lt;/string&gt;
+     &lt;string&gt;--config-directory&lt;/string&gt;
+     &lt;string&gt;/usr/local/etc/telegraf.d&lt;/string&gt;
+   &lt;/array&gt;
+   &lt;key&gt;RunAtLoad&lt;/key&gt;
+   &lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+…</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>그런 다음 위의 변경 사항을 로드한 후 Telegraf를 다시 시작합니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sudo launchctl stop telegraf
+sudo launchctl unload -w /Library/LaunchDaemons/telegraf.plist
+sudo launchctl load -w /Library/LaunchDaemons/telegraf.plist
+sudo launchctl start telegraf</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="agent를-제거합니다-4">Agent를 제거합니다</h4>
+<div class="paragraph">
+<p>macOS에서 에이전트를 제거하려면 Bash 터미널에서 다음을 실행합니다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Telegraf 서비스 중지:</p>
+<div class="literalblock">
+<div class="content">
+<pre> sudo launchctl stop telegraf
+. Telegraf 에이전트를 제거합니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cp /Applications/telegraf.app/scripts/uninstall /tmp
+sudo /tmp/uninstall</pre>
+</div>
+</div>
+</li>
+<li>
+<p>뒤에 남아 있을 수 있는 구성 또는 로그 파일을 제거합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre>rm -rf /usr/local/etc/telegraf*
+rm -rf /usr/local/var/log/telegraf.*</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="agent-업그레이드-중-4">Agent 업그레이드 중</h4>
+<div class="paragraph">
+<p>Telegraf 에이전트를 업그레이드하려면 다음을 수행합니다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Telegraf 서비스 중지:</p>
+<div class="literalblock">
+<div class="content">
+<pre> sudo launchctl stop telegraf
+. 이전 Telegraf 에이전트를 제거합니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cp /Applications/telegraf.app/scripts/uninstall /tmp
+sudo /tmp/uninstall</pre>
+</div>
+</div>
+</li>
+<li>
+<p><a href="#macos">"새 에이전트를 설치합니다"</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="쿠버네티스">쿠버네티스</h3>
+<div class="paragraph">
+<p>Kubernetes에서는 두 가지 방법으로 데이터를 수집할 수 있습니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>NetApp Kubernetes 모니터링 오퍼레이터 구성 Kubernetes의 권장 설치 방법입니다.</p>
+</li>
+<li>
+<p>기존의 스크립트 기반 에이전트 설치</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>설치 지침은 선택한 환경에 따라 다릅니다.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="Kubernetes_Operator_Tile_Choices.png" alt="Kubernetes 설치 선택 사항"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+NetApp Kubernetes 모니터링 오퍼레이터 설치는_Preview_feature로 간주되므로 변경될 수 있습니다.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">전제 조건:</div>
+<ul>
+<li>
+<p>curl, sudo, openssl, sha256sum 및 kubctl 명령을 사용할 수 있어야 합니다</p>
+<div class="paragraph">
+<p>최상의 결과를 얻으려면 이러한 명령을 경로에 추가하십시오.</p>
+</div>
+</li>
+<li>
+<p>Kudbe-state-metrics를 설치해야 합니다. 자세한 내용은 아래를 참조하십시오. Kudbe-state-metrics는 운영자 기반 설치와 함께 자동으로 설치됩니다.</p>
+</li>
+<li>
+<p>프록시를 사용하고 있는 경우 * Kubernetes * 용 프록시 지원 구성 섹션의 지침을 따르십시오.</p>
+</li>
+<li>
+<p>보안 컨텍스트 제약 조건이 필요한 Kubernetes 버전을 실행 중인 경우 * Kubernetes * 에서 데이터를 수집하도록 에이전트 구성 섹션의 지침을 따르십시오. 사용자 기반 설치 시 자동으로 설치됩니다.</p>
+</li>
+<li>
+<p>Kubernetes 클러스터 역할 및 역할 바인딩을 생성할 수 있는 권한이 있어야 합니다.</p>
+</li>
+<li>
+<p>NetApp Kubernetes Monitoring Operator 설치가 테스트되었으며 AWS EKS 1.18, OpenShift 3.11 및 Rancher 2.6과 함께 사용할 것으로 예상됩니다.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="모니터링은-linux-노드에만-설치됩니다">모니터링은 Linux 노드에만 설치됩니다</h4>
+<div class="paragraph">
+<p>Cloud Insights는 Linux를 실행하는 Kubernetes 노드 모니터링을 지원하며, 이들 플랫폼에서 다음 Kubernetes 레이블을 찾는 Kubernetes 노드 선택기를 지정합니다.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">플랫폼</th>
+<th class="tableblock halign-left valign-top">라벨</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes v1.17 이상</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes.IO/OS = Linux</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rancher + Cattle.IO를 오케스트레이션/Kubernetes 플랫폼으로 사용</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cattle.io/OS = Linux</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="netapp-kubernetes-모니터링-오퍼레이터-설치">NetApp Kubernetes 모니터링 오퍼레이터 설치</h4>
+<div class="paragraph">
+<p><span class="image"><img src="Kubernetes_Operator_Agent_Instructions.png" alt="작업자 기반 설치"></span></p>
+</div>
+<div class="olist arabic">
+<div class="title">Kubernetes에 NetApp Kubernetes Monitoring Operator Agent를 설치하는 단계:</div>
+<ol class="arabic">
+<li>
+<p>클러스터 이름 및 네임스페이스를 입력합니다.</p>
+</li>
+<li>
+<p>이러한 정보를 입력하면 Agent Installer 스니펫을 복사할 수 있습니다</p>
+</li>
+<li>
+<p>이 분절을 클립보드에 복사하려면 버튼을 클릭합니다.</p>
+</li>
+<li>
+<p>스니펫을 _bash_window에 붙여 넣고 실행합니다.</p>
+</li>
+<li>
+<p>설치가 자동으로 진행됩니다. 완료되면 <em>COMPLETE Setup</em> 단추를 클릭합니다.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="netapp-kubernetes-모니터링-operator에-대한-프록시-지원-구성">NetApp Kubernetes 모니터링 Operator에 대한 프록시 지원 구성</h4>
+<div class="paragraph">
+<p>모니터링 운영자에 대한 프록시를 구성하려면 다음 단계를 수행하십시오.</p>
+</div>
+<div class="paragraph">
+<p>먼저, 편집할 _agent-monitoring-netapp_file을 엽니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> kubectl -n netapp-monitoring edit agent agent-monitoring-netapp
+이 파일의 _spec:_ 섹션에서 다음 코드 블록을 추가합니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>spec:
+  proxy:
+    isAuProxyEnabled: &lt;true or false&gt;
+    isTelegrafProxyEnabled: &lt;true or false&gt;
+    isFluentbitProxyEnabled: &lt;true or false&gt;
+    password: &lt;password for proxy, optional&gt;
+    port: &lt;port for proxy&gt;
+    server: &lt;server for proxy&gt;
+    username: &lt;username for proxy, optional&gt;
+    noProxy: &lt;comma separated list of IPs or resolvable hostnames that should bypass a proxy&gt;</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="사용자-지정프라이빗-docker-저장소-사용">사용자 지정/프라이빗 Docker 저장소 사용</h5>
+<div class="paragraph">
+<p>사용자 지정 Docker 리포지토리를 사용하는 경우 다음을 수행합니다.</p>
+</div>
+<div class="paragraph">
+<p>Docker 암호 확인:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> kubectl -n netapp-monitoring get secret docker -o yaml
+위 명령의 출력에서 _.dockerconfigjson:_의 값을 복사/붙여 넣습니다.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Docker 암호 해독:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> echo &lt;paste from _.dockerconfigjson:_  output above&gt; | base64 -d
+이 명령의 출력은 다음과 같은 json 형식으로 표시됩니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{ "auths":
+  {"docker.&lt;cluster&gt;.cloudinsights.netapp.com" :
+    {"username":"&lt;tenant id&gt;",
+     "password":"&lt;password which is the CI API key&gt;",
+     "auth"    :"&lt;encoded username:password basic auth key. This is internal to docker&gt;"}
+  }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Docker 리포지토리에 로그인합니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>docker login docker.&lt;cluster&gt;.cloudinsights.netapp.com (from step #2) -u &lt;username from step #2&gt;
+password: &lt;password from docker secret step above&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Cloud Insights에서 운영자 Docker 이미지를 가져옵니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> docker pull docker.&lt;cluster&gt;.cloudinsights.netapp.com/netapp-monitoring:&lt;version&gt;
+다음 명령을 사용하여 &lt;version&gt; 필드를 찾습니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> kubectl -n netapp-monitoring get deployment monitoring-operator | grep "image:"
+회사 정책에 따라 운영 Docker 이미지를 프라이빗/로컬/엔터프라이즈 Docker 저장소로 밀어 넣습니다.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>모든 오픈 소스 종속성을 전용 Docker 레지스트리에 다운로드합니다. 다음 오픈 소스 이미지를 다운로드해야 합니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>docker.io/telegraf:1.19.3
+gcr.io/kubebuilder/kube-rbac-proxy:v0.5.0
+k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.1.0</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Fluent-bit가 활성화된 경우 다음 정보도 다운로드하십시오.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>docker.io/fluent-bit:1.7.8
+docker.io/kubernetes-event-exporter:0.10</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>새 Docker 저장소 위치를 반영하도록 에이전트 CR을 편집하고 자동 업그레이드를 비활성화합니다(활성화된 경우).</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl -n netapp-monitoring edit agent agent-monitoring-netapp
+enableAutoUpgrade: false</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>docker-repo: &lt;docker repo of the enterprise/corp docker repo&gt;
+dockerRepoSecret: &lt;optional: name of the docker secret of enterprise/corp docker repo, this secret should be already created on the k8s cluster in the same namespace&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>spec:_ 섹션에서 다음과 같이 변경합니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>spec:
+  telegraf:
+    - name: ksm
+      substitutions:
+        - key: k8s.gcr.io
+          value: &lt;same as "docker-repo" field above&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="스크립트-기반-설치">스크립트 기반 설치</h4>
+<div class="paragraph">
+<p><span class="image"><img src="Kubernetes_Install_Agent_screen.png" alt="스크립트 기반 설치"></span></p>
+</div>
+<div class="olist arabic">
+<div class="title">Kubernetes에 스크립트 기반 에이전트를 설치하는 단계:</div>
+<ol class="arabic">
+<li>
+<p>상담원 액세스 키를 선택합니다.</p>
+</li>
+<li>
+<p>설치 대화 상자에서 * Agent Installer Snippet * 복사 버튼을 클릭합니다. 명령 블록을 보려면 <em>+ Reveal Agent Installer Snippet</em> 단추를 클릭할 수도 있습니다.</p>
+</li>
+<li>
+<p>명령을 _bash_window에 붙여 넣습니다.</p>
+</li>
+<li>
+<p>필요한 경우 final_./$installerName_ 전에 다음 중 하나 또는 둘 다를 추가하도록 명령 블록을 수정하여 설치 명령의 일부로 네임스페이스를 재정의하거나 클러스터 이름을 제공할 수 있습니다</p>
+<div class="ulist">
+<ul>
+<li>
+<p>cluster_name=&lt;클러스터 이름&gt;</p>
+</li>
+<li>
+<p>Namespace=&lt;Namespace&gt;</p>
+<div class="paragraph">
+<p>이 명령은 명령 블록에 있습니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>installerName=cloudinsights-kubernetes.sh ... &amp;&amp; CLUSTER_NAME=&lt;cluster_name&gt; NAMESPACE=&lt;new_namespace&gt; sudo -E -H ./$installerName --download --install</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/tip.svg" alt="팁">
+</td>
+<td class="content">
+_cluster_name_은 Cloud Insights에서 메트릭을 수집하는 Kubernetes 클러스터의 이름이고, _namespace_는 텔레그라프 에이전트를 구축할 네임스페이스입니다. 지정한 네임스페이스가 없으면 생성됩니다.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>준비가 되면 명령 블록을 실행합니다.</p>
+</li>
+<li>
+<p>명령은 적절한 에이전트 설치 프로그램을 다운로드하고 설치하고 기본 구성을 설정합니다. _namespace_를 명시적으로 설정하지 않은 경우 이를 입력하라는 메시지가 표시됩니다. 완료되면 스크립트가 에이전트 서비스를 다시 시작합니다. 명령에 고유한 키가 있으며 24시간 동안 유효합니다.</p>
+</li>
+<li>
+<p>완료되면 * Complete Setup * (설정 완료 *)을 클릭합니다.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="kubernetes용-프록시-지원-구성-스크립트-기반">Kubernetes용 프록시 지원 구성 - 스크립트 기반</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+아래 단계에서는 _http_proxy/https_proxy_environment 변수를 설정하는 데 필요한 작업을 간략히 설명합니다. 일부 프록시 환경에서는 _no_proxy 환경_변수를 설정해야 할 수도 있습니다.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>프록시 뒤에 상주하는 시스템의 경우, Telegraf 에이전트를 설치하기 전에 현재 사용자의 _https_proxy_and/or_http_proxy_environment 변수를 * 로 설정하려면 다음을 수행하십시오.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> export https_proxy=&lt;proxy_server&gt;:&lt;proxy_port&gt;
+* Telegraf 에이전트를 설치한 후 적절한 _https_proxy_and/or_http_proxy_environment 변수를 _Telegraf-ds_demonset 및 _Telegraf-RS_replicaset에 추가하고 설정합니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl edit ds telegraf-ds</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>…
+       env:
+       - name: https_proxy
+         value: &lt;proxy_server&gt;:&lt;proxy_port&gt;
+       - name: HOSTIP
+         valueFrom:
+           fieldRef:
+             apiVersion: v1
+             fieldPath: status.hostIP
+…</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl edit rs telegraf-rs</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>…
+       env:
+       - name: https_proxy
+         value: &lt;proxy_server&gt;:&lt;proxy_port&gt;
+       - name: HOSTIP
+         valueFrom:
+           fieldRef:
+             apiVersion: v1
+             fieldPath: status.hostIP
+…</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>그런 다음 Telegraf를 다시 시작합니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl delete pod telegraf-ds-*
+kubectl delete pod telegraf-rs-*</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="demonset-replicaset-및-에이전트를-중지시작합니다">DemonSet, ReplicaSet 및 에이전트를 중지/시작합니다</h4>
+<div class="paragraph">
+<p>DemonSet 및 ReplicaSet은 필요한 Telegraf 에이전트/포드를 실행하기 위해 Kubernetes 클러스터에서 생성됩니다. 기본적으로 이러한 Telegraf 에이전트/Pod는 마스터 노드와 비마스터 노드 모두에서 예약됩니다.</p>
+</div>
+<div class="paragraph">
+<p>에이전트의 중지 및 재시작을 용이하게 하기 위해 다음 명령을 사용하여 Telegraf DemonSet YAML 및 ReplicaSet YAML을 생성합니다. 이러한 명령은 기본 네임스페이스 "CI-모니터링"을 사용합니다. 고유한 네임스페이스를 설정한 경우 다음 명령 및 파일에서 해당 네임스페이스를 대체합니다.</p>
+</div>
+<div class="paragraph">
+<p>고유한 네임스페이스를 설정한 경우 다음 명령 및 파일에서 해당 네임스페이스를 대체합니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl --namespace ci-monitoring get ds telegraf-ds -o yaml &gt; /tmp/telegraf-ds.yaml
+kubectl --namespace ci-monitoring get rs telegraf-rs -o yaml &gt; /tmp/telegraf-rs.yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>그런 다음 다음 다음 명령을 사용하여 Telegraf 서비스를 중지하고 시작할 수 있습니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl --namespace ci-monitoring delete ds telegraf-ds
+kubectl --namespace ci-monitoring delete rs telegraf-rs</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl --namespace ci-monitoring apply -f /tmp/telegraf-ds.yaml
+kubectl --namespace ci-monitoring apply -f /tmp/telegraf-rs.yaml</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="kubernetes에서-데이터를-수집하도록-agent-구성">Kubernetes에서 데이터를 수집하도록 Agent 구성</h4>
+<div class="paragraph">
+<p>참고: 스크립트 기반 설치의 기본 네임스페이스는 _ci-monitoring_입니다. 운영자 기반 설치의 경우 기본 네임스페이스는 _NetApp-모니터링_입니다. 네임스페이스와 관련된 명령에서 설치에 올바른 네임스페이스를 지정해야 합니다.</p>
+</div>
+<div class="paragraph">
+<p>에이전트가 실행되는 POD는 다음 항목에 대한 액세스 권한이 있어야 합니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>호스트 경로</p>
+</li>
+<li>
+<p>configMap을 클릭합니다</p>
+</li>
+<li>
+<p>비밀</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>이러한 Kubernetes 객체는 Cloud Insights UI에 제공된 Kubernetes 에이전트 설치 명령의 일부로 자동으로 생성됩니다. OpenShift와 같은 일부 Kubernetes에서는 이러한 구성요소에 대한 액세스를 차단할 수 있는 강화된 보안 수준을 구현합니다. SecurityContextConstraint_는 Cloud Insights UI에 제공된 Kubernetes 에이전트 설치 명령의 일부로 생성되지 않으며 수동으로 만들어야 합니다. 생성된 후 Telegraf 포드를 다시 시작합니다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    apiVersion: v1
+    kind: SecurityContextConstraints
+    metadata:
+      name: telegraf-hostaccess
+      creationTimestamp:
+      annotations:
+        kubernetes.io/description: telegraf-hostaccess allows hostpath volume mounts for restricted SAs.
+      labels:
+        app: ci-telegraf
+    priority: 10
+    allowPrivilegedContainer: true
+    defaultAddCapabilities: []
+    requiredDropCapabilities: []
+    allowedCapabilities: []
+    allowedFlexVolumes: []
+    allowHostDirVolumePlugin: true
+    volumes:
+    - hostPath
+    - configMap
+    - secret
+    allowHostNetwork: false
+    allowHostPorts: false
+    allowHostPID: false
+    allowHostIPC: false
+    seLinuxContext:
+      type: MustRunAs
+    runAsUser:
+      type: RunAsAny
+    supplementalGroups:
+      type: RunAsAny
+    fsGroup:
+      type: RunAsAny
+    readOnlyRootFilesystem: false
+    users:
+    - system:serviceaccount:ci-monitoring:monitoring-operator
+    groups: []</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="kubbe-state-metrics-서버-설치">kubbe-state-metrics 서버 설치</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+운영자 기반 설치는 kubbe 상태 측정 지표 설치를 처리합니다. 운영자 기반 설치를 수행하는 경우 이 섹션을 건너뛰십시오.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="참고">
+</td>
+<td class="content">
+Kubernetes 영구 볼륨(PVS)을 백엔드 스토리지 디바이스에 연결하는 기능을 포함하여 전체 기능을 활용하려면 kubbe-state-metrics 버전 2.0 이상을 사용하는 것이 좋습니다. kubbe-state-metrics 버전 2.0 이상에서는 Kubernetes 오브젝트 라벨이 기본적으로 내보내지지 않습니다. Kubernetes 오브젝트 레이블을 내보내려면 메트릭 레이블 "허용" 목록을 지정해야 합니다. 에서 _-- metric-labels-allowlist_옵션을 참조하십시오 <a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/cli-arguments.md">"Kudbe-state-metrics 문서"</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>kubbe-state-metrics 서버를 설치하려면 다음 단계를 따르십시오(스크립트 기반 설치를 수행하는 경우 필요).</p>
+</div>
+<div class="olist arabic">
+<div class="title">단계</div>
+<ol class="arabic">
+<li>
+<p>임시 폴더(예: <em>/tmp/kuba-state-YAML-files/</em>)를 만들고 에서 .YAML 파일을 복사합니다 <a href="https://github.com/kubernetes/kube-state-metrics/tree/master/examples/standard" class="bare">https://github.com/kubernetes/kube-state-metrics/tree/master/examples/standard</a> 이 폴더로 이동합니다.</p>
+</li>
+<li>
+<p>kuby-state-metrics를 설치하는 데 필요한 .YAML 파일을 적용하려면 다음 명령을 실행합니다.</p>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl apply -f /tmp/kube-state-yaml-files/</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="kudbe-state-metrics-카운터">Kudbe-state-Metrics 카운터</h4>
+<div class="paragraph">
+<p>kubbe 상태 메트릭 카운터에 대한 정보에 액세스하려면 다음 링크를 사용하십시오.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/configmap-metrics.md">"ConfigMap 메트릭입니다"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/daemonset-metrics.md">"메트릭 분월 설정"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/deployment-metrics.md">"구현 메트릭"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/ingress-metrics.md">"수신 메트릭"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/namespace-metrics.md">"네임스페이스 메트릭"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/node-metrics.md">"노드 메트릭"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/persistentvolume-metrics.md">"영구 볼륨 메트릭"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/persistentvolumeclaim-metrics.md">"잔류 볼륨 클레임 메트릭"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/pod-metrics.md">"POD 메트릭"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/replicaset-metrics.md">"ReplicaSet 메트릭입니다"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/secret-metrics.md">"비밀 지표"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/service-metrics.md">"서비스 메트릭"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/kubernetes/kube-state-metrics/blob/master/docs/statefulset-metrics.md">"StatefulSet 메트릭입니다"</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="agent를-제거합니다-5">Agent를 제거합니다</h4>
+<div class="paragraph">
+<p>이러한 명령은 기본 네임스페이스 "CI-모니터링"을 사용합니다. 고유한 네임스페이스를 설정한 경우 이러한 네임스페이스 및 모든 후속 명령 및 파일로 대체합니다.</p>
+</div>
+<div class="paragraph">
+<p>Kubernetes에서 스크립트 기반 에이전트를 제거하려면 다음을 수행합니다.</p>
+</div>
+<div class="paragraph">
+<p>모니터링 네임스페이스를 Telegraf 전용으로 사용하는 경우:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> kubectl --namespace ci-monitoring delete ds,rs,cm,sa,clusterrole,clusterrolebinding -l app=ci-telegraf
+ kubectl delete ns ci-monitoring
+모니터링 네임스페이스를 Telegraf(전신) 외에 다른 용도로 사용하는 경우:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> kubectl --namespace ci-monitoring delete ds,rs,cm,sa,clusterrole,clusterrolebinding -l app=ci-telegraf
+작업자 기반 설치의 경우 다음 명령을 실행합니다.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl delete ns netapp-monitoring
+kubectl delete agent agent-monitoring-netapp
+kubectl delete crd agents.monitoring.netapp.com
+kubectl delete role agent-leader-election-role
+kubectl delete clusterrole agent-manager-role agent-proxy-role agent-metrics-reader
+kubectl delete clusterrolebinding agent-manager-rolebinding agent-proxy-rolebinding agent-cluster-admin-rolebinding</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>스크립트 기반 Telegraf 설치를 위해 보안 컨텍스트 제약 조건을 이전에 수동으로 만든 경우:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl delete scc telegraf-hostaccess</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="agent-업그레이드-중-5">Agent 업그레이드 중</h4>
+<div class="paragraph">
+<p>이러한 명령은 기본 네임스페이스 "CI-모니터링"을 사용합니다. 고유한 네임스페이스를 설정한 경우 이러한 네임스페이스 및 모든 후속 명령 및 파일로 대체합니다.</p>
+</div>
+<div class="paragraph">
+<p>Telegraf 에이전트를 업그레이드하려면 다음을 수행합니다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>기존 구성 백업:</p>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl --namespace ci-monitoring get cm -o yaml &gt; /tmp/telegraf-configs.yaml</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Agent를 제거합니다(지침은 위 참조).</p>
+</li>
+<li>
+<p><a href="#kubernetes">"새 에이전트를 설치합니다"</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="체크섬을-확인하는-중입니다">체크섬을 확인하는 중입니다</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Insights 에이전트 설치 프로그램은 무결성 검사를 수행하지만 일부 사용자는 다운로드한 아티팩트를 설치하거나 적용하기 전에 자체 검증을 수행하려고 할 수 있습니다. 기본 다운로드 및 설치 대신 다운로드 전용 작업을 수행하기 위해 이러한 사용자는 UI에서 가져온 에이전트 설치 명령을 편집하고 뒤에 오는 "설치" 옵션을 제거할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>다음 단계를 수행하십시오.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>지시에 따라 Agent Installer 스니펫을 복사합니다.</p>
+</li>
+<li>
+<p>코드 조각을 명령 창에 붙여 넣는 대신 텍스트 편집기에 붙여 넣습니다.</p>
+</li>
+<li>
+<p>명령에서 뒤에 오는 "--install"(Linux/Mac) 또는 "-install"(Windows)을 제거합니다.</p>
+</li>
+<li>
+<p>텍스트 편집기에서 전체 명령을 복사합니다.</p>
+</li>
+<li>
+<p>이제 명령 창(작업 디렉토리)에 붙여넣고 실행합니다.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Windows 이외의 경우(이러한 예는 Kubernetes에 해당하고, 실제 스크립트 이름은 다를 수 있음):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>다운로드 및 설치(기본값):</p>
+<div class="literalblock">
+<div class="content">
+<pre> installerName=cloudinsights-kubernetes.sh … &amp;&amp; sudo -E -H ./$installerName --download –-install
+* 다운로드 전용:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>installerName=cloudinsights-kubernetes.sh … &amp;&amp; sudo -E -H ./$installerName --download</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>창:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>다운로드 및 설치(기본값):</p>
+<div class="literalblock">
+<div class="content">
+<pre> !$($installerName=".\cloudinsights-windows.ps1") … -and $(&amp;$installerName -download -install)
+* 다운로드 전용:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>!$($installerName=".\cloudinsights-windows.ps1") … -and $(&amp;$installerName -download)</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>download-only 명령은 필요한 모든 아티팩트를 Cloud Insights에서 작업 디렉토리로 다운로드합니다. 아티팩트에는 다음이 포함되지만 이에 국한되지는 않습니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>설치 스크립트</p>
+</li>
+<li>
+<p>환경 파일입니다</p>
+</li>
+<li>
+<p>YAML 파일</p>
+</li>
+<li>
+<p>서명된 체크섬 파일(SHA256.signed)</p>
+</li>
+<li>
+<p>서명 확인을 위한 PEM 파일(NetApp_cert.pem</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>육안 검사를 통해 설치 스크립트, 환경 파일 및 YAML 파일을 확인할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>PEM 파일의 지문이 다음과 같은 것인지 확인하여 PEM 파일을 확인할 수 있습니다.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> E5:FB:7B:68:C0:8B:1C:A9:02:70:85:84:C2:74:F8:EF:C7:BE:8A:BC
+보다 구체적으로,</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>비 Windows:</p>
+<div class="literalblock">
+<div class="content">
+<pre> openssl x509 -fingerprint -sha1 -noout -inform pem -in netapp_cert.pem
+* 창:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Import-Certificate -Filepath .\netapp_cert.pem -CertStoreLocation Cert:\CurrentUser\Root</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>서명된 체크섬 파일은 PEM 파일을 사용하여 확인할 수 있습니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>비 Windows:</p>
+<div class="literalblock">
+<div class="content">
+<pre> openssl smime -verify -in sha256.signed -CAfile netapp_cert.pem -purpose any
+* Windows(위의 Import-Certificate를 통해 인증서 설치 후):</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Get-AuthenticodeSignature -FilePath .\sha256.ps1 $result = Get-AuthenticodeSignature -FilePath .\sha256.ps1 $signer = $result.SignerCertificate Add-Type -Assembly System.Security [Security.Cryptography.x509Certificates.X509Certificate2UI]::DisplayCertificate($signer)</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>모든 아티팩트가 만족스럽게 확인되면 다음을 실행하여 에이전트 설치를 시작할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>비 Windows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> sudo -E -H ./&lt;installation_script_name&gt; --install
+창:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>.\cloudinsights-windows.ps1 -install</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="agent-설치-문제-해결">Agent 설치 문제 해결</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>상담원 설정에 문제가 있는 경우 다음과 같은 방법을 시도해 보십시오.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">문제:</th>
+<th class="tableblock halign-left valign-top">다음을 시도해 보십시오.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloud Insights를 사용하여 이미 에이전트를 설치했습니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">호스트/VM에 이미 에이전트를 설치한 경우 에이전트를 다시 설치할 필요가 없습니다. 이 경우 Agent 설치 화면에서 해당 플랫폼 및 키를 선택하고 * 계속 * 또는 * 마침 * 을 클릭합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미 에이전트가 설치되었지만 Cloud Insights 설치 프로그램을 사용하지 않습니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">올바른 기본 구성 파일 설정을 위해 이전 에이전트를 제거하고 Cloud Insights 에이전트 설치를 실행합니다. 완료되면 * 계속 * 또는 * 마침 * 을 클릭합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes 영구 볼륨과 해당 백엔드 스토리지 장치 간의 하이퍼링크/연결이 표시되지 않습니다. 내 Kubernetes 영구 볼륨은 스토리지 서버의 호스트 이름을 사용하여 구성됩니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">기존 Telegraf 에이전트를 제거한 다음 최신 Telegraf 에이전트를 다시 설치하는 단계를 따릅니다. Telegraf 버전 2.0 이상을 사용해야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E0901 15:21:39.962145 1 리플렉터.go:178]k8s.io/kbe-state-metrics/internal/store/builder.go:352: * v1.목록에 실패했습니다. MutatingWebhookConfiguration: 서버에서 요청된 리소스 E0901 15:21:43.168352.kIs.tu2o.tu2352: revm.u2352.u2352.u2o.testimeu2352.u2n.u2352.u2o.u2o.u2352.testime-ve-v</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이러한 메시지는 Kubernetes 버전 1.17 이하에서 kube-state-metrics 버전 2.0.0 이상을 실행하는 경우 발생할 수 있습니다. 쿠버네티스 버전을 얻으려면: _kubbctl version_kubbe-state-metrics 버전:_kubbectl deploy/kube-state-metrics-o jsonpath='{..image}'_이러한 메시지가 발생하지 않도록 사용자는 kube-state-metrics 구축을 수정하여 다음 Lallase를 비활성화할 수 있습니다._muthookconfigurations_webhookconfigurettal_configuretedconfig_webvalidateCLI_webvalidateusetausetausetauseusetausetauseuse 리소스 = certificationesigningrequests, configmap, crontobs, demonset, 배포, 끝점, 수평 포드자동크기, 링스, 작업, reflodritranges, namespaces, networkpolicies, nistentvolumes, persistentpersistent volumes, podin예산, replicatingfasts, repliceters, replicatingreallets, replicets, replicets, repliceties, replicenets, replicatingreenets, replicets, replicenets, replicets, service.networksets, service.sets, service.sets, vistenets, visteneties, replicaturies.networksets, service.sets, reseties.networksets, replicaturies, inations, replicaticaturies, replicaturies, replicaturies, inations validingwebhookconfigurations, volumeAttachments"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes에 Telegraf를 설치 또는 업그레이드했지만 Telegraf Pod가 시작되지 않았습니다. Telegraf ReplicaSet 또는 DemonSet에서 다음과 같은 오류를 보고합니다. 오류 생성: POD "Telegraf-RS -"가 금지되었습니다. 보안 컨텍스트 제약 조건을 기준으로 유효성을 검사할 수 없습니다. [SPEC.volumes [2]: 잘못된 값: "hostPath": hostPath 볼륨을 사용할 수 없습니다.]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">보안 컨텍스트 제약 조건(위의 Kubernetes에서 데이터를 수집하도록 에이전트 구성 섹션 참조)이 없는 경우 이를 생성합니다. Security Context Constraint 에 지정된 네임스페이스 및 서비스 계정이 Telegraf ReplicaSet 및 DemonSet의 네임스페이스 및 서비스 계정과 일치하는지 확인합니다. KUBeck은 SCC Telegraf-hostaccess</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grep ServiceAccount kubtl -n CI-monitoring&#8201;&#8212;&#8201;RS Telegraf-RS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grep-i "Namespace:"kubbeck-n CI-monitoring RS Telegraf-RS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grep-i "Service Account:"를 설명합니다. dS Telegraf-dS -dS -dl -dS -dl -dS -dl -dl -dS -dl -dl -dl -dl -dl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Telegraf의 오류 메시지는 다음과 유사하지만 Telegraf가 시작되고 실행됩니다. Oct 11 14:23:41 IP-172-31-39-47 시스템[1]: 플러그인 기반 서버 에이전트를 시작하여 메트릭을 영향력 있는 xDB에 보고합니다. 10월 11일 14:23:41 IP-172-31-39-47 Telegraf[1827]: time="2021-10-11T14:23:41Z" level=error msg="캐시 디렉토리를 만들지 못했습니다. /etc/Telegraf/.cache/눈송이, 오류: mkdir /etc/Telegraf/.ca che: 사용 권한이 거부되었습니다. ignored\n" func="gosnowflake.(* defaultLogger).Errorf" file="log.go:120" Oct 11 14:23:41 IP-172-31-39-47 Telegraf[1827]: time="2021-10-11T14:23:41Z" level=error msg="를 열지 못했습니다. 무시되었습니다. 열기 /etc/telgraf/.cache/눈송이/OCSP_response_cache.json: 해당 파일 또는 디렉토리가 없습니다. \n" func="nowhosflake.(* defaultLogger).Errorf" 파일="log.go:120" Oct 11 14:23:41 IP-172-31-39-47 Telegraf[1827] 1131-41123:1121-41123: 텔레그라프 1.19.3 시작</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이는 알려진 문제입니다. 을 참조하십시오 <a href="https://github.com/influxdata/telegraf/issues/9407">"이 GitHub 기사를 참조하십시오"</a> 를 참조하십시오. Telegraf가 실행 중인 경우 사용자는 이러한 오류 메시지를 무시할 수 있습니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes에서 Telegraf 포드가 "mountstats 정보 처리 중 오류: mountstats 파일을 열지 못했습니다. /hostfs/proc/1/mountstats, 오류: open/hostfs/proc/1/mountstats: 사용 권한이 거부되었습니다." 오류를 보고합니다.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>추가 정보는 에서 찾을 수 있습니다 <a href="concept_requesting_support.html">"지원"</a> 페이지 또는 에 있습니다 <a href="https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf">"Data Collector 지원 매트릭스"</a>.</p>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+            <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+
+</ul>
+</div>
+<div class="n-footer__social-links">
+<ul class="n-footer__social-link-list">
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com" target="_blank" title="blog" alt="blog">
+<span class="n-footer__social-link-text">blog</span>
+<svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+  <title>blog@</title>
+  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#blog"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/" target="_blank" title="community" alt="community">
+<span class="n-footer__social-link-text">community</span>
+<svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+<title>community@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#comments"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp" target="_blank" title="twitter" alt="twitter">
+<span class="n-footer__social-link-text">twitter</span>
+<svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+<title>twitter@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#twitter"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp" target="_blank" title="facebook" alt="facebook">
+<span class="n-footer__social-link-text">facebook</span>
+<svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+<title>facebook@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#facebook"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-linkedin" href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+<span class="n-footer__social-link-text">linkedin</span>
+<svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+<title>linkedin@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#linkedin"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-youtube" href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+<span class="n-footer__social-link-text">youtube</span>
+<svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+<title>youtube@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#youtube"></use>
+</svg>
+
+</a>
+</li>
+<li class="n-footer__social-link-list-item">
+<a class="n-footer__social-link" data-ntap-social="follow-slideshare" href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+<span class="n-footer__social-link-text">slideshare</span>
+<svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+<title>slideshare@</title>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ko-kr/test/common/svg/sprite.svg#slideshare"></use>
+</svg>
+
+</a>
+</li>
+</ul>
+</div>
+
+</div>
+<div class="n-footer__bottom-right">
+  <p class="n-footer__fine-print">웹 사이트에 대한 피드백이 있으십니까?<a target="_self" href="javascript:netapp_mailto()" class="n-footer__copyright">의견을 공유해 주십시오</a>
+  <a href="https://docs.netapp.com/ko-kr/announcements/" class="n-footer__copyright">공지 사항</a>
+  </p>
+</div>
+</div>
+</div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/ko-kr/test/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/ko-kr/test/js/prism.js'></script>
+      <script type="text/javascript" src='/ko-kr/test/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/ko-kr/test/js/www-ntap.js'></script>
+    <script src='/ko-kr/test/js/tabbed-blocks.js'></script>
+  </body></html>
