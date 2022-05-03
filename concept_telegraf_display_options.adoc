@@ -5,6 +5,7 @@ keywords: telegraf, data, display,
 summary: Telegraf 데이터 표시 옵션 
 ---
 = 메트릭 혁신
+:allow-uri-read: 
 
 
 [role="lead"]

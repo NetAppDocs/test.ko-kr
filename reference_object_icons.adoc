@@ -5,6 +5,7 @@ summary: Cloud Insights 객체 아이콘 참조.
 keywords: icons, assets, objects, reference 
 ---
 = 개체 아이콘 참조
+:allow-uri-read: 
 
 
 [role="lead"]

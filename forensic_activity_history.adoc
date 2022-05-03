@@ -5,6 +5,7 @@ keywords: Forensic, activity history, activity data, history
 summary: 포렌식 활동 기록 데이터 
 ---
 = 법의학 - 모든 활동
+:allow-uri-read: 
 
 
 [role="lead"]

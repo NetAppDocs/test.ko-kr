@@ -5,6 +5,7 @@ keywords: data collector, ontap, ontap, CDOT
 summary: ONTAP 데이터 수집기 
 ---
 = NetApp ONTAP 데이터 관리 소프트웨어 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

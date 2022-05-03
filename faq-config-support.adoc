@@ -5,6 +5,7 @@ keywords: FAQ, Frequently asked questions, questions, configuration,
 summary:  
 ---
 = 구성 및 지원 장치
+:allow-uri-read: 
 
 
 [role="lead"]

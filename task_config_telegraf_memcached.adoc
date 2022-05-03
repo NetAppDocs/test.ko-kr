@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, memcached
 summary: Memcached 데이터 수집기 구성 
 ---
 = Memcached Data Collector
+:allow-uri-read: 
 
 
 [role="lead"]

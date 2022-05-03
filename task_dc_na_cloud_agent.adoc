@@ -5,6 +5,7 @@ summary: ONTAP 9.9 이상의 데이터 수집기에 대한 NetApp 클라우드 �
 keywords: data collector, NetApp, Cloud agent, ONTAP 
 ---
 = ONTAP 9.9 이상의 데이터 수집기를 위한 NetApp 클라우드 연결
+:allow-uri-read: 
 
 
 [role="lead"]

@@ -5,6 +5,7 @@ summary: Cloud Insights API를 사용하여 보고 DB를 직접 쿼리합니다.
 keywords: reporting, cognos, data warehouse, dwh, API 
 ---
 = API를 통해 보고 데이터베이스에 액세스합니다
+:allow-uri-read: 
 
 
 [role="lead"]
@@ -17,7 +18,7 @@ NOTE: 이 설명서는 에서 사용할 수 있는 Cloud Insights 보고 기능�
 
 == OData입니다
 
-Cloud Insights 보고 API는 에 따릅니다 link:https://www.odata.org/["OData v4"] (Open Data Protocol) Reporting 데이터베이스 쿼리에 대한 표준입니다. 자세한 정보 또는 자세한 내용은 를 참조하십시오  OData.
+Cloud Insights 보고 API는 에 따릅니다 link:https://www.odata.org/["OData v4"] (Open Data Protocol) Reporting 데이터베이스 쿼리에 대한 표준입니다. 자세한 정보 또는 자세한 내용은 를 참조하십시오 link:https://www.odata.org/getting-started/basic-tutorial/["이 자습서"] OData.
 
 모든 요청은 URL_\https://<Cloud Insights URL>/REST/v1/dWh-management/OData_로 시작됩니다
 

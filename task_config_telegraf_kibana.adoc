@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, kibana
 summary: Kibana 데이터 수집기 구성 
 ---
 = Kibana 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

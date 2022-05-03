@@ -4,6 +4,7 @@ permalink: task_cloud_insights_onboarding_1.html
 summary: Cloud Insights에 등록하고 환경을 만듭니다. 
 ---
 = Cloud Insights 온보딩
+:allow-uri-read: 
 
 
 [role="lead"]

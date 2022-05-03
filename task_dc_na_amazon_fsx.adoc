@@ -5,6 +5,7 @@ keywords: 'data collector, stout, fsx, fsx-netapp, Amazon, AWS, cluster, volume,
 summary: NetApp ONTAP Data Collector용 Amazon FSx 
 ---
 = NetApp ONTAP 데이터 수집기를 위한 Amazon FSx
+:allow-uri-read: 
 
 
 [role="lead"]

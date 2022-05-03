@@ -5,6 +5,7 @@ keywords: IBM, powerVM,
 summary: IBM PowerVM 데이터 수집기 구성. 
 ---
 = IBM PowerVM 데이터 수집기 구성
+:allow-uri-read: 
 
 
 [role="lead"]

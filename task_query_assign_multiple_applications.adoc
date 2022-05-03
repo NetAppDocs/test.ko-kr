@@ -5,6 +5,7 @@ summary: 쿼리를 사용하여 여러 응용 프로그램 또는 주석을 개�
 keywords: query, queries, application, annotation, multiple 
 ---
 = 자산에 여러 애플리케이션을 할당하거나 자산에서 여러 애플리케이션을 제거합니다
+:allow-uri-read: 
 
 
 [role="lead"]

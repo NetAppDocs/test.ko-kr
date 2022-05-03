@@ -5,6 +5,7 @@ summary: 미리 정의된 보고서 개요
 keywords: reporting, cognos, data warehouse, dwh, pre-defined 
 ---
 = 미리 정의된 보고서를 쉽게 만들 수 있습니다
+:allow-uri-read: 
 
 
 [role="lead"]

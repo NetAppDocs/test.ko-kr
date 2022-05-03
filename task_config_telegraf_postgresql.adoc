@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, postgresql
 summary: PostgreSQL 데이터 수집기 구성 
 ---
 = PostgreSQL Data Collector
+:allow-uri-read: 
 
 
 [role="lead"]

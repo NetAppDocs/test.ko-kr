@@ -5,6 +5,7 @@ keywords: data collector, 7-mode, NetApp
 summary: NetApp 7-Mode 데이터 수집기 구성 중 
 ---
 = 7-Mode 데이터 수집기에서 작동하는 NetApp Data ONTAP
+:allow-uri-read: 
 
 
 [role="lead"]

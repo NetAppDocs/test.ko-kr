@@ -5,6 +5,7 @@ summary: 쿼리를 사용하면 자산과 관심 메트릭을 쉽고 빠르게 �
 keywords: query, queries 
 ---
 = 쿼리 만들기
+:allow-uri-read: 
 
 
 [role="lead"]

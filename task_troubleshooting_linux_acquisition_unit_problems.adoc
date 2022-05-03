@@ -5,6 +5,7 @@ summary: 획득 장치 문제에 대한 문제 해결 팁
 keywords: AU, acquisition unit, trioubleshooting 
 ---
 = Linux에서 획득 장치 문제 해결
+:allow-uri-read: 
 
 
 [role="lead"]

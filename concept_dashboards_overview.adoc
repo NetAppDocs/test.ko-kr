@@ -5,6 +5,7 @@ summary: Cloud Insights의 대시보드 개요
 keywords: dashboard, widget, custom, view, data 
 ---
 = 대시보드 개요
+:allow-uri-read: 
 
 
 [role="lead"]

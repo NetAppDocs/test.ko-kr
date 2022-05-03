@@ -5,6 +5,7 @@ keywords: data collector, Red Hat Virtualization
 summary: Red Hat Virtualization 데이터 수집기 구성. 
 ---
 = Red Hat 가상화 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

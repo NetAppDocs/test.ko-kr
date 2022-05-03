@@ -5,6 +5,7 @@ keywords: data collector, Fujitsu, Eternus
 summary: Fujitsu ETERNUS 데이터 수집기 구성 중 
 ---
 = Fujitsu ETERNUS 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

@@ -5,6 +5,7 @@ keywords: webhook, notification, Discord, integration
 summary: 불화를 위한 성능 또는 인벤토리 임계값에 대한 알림을 제공하는 웹 후크를 만듭니다 
 ---
 = 불화의 웹후크 예
+:allow-uri-read: 
 
 
 [role="lead"]

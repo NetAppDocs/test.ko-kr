@@ -5,6 +5,7 @@ summary: Reporting과 함께 사용할 데이터 웨어하우스 스키마 다�
 keywords: dwh, data warehouse, schema, reporting 
 ---
 = 보고를 위한 Cloud Insights 스키마
+:allow-uri-read: 
 
 
 [role="lead"]

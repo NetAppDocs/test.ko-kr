@@ -5,6 +5,7 @@ keywords: logs, monitors, alerts,
 summary: 로그 탐색기는 문제를 조사할 수 있는 강력한 도구입니다. 
 ---
 = 로그 탐색기
+:allow-uri-read: 
 
 
 [role="lead"]

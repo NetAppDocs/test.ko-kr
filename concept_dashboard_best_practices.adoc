@@ -5,6 +5,7 @@ summary: 대시보드를 최대한 활용하기 위한 모범 사례
 keywords: dashboard, hints, tips, best practice, widgets, metrics, 
 ---
 = 대시보드 및 위젯에 대한 모범 사례
+:allow-uri-read: 
 
 
 [role="lead"]

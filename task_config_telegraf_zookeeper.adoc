@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, apache, zookeeper
 summary: Apache ZooKeeper 데이터 수집기 구성 
 ---
 = ZooKeeper 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

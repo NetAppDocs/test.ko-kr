@@ -5,6 +5,7 @@ keywords: data collector, Brocade, BNA
 summary: Brocade BNA Collector 구성. 
 ---
 = Brocade Network Advisor 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

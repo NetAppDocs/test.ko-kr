@@ -6,6 +6,7 @@ summary: 포렌식 사용자 데이터
 ---
 = Forensic 사용자 데이터
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

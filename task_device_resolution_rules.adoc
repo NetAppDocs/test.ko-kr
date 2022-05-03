@@ -5,6 +5,7 @@ keywords: Automatic, AR, AHR, Host, automatic device resolution
 summary: 장치 해결 기능은 사용자 환경의 성능 및 인벤토리를 정확하게 추적하는 데 도움이 됩니다. 
 ---
 = 장치 해상도 규칙
+:allow-uri-read: 
 
 
 [role="lead"]
@@ -149,5 +150,5 @@ Cloud Insights는 메서드가 나타나는 순서대로 호스트 확인 프로
 적용되는 규칙이 있으면 규칙 이름이 규칙 열에 표시되고 수동으로 식별됩니다.
 
 관련:link:task_device_resolution_fibre_channel.html["파이버 채널 장치 해상도"]
-
-
+link:task_device_resolution_ip.html["IP 장치 해상도"]
+link:task_device_resolution_preferences.html["장치 해상도 기본 설정 지정"]

@@ -5,6 +5,7 @@ summary: Cloud Insights에서 사용할 수 있는 새로운 기능
 keywords: features 
 ---
 = Cloud Insights의 새로운 기능
+:allow-uri-read: 
 
 
 NetApp은 제품과 서비스를 지속적으로 개선 및 개선하고 있습니다. 다음은 Cloud Insights에서 사용할 수 있는 몇 가지 최신 기능입니다.
@@ -22,8 +23,8 @@ NetApp은 제품과 서비스를 지속적으로 개선 및 개선하고 있습�
 NetApp 제품 보안 권고 웹 사이트에서 다음을 참조하십시오.
 
 link:https://security.netapp.com/advisory/ntap-20211210-0007/["CVE-2021-44228"]
-
-
+link:https://security.netapp.com/advisory/ntap-20211215-0001/["CVE-2021-45046"]
+link:https://security.netapp.com/advisory/ntap-20211218-0001/["CVE-2021-45105"]
 
 취약성 및 NetApp의 대응 방법은 에서 자세히 알아볼 수 있습니다 link:https://www.netapp.com/newsroom/netapp-apache-log4j-response/["NetApp 뉴스룸"].
 
@@ -841,7 +842,7 @@ Cloud Insights는 * 데이터 수집 * API 범주를 추가하여 사용자 지�
 
 ==== 모니터링 및 경고
 
-현재 스토리지 오브젝트, VM, EC2 및 포트에 대한 성능 정책을 설정하는 기능 외에도 Cloud Insights Standard Edition에는 이제 기능이 포함되어 있습니다 link:task_create_monitor.html["모니터를 구성합니다"] Kubernetes, ONTAP 고급 메트릭 및 Telegraf 플러그인의 통합 데이터 임계치 경고를 트리거할 각 개체 메트릭에 대한 모니터를 만들고, 경고 수준 또는 위험 수준 임계값에 대한 조건을 설정하고, 각 수준에 대해 원하는 이메일 수신자를 지정하기만 하면 됩니다. 그러면 됩니다  추세를 추적하거나 문제를 해결합니다.
+현재 스토리지 오브젝트, VM, EC2 및 포트에 대한 성능 정책을 설정하는 기능 외에도 Cloud Insights Standard Edition에는 이제 기능이 포함되어 있습니다 link:task_create_monitor.html["모니터를 구성합니다"] Kubernetes, ONTAP 고급 메트릭 및 Telegraf 플러그인의 통합 데이터 임계치 경고를 트리거할 각 개체 메트릭에 대한 모니터를 만들고, 경고 수준 또는 위험 수준 임계값에 대한 조건을 설정하고, 각 수준에 대해 원하는 이메일 수신자를 지정하기만 하면 됩니다. 그러면 됩니다 link:task_view_and_manage_alerts.html["알림을 보고 관리합니다"] 추세를 추적하거나 문제를 해결합니다.
 
 image:define_monitor_conditions_2.png["모니터 조건"]
 
@@ -1579,7 +1580,7 @@ Cloud Insights는 이제 스위치 및 스토리지와 같은 인프라 장치�
 
 ==== Windows용 획득 장치
 
-* Windows 서버/VM에서 Cloud Insights 획득 장치를 구성할 수 있습니다. 창을 검토합니다 link:concept_acquisition_unit_requirements.html["필수 구성 요소"] 를 설치하기 전에 .
+* Windows 서버/VM에서 Cloud Insights 획득 장치를 구성할 수 있습니다. 창을 검토합니다 link:concept_acquisition_unit_requirements.html["필수 구성 요소"] 를 설치하기 전에 link:task_configure_acquisition_unit.html["획득 장치 소프트웨어"].
 
 
 '''

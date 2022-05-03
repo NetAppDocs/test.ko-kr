@@ -5,6 +5,7 @@ keywords: agent, Cloud Secure, delete agent
 summary: Cloud Secure 에이전트를 삭제하는 중입니다 
 ---
 = Cloud Secure 에이전트를 삭제하는 중입니다
+:allow-uri-read: 
 
 
 [role="lead"]

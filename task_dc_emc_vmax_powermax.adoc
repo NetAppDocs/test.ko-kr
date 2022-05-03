@@ -5,6 +5,7 @@ keywords: data collector, EMC, DELL, vmax, powermax
 summary: Dell EMC VMAX 및 PowerMax 장치 제품군 데이터 수집기 구성 
 ---
 = Dell EMC VMAX 및 PowerMax 장치 제품군 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

@@ -5,6 +5,7 @@ summary: NetApp StorageGRID 데이터 수집기를 구성합니다
 keywords: data collector, queries, create, storagegrid 
 ---
 = NetApp StorageGRID 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

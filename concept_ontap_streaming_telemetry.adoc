@@ -5,6 +5,7 @@ summary: NetApp ONTAP 스트리밍 텔레메트리 로 Cloud Insights를 구성�
 keywords: ONTAP, Telemetry, streaming, 
 ---
 = NetApp ONTAP 스트리밍 텔레메트리
+:allow-uri-read: 
 
 
 [role="lead"]

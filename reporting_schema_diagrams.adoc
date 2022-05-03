@@ -5,6 +5,7 @@ keywords: Schema, DB Schema, premium, dwh, data warehouse
 summary: 보고 스키마 다이어그램 
 ---
 = Cloud Insights 보고 스키마 다이어그램
+:allow-uri-read: 
 
 
 [role="lead"]

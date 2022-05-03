@@ -5,6 +5,7 @@ keywords: data collector, HDS HNAS, HDS NAS
 summary: 'HDS NAS(HNAS) 데이터 수집기 구성' 
 ---
 = Hitachi Vantara NAS 데이터 수집기 구성
+:allow-uri-read: 
 
 
 [role="lead"]

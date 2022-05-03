@@ -5,6 +5,7 @@ keywords: Forensic, entity, entity overview, entity behavior, detail
 summary: 법의학적 엔터티 세부 정보 
 ---
 = 법의학적 엔티티 세부 정보
+:allow-uri-read: 
 
 
 TOC:MACRO:hardwaturs::toclevels:1:nofooter::아이콘:font:linkattrs::imagesdir:./media/
@@ -17,7 +18,7 @@ TOC:MACRO:hardwaturs::toclevels:1:nofooter::아이콘:font:linkattrs::imagesdir:
 
 에 액세스합니다
 
-요소 프로파일::
+요소 프로파일:: 에서는 다음을 포함한 세부 정보를 설명합니다.
 +
 --
 * 이름

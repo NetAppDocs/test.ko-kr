@@ -5,6 +5,7 @@ keywords: data collector, Brocade, FC switch,
 summary: Brocade FC 스위치 데이터 수집기 구성 
 ---
 = Brocade FC 스위치 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

@@ -5,6 +5,7 @@ keywords: data collector, Hitachi Ops Center
 summary: HDS COPS Center 데이터 수집기 구성. 
 ---
 = Hitachi Ops Center 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

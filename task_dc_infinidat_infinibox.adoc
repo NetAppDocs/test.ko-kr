@@ -5,6 +5,7 @@ keywords: data collector, infinidat, InfiniBox
 summary: Infinidat .Box 데이터 수집기 구성 중. 
 ---
 = Infinidat .Box 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

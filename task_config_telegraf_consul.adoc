@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, consul
 summary: 영사 데이터 수집기 구성 
 ---
 = 데이터 수집기 영사
+:allow-uri-read: 
 
 
 [role="lead"]

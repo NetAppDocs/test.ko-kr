@@ -5,6 +5,7 @@ summary: 'TTL(Time-to-Live) 및 다운샘플링에 대해 설명합니다'
 keywords: time-to-live, TTL, downsampling, downsample, 
 ---
 = TTL(Time-to-Live) 및 다운샘플링 데이터
+:allow-uri-read: 
 
 
 [role="lead"]

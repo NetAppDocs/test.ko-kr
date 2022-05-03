@@ -5,6 +5,7 @@ summary: 스토리지 서비스를 매일 관리하는 데 Storage Manager 대�
 keywords: reporting, cognos, data warehouse, dwh, smd, storage manager dashboard 
 ---
 = Storage Manager 대시보드
+:allow-uri-read: 
 
 
 [role="lead"]

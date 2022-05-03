@@ -5,6 +5,7 @@ keywords: Automatic, AR, AHR, Host, automatic device resolution, FC, Identify
 summary:  
 ---
 = 기본 설정 탭에서 옵션 설정
+:allow-uri-read: 
 
 
 [role="lead"]

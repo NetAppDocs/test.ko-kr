@@ -5,6 +5,7 @@ keywords: data collector, azure, Netapp files, anf
 summary: Azure NetApp Files 데이터 수집기 구성 중. 
 ---
 = Azure NetApp Files 데이터 수집기 구성
+:allow-uri-read: 
 
 
 [role="lead"]

@@ -5,6 +5,7 @@ keywords: kubernetes, pods, clusters, nodes. troubleshooting, planning
 summary: Kubernetes 노드 세부 정보 페이지는 백엔드 PV 및 Pod 스토리지에 대한 통찰력을 제공합니다. 
 ---
 = Kubernetes 노드 세부 정보 페이지
+:allow-uri-read: 
 
 
 [role="lead"]

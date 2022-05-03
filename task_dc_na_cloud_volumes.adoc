@@ -5,6 +5,7 @@ summary: AWS 데이터 수집기에 NetApp Cloud Volumes Services를 구성합�
 keywords: data collector, NetApp, Cloud, AWS 
 ---
 = AWS용 NetApp Cloud Volumes Services 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

@@ -5,6 +5,7 @@ keywords: data collector, isilon, EMC, DELL, PowerScale
 summary: 'Dell EMC PowerScale(이전의 Isilon) 데이터 수집기 구성' 
 ---
 = Dell EMC PowerScale 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

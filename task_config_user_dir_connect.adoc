@@ -5,6 +5,7 @@ keywords: collector, configure, LDAP, Active Directory
 summary: Cloud Secure Active Directory 사용자 디렉터리 수집기 구성 
 ---
 = AD(Active Directory) 사용자 디렉토리 수집기 구성
+:allow-uri-read: 
 
 
 [role="lead"]

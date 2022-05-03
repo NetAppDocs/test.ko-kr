@@ -5,6 +5,7 @@ summary: 현재 자산과 직접 연결된 객체를 필터링할 수 있습니�
 keywords: Assets, landing page, filtering, context, related 
 ---
 = Objects In-Context의 필터링입니다
+:allow-uri-read: 
 
 
 [role="lead"]

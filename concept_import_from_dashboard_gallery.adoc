@@ -5,6 +5,7 @@ summary: 비즈니스 통찰력 질문에 대한 답변을 돕기 위해 권장 
 keywords: dashboard, gallery, import 
 ---
 = 대시보드 갤러리에서 가져오기
+:allow-uri-read: 
 
 
 [role="lead"]

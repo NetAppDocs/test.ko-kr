@@ -5,6 +5,7 @@ keywords: Forensic, user, user, activity
 summary: 포렌식 사용자 세부 정보 
 ---
 = Forensic 사용자 개요
+:allow-uri-read: 
 
 
 각 사용자에 대한 정보는 사용자 개요 에 나와 있습니다. 이러한 뷰를 사용하여 사용자 특성, 관련 엔터티 및 최근 활동을 파악할 수 있습니다.

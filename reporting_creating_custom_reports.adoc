@@ -5,6 +5,7 @@ summary: '보고서 작성 도구를 사용하여 사용자 지정("임시") 보
 keywords: reporting, cognos, data warehouse, dwh, ad-hoc, custom 
 ---
 = 사용자 정의 보고서 작성
+:allow-uri-read: 
 
 
 [role="lead"]

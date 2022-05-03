@@ -5,6 +5,7 @@ keywords: agent, Cloud Secure, installation
 summary: Cloud Secure 에이전트 추가 
 ---
 = Cloud Secure 에이전트 설치
+:allow-uri-read: 
 
 
 [role="lead"]

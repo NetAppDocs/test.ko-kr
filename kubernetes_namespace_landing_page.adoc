@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, kubernetes, pods, clusters, filters, 
 summary: Kubernetes 네임스페이스 랜딩 페이지에 대해 설명했습니다 
 ---
 = Kubernetes 네임스페이스 세부 정보 페이지
+:allow-uri-read: 
 
 
 [role="lead"]

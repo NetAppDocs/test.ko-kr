@@ -5,6 +5,7 @@ summary: Cloud Insights의 자산 페이지 관련 경고 섹션 개요
 keywords: asset, landing page, violations, Alerts, 
 ---
 = 자산 페이지 관련 경고 섹션
+:allow-uri-read: 
 
 
 [role="lead"]

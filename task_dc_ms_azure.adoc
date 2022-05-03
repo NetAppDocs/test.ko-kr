@@ -5,6 +5,7 @@ keywords: data collector, azure,
 summary: Azure 컴퓨팅 데이터 수집기 구성. 
 ---
 = Azure 컴퓨팅 데이터 수집기 구성
+:allow-uri-read: 
 
 
 [role="lead"]

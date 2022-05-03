@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, apache
 summary: Apache 데이터 수집기 구성 
 ---
 = Apache Data Collector
+:allow-uri-read: 
 
 
 [role="lead"]

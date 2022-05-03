@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, kapacitor
 summary: kapacitor 구성 
 ---
 = Kapacitor 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

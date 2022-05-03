@@ -6,6 +6,7 @@ summary: 법의학 엔터티 페이지
 ---
 = 포렌식 엔터티 페이지
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

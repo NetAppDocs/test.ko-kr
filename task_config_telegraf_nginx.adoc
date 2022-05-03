@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, nginx
 summary: Nginx 데이터 수집기 구성 
 ---
 = Nginx 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

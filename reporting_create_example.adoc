@@ -5,6 +5,7 @@ summary: 이 절차를 사용하여 미리 정의된 Cloud Insights 보고서를
 keywords: reporting, cognos, data warehouse, dwh, create, report 
 ---
 = 보고서 작성(예)
+:allow-uri-read: 
 
 
 [role="lead"]

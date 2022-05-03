@@ -5,6 +5,7 @@ keywords: Cloud, Storage, AWS, Fsx
 summary: Cloud Secure는 데이터 수집기를 사용하여 디바이스에서 파일 및 사용자 액세스 데이터를 수집합니다. 
 ---
 = NetApp ONTAP용 Amazon FSx 구성
+:allow-uri-read: 
 
 
 [role="lead"]

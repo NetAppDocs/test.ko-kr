@@ -5,6 +5,7 @@ keywords: alert, snapshot,  attack
 summary: Cloud Secure를 사용하면 사보타업 혐의가 있는 경우 사용자 액세스를 제한할 수 있습니다 
 ---
 = 사용자 액세스를 제한합니다
+:allow-uri-read: 
 
 
 [role="lead"]

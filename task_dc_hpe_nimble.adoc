@@ -5,6 +5,7 @@ keywords: data collector, HP Nimble, HP, HPE, Alletra 6000
 summary: 'HP Enterprise Alletra 6000(이전의 Nimble) 데이터 수집기 구성' 
 ---
 = HPE Alletra 6000 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

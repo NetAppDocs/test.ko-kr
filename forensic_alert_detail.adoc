@@ -5,6 +5,7 @@ keywords: alert, Critical, Warning, Low, alert detail Synopsis, Time range, Star
 summary: 경고 세부 정보 
 ---
 = 경고 세부 정보
+:allow-uri-read: 
 
 
 [role="lead"]

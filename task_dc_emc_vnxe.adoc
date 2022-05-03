@@ -5,6 +5,7 @@ keywords: data collector, VNXe, EMC
 summary: VNXe 데이터 수집기 구성 중 
 ---
 = EMC VNXe 데이터 수집기 구성
+:allow-uri-read: 
 
 
 [role="lead"]

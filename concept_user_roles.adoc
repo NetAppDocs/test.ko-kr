@@ -5,10 +5,11 @@ keywords: roles, guest, user, administrator, SSO, Federate, federation, identity
 summary: Cloud Insights는 여러 사용자 계정에 서로 다른 권한 수준을 제공합니다. 
 ---
 = 사용자 계정 및 역할
+:allow-uri-read: 
 
 
 [role="lead"]
-Cloud Insights는 계정 소유자, 관리자, 사용자 및 게스트의 최대 4개의 사용자 계정 역할을 제공합니다. 각 계정에는 아래 표에 명시된 특정 권한 수준이 할당됩니다. (Cloud Secure 기능에서는 _User_와 _Guest_역할을 사용할 수 없습니다.) 사용자는 둘 중 하나입니다 link:#creating-accounts-by-inviting-users["초대되었습니다"] Cloud Insights에 로그인하여 특정 역할을 할당하거나 을 통해 로그인할 수 있습니다  기본 역할을 사용합니다. SSO 인증은 Cloud Insights 프리미엄 에디션의 기능으로 제공됩니다.
+Cloud Insights는 계정 소유자, 관리자, 사용자 및 게스트의 최대 4개의 사용자 계정 역할을 제공합니다. 각 계정에는 아래 표에 명시된 특정 권한 수준이 할당됩니다. (Cloud Secure 기능에서는 _User_와 _Guest_역할을 사용할 수 없습니다.) 사용자는 둘 중 하나입니다 link:#creating-accounts-by-inviting-users["초대되었습니다"] Cloud Insights에 로그인하여 특정 역할을 할당하거나 을 통해 로그인할 수 있습니다 link:#single-sign-on-sso-accounts["SSO(Single Sign-On) 인증"] 기본 역할을 사용합니다. SSO 인증은 Cloud Insights 프리미엄 에디션의 기능으로 제공됩니다.
 
 
 

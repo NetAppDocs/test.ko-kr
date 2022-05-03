@@ -5,6 +5,7 @@ summary: Cloud Insights에는 다양한 작업을 수행하는 방법을 보여�
 keywords: onboarding, getting started, video, tutorial, resolution, dashboard, query, troubleshooting 
 ---
 = 피처 튜터리얼
+:allow-uri-read: 
 
 
 [role="lead"]

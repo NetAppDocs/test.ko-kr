@@ -5,6 +5,7 @@ summary: 공급업체별 데이터 수집기 참조 정보
 keywords: data collector, vendor, AWS, BROADCOM, Cisco, Dell, EMC, Hitachi, IBM, NetApp, OceanStor, OpenStack, Oracle, Pure Storage, Red Hat, redhat, VMWare 
 ---
 = 공급업체별 참조 자료
+:allow-uri-read: 
 
 
 [role="lead"]

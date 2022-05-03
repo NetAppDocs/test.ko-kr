@@ -5,6 +5,7 @@ keywords: Cloud Secure, User, Login, account
 summary: Cloud Secure 사용자 계정은 Cloud Insights 사용자 관리를 통해 관리됩니다 
 ---
 = 사용자 관리
+:allow-uri-read: 
 
 
 [role="lead"]

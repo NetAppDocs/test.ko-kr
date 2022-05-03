@@ -5,6 +5,7 @@ keywords: monitors, alerts, log, metric, system-defined, system, metric,
 summary: 성능 또는 인벤토리 임계값과 메트릭 또는 로그 조건에 대해 경고하는 모니터를 생성합니다. 
 ---
 = 모니터를 통한 경고
+:allow-uri-read: 
 
 
 [role="lead"]

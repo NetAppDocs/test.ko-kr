@@ -5,6 +5,7 @@ summary: ONTAP SVM DSC를 설치하기 전에 이 스크립트를 실행하여 S
 keywords: event, checker, rate, sizing 
 ---
 = SVM 이벤트 속도 검사기
+:allow-uri-read: 
 
 
 [role="lead"]

@@ -5,6 +5,7 @@ keywords: Automatic, AR, AHR, Host, automatic device resolution, FC, Identify, r
 summary:  
 ---
 = 정규식 예
+:allow-uri-read: 
 
 
 [role="lead"]

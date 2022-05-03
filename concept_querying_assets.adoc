@@ -5,6 +5,7 @@ summary: 쿼리 개요
 keywords: query, queries, Application, Datastore, Disk, Fabric, Generic Device, Host, Internal Volume, iSCSI, Network, Portal, Path, Port, Qtree, Quota, Share, Storage, Node, Pool, SVM, Switch, Tape, VMDK, Virtual Machine, VM, Volume, Zone, Member 
 ---
 = 쿼리에 사용된 자산
+:allow-uri-read: 
 
 
 [role="lead"]

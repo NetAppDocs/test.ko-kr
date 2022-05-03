@@ -5,6 +5,7 @@ keywords: annotations, business entity
 summary: 업무 엔티티 주석은 업무 계층 구조의 자산을 모니터링하고 보고하는 데 사용할 수 있습니다 
 ---
 = 업무 엔티티 주석
+:allow-uri-read: 
 
 
 [role="lead"]

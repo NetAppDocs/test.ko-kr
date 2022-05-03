@@ -5,6 +5,7 @@ keywords: Automatic, AR, AHR, Host, automatic device resolution, FC, Identify
 summary:  
 ---
 = IP 장치 해상도
+:allow-uri-read: 
 
 
 [role="lead"]
@@ -85,5 +86,5 @@ CSV 파일을 열 것인지 파일을 저장할 것인지 선택합니다.
 
 
 관련:link:task_device_resolution_fibre_channel.html["파이버 채널 장치 해상도"]
-
-
+link:task_device_resolution_rules.html["장치 해상도 규칙을 만드는 중입니다"]
+link:task_device_resolution_preferences.html["장치 해상도 기본 설정 지정"]

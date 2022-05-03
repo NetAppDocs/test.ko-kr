@@ -5,6 +5,7 @@ summary: Cloud Insights의 자산 페이지 요약 섹션 개요
 keywords: asset, summary, landing page, topology 
 ---
 = 자산 페이지 요약 섹션
+:allow-uri-read: 
 
 
 [role="lead"]

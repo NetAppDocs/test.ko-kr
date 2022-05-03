@@ -5,6 +5,7 @@ summary: 생성된 쿼리를 봅니다
 keywords: query, queries, viewing 
 ---
 = 쿼리 보기
+:allow-uri-read: 
 
 
 [role="lead"]

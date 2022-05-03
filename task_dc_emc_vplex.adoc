@@ -5,6 +5,7 @@ keywords: data collector, VPLEX, EMC
 summary: VPLEX 데이터 수집기 구성 
 ---
 = EMC VPLEX 데이터 수집기 구성
+:allow-uri-read: 
 
 
 [role="lead"]

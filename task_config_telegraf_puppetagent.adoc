@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, Puppet
 summary: Puppet 데이터 수집기 구성 
 ---
 = Puppet Agent Data Collector
+:allow-uri-read: 
 
 
 [role="lead"]

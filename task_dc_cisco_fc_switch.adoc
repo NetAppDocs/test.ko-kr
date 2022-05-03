@@ -5,6 +5,7 @@ keywords: data collector, cisco, FC, cisco FC
 summary: Cisco MDS ablic Switch 데이터 수집기 구성. 
 ---
 = Cisco MDS Fabric 스위치 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

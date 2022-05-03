@@ -5,6 +5,7 @@ summary: 지원되는 데이터 수집기 목록입니다.
 keywords: data collector, vendor, infrastructure, integration, service 
 ---
 = Cloud Insights 데이터 수집기 목록
+:allow-uri-read: 
 
 
 [role="lead"]

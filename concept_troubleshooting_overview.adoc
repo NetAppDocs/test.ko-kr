@@ -5,6 +5,7 @@ summary: 이 섹션에서는 Cloud Insights 환경의 문제를 해결하는 데
 keywords: troubleshootin 
 ---
 = Cloud Insights 문제 해결
+:allow-uri-read: 
 
 
 [role="lead"]

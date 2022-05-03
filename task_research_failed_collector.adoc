@@ -5,6 +5,7 @@ keywords: data collector, changes, failures
 summary: 데이터 수집기 오류입니다 
 ---
 = 실패한 데이터 수집기 조사
+:allow-uri-read: 
 
 
 [role="lead"]

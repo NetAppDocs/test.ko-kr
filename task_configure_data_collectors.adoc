@@ -5,6 +5,7 @@ keywords: acquisition, AU, data collector, collector
 summary: 데이터 수집기를 구성합니다 
 ---
 = 데이터 수집기 구성
+:allow-uri-read: 
 
 
 [role="lead"]

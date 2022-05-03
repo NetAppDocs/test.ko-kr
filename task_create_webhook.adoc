@@ -5,6 +5,7 @@ keywords: webhook, notification, slack, integration
 summary: 성능 또는 인벤토리 임계값에 대한 경고를 표시할 모니터를 생성합니다 
 ---
 = Webhook를 사용한 알림
+:allow-uri-read: 
 
 
 [role="lead"]
@@ -77,4 +78,4 @@ image:Webhook_Monitor_Notify.png["Webhook 모니터 알림"]
 
 == Webhook 예:
 
-에 대한 Webhook link:task_webhook_example_slack.html["슬랙"]에 대한 Webhook 에 대한 Webhook 에 대한 Webhook 
+에 대한 Webhook link:task_webhook_example_slack.html["슬랙"]에 대한 Webhook link:task_webhook_example_pagerduty.html["PagerDuty"]에 대한 Webhook link:task_webhook_example_teams.html["팀"]에 대한 Webhook link:task_webhook_example_discord.html["불화"]

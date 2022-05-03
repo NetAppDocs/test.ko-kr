@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, mysql
 summary: MySQL 데이터 수집기 구성 
 ---
 = MySQL 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

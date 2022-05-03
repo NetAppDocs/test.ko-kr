@@ -5,6 +5,7 @@ summary: NetApp Astra Data Store를 구성합니다
 keywords: data collector, queries, create, astra, data, store, 
 ---
 = NetApp Astra Data Store 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]
@@ -12,7 +13,7 @@ keywords: data collector, queries, create, astra, data, store,
 
 
 TIP: 이러한 설치 지침 및 추가 정보는 Astra Data Store 문서에서도 확인할 수 있습니다.link:https://docs.netapp.com/us-en/astra-data-store/use/monitor-with-cloud-insights.html["Cloud Insights를 통해 메트릭을 모니터링합니다"]
-
+link:https://docs.netapp.com/us-en/astra-data-store/get-started/quick-start.html["Astra Data Store를 빠르게 시작합니다"]
 
 
 

@@ -5,6 +5,7 @@ summary: 이 주제가 아직 준비되지 않았습니다.
 keywords: coming soon 
 ---
 = 이 항목은 작성 중입니다
+:allow-uri-read: 
 
 
 [role="lead"]

@@ -5,6 +5,7 @@ summary: Data Collector 지원 매트릭스에는 지원되는 데이터 수집�
 keywords: support matrix, vendor, NetApp, IBM, EMC, dell, HP, Hitachi, VMware, Huawei, OpenStack, 
 ---
 = Cloud Insights 데이터 수집기 지원 매트릭스
+:allow-uri-read: 
 
 
 [role="lead"]

@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, jvm
 summary: JVM 데이터 수집기 구성 
 ---
 = JVM 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

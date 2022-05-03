@@ -5,6 +5,7 @@ summary: 자산 페이지의 전문가 보기 섹션은 문제 해결 또는 모
 keywords: asset page, expert view, metrics, greedy, degraded, correlated, contributors, chart, 
 ---
 = 전문가 뷰
+:allow-uri-read: 
 
 
 [role="lead"]

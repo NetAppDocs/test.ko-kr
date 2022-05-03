@@ -5,6 +5,7 @@ keywords: webhook, notification, Slack, integration
 summary: Slack의 성능 또는 인벤토리 임계값에 대한 알림을 보낼 웹 후크를 만듭니다 
 ---
 = Slack 의 Webhook 예제
+:allow-uri-read: 
 
 
 [role="lead"]

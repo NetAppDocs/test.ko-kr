@@ -8,6 +8,7 @@ summary: 성능 또는 인벤토리 임계값과 메트릭 또는 로그 조건�
 :toc: macro
 :hardbreaks:
 :toclevels: 2
+:allow-uri-read: 
 :toc: 
 :toclevels: 2
 :nofooter: 

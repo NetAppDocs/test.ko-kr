@@ -5,6 +5,7 @@ summary: 모니터에 의해 트리거된 경고 보기
 keywords: monitor, alert, viewing 
 ---
 = 모니터에서 경고 보기 및 관리
+:allow-uri-read: 
 
 
 [role="lead"]

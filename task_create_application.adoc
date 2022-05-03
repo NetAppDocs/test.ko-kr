@@ -5,6 +5,7 @@ summary: 사용자가 정의한 기준에 따라 주석을 여러 자산에 자�
 keywords: application, create application, 
 ---
 = 응용 프로그램 만들기
+:allow-uri-read: 
 
 
 [role="lead"]

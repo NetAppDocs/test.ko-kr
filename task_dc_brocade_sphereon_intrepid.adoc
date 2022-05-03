@@ -8,6 +8,7 @@ summary: Brocade Sphereon/Intrepid 스위치 데이터 수집기 구성
 :toc: macro
 :hardbreaks:
 :toclevels: 2
+:allow-uri-read: 
 :toc: 
 :toclevels: 2
 :nofooter: 

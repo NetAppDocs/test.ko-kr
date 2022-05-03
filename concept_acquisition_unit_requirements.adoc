@@ -5,6 +5,7 @@ summary: 획득 장치로 사용하는 서버 또는 VM은 최소 요구 사항�
 keywords: AU, acquisition unit, RAU, requirements, sizing 
 ---
 = 획득 장치 요구 사항
+:allow-uri-read: 
 
 
 [role="lead"]

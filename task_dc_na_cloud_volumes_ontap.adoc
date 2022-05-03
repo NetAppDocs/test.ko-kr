@@ -5,6 +5,7 @@ summary: NetApp Cloud Volumes ONTAP 데이터 수집기를 구성합니다
 keywords: data collector, NetApp, Cloud, ONTAP 
 ---
 = NetApp Cloud Volumes ONTAP 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

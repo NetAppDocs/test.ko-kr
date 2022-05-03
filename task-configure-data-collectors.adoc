@@ -5,6 +5,7 @@ keywords: acquisition, AU, data collector, collector, notification, notify,
 summary: 일반 데이터 수집기 지침 
 ---
 = 데이터 수집기 구성
+:allow-uri-read: 
 
 
 [role="lead"]

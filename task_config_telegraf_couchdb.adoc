@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, couchdb
 summary: Couchbase 데이터 수집기 구성 
 ---
 = Couchbase Data Collector
+:allow-uri-read: 
 
 
 [role="lead"]

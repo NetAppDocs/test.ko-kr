@@ -5,6 +5,7 @@ keywords: webhook, notification, PagerDuty, integration
 summary: 웹 후크를 생성하여 PagerDuty의 성능 또는 인벤토리 임계값을 알립니다 
 ---
 = 웹 후크 PagerDuty의 예
+:allow-uri-read: 
 
 
 [role="lead"]

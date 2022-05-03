@@ -5,13 +5,14 @@ summary: 무료 평가판 사용 기간 중 언제든지 Cloud Insights에 가�
 keywords: subscribe, trial, subscription, contract, raw capacity, region 
 ---
 = Cloud Insights 구독
+:allow-uri-read: 
 
 
 Cloud Insights를 시작하는 것은 간단한 3단계를 통해 매우 간단합니다.
 
 * 에서 계정을 등록하십시오 link:https://cloud.netapp.com/["* NetApp Cloud Central *"] 를 다운로드하십시오.
 * 에 등록하십시오 link:https://cloud.netapp.com/cloud-insights["* 무료 평가판 *"] Cloud Insights에서 제공하는 기능을 살펴보십시오.
-* * 를 통해 지속적으로 데이터에 중단 없이 액세스하려면 Cloud Insights에 구독 * 하십시오 link:https://www.netapp.com/us/forms/sales-inquiry/cloud-insights-sales-inquiries.aspx["NetApp 영업"] 직접 또는 AWS 마켓플레이스( 또는 )를 클릭합니다.
+* * 를 통해 지속적으로 데이터에 중단 없이 액세스하려면 Cloud Insights에 구독 * 하십시오 link:https://www.netapp.com/us/forms/sales-inquiry/cloud-insights-sales-inquiries.aspx["NetApp 영업"] 직접 또는 AWS 마켓플레이스(link:https://aws.amazon.com/marketplace/pp/B07HM8QQGY["Standard Edition을 참조하십시오"] 또는 link:https://aws.amazon.com/marketplace/pp/prodview-pbc3h2mkgaqxe["Premium Edition을 참조하십시오"])를 클릭합니다.
 
 
 등록 프로세스 중에 Cloud Insights 환경을 호스팅할 글로벌 영역을 선택할 수 있습니다. 자세한 내용은 Cloud Insights 정보 를 참조하십시오 link:security_information_and_region.html["정보 및 지역"].

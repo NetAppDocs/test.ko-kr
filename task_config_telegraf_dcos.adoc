@@ -5,6 +5,7 @@ keywords: telegraf, installation, install, dcos
 summary: DCO 구성 
 ---
 = DC/OS Data Collector
+:allow-uri-read: 
 
 
 [role="lead"]

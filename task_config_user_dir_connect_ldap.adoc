@@ -5,6 +5,7 @@ keywords: collector, configure, LDAP, Active Directory
 summary: Cloud Secure LDAP 사용자 디렉토리 수집기 구성 중 
 ---
 = LDAP Directory Server Collector 구성
+:allow-uri-read: 
 
 
 [role="lead"]
@@ -124,7 +125,7 @@ LDAP Directory Server에서 기본 속성 이름이 수정된 경우 다음 Dire
  ldapsearch -D "uid=john ,cn=users,cn=accounts,dc=dorp,dc=company,dc=com" -W -x -LLL -o ldif-wrap=no -b "cn=accounts,dc=dorp,dc=company,dc=com" -H ldap://vmwipaapp08.dorp.company.com
 * LDAP 탐색기를 사용하여 LDAP 데이터베이스를 탐색하고, 개체 속성 및 속성을 보고, 권한을 보고, 개체의 스키마를 보고, 저장하고 다시 실행할 수 있는 정교한 검색을 실행할 수 있습니다.
 +
-** LDAP 탐색기를 설치합니다 (http://ldaptool.sourceforge.net/)[] 또는 Java LDAP Explorer를 선택합니다  LDAP 서버에 연결할 수 있는 모든 Windows 시스템에서
+** LDAP 탐색기를 설치합니다 (http://ldaptool.sourceforge.net/)[] 또는 Java LDAP Explorer를 선택합니다 (http://jxplorer.org/)[] LDAP 서버에 연결할 수 있는 모든 Windows 시스템에서
 ** LDAP 디렉토리 서버의 사용자 이름/암호를 사용하여 LDAP 서버에 연결합니다.
 
 

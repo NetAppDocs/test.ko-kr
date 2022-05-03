@@ -5,6 +5,7 @@ summary: 클라우드 비용 시작
 keywords: analysis, cost, analyzer 
 ---
 = 클라우드 비용 시작
+:allow-uri-read: 
 
 
 [role="lead"]

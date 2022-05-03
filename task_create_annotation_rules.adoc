@@ -4,6 +4,7 @@ permalink: task_create_annotation_rules.html
 summary: 주석을 여러 자산에 자동으로 적용하는 주석 규칙을 작성합니다. 
 ---
 = 주석 규칙 작성
+:allow-uri-read: 
 
 
 [role="lead"]

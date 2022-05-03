@@ -5,12 +5,13 @@ summary: 일반 Cloud Insights 문제 해결 팁
 keywords: troubleshooting, problems, browser, login, log in, accessing, access to 
 ---
 = 일반적인 Cloud Insights 문제 해결
+:allow-uri-read: 
 
 
 [role="lead"]
 여기에서 Cloud Insights 문제 해결을 위한 제안 사항을 찾을 수 있습니다.
 
-도 참조하십시오 link:task_troubleshooting_linux_acquisition_unit_problems.html["Linux 획득 장치 문제 해결"] 및 .
+도 참조하십시오 link:task_troubleshooting_linux_acquisition_unit_problems.html["Linux 획득 장치 문제 해결"] 및 link:task_troubleshooting_windows_acquisition_unit_problems.html["Windows 획득 장치 문제 해결"].
 
 
 
@@ -45,6 +46,6 @@ keywords: troubleshooting, problems, browser, login, log in, accessing, access t
 활성 Cloud Insights 구독이 있는 경우 다음 지원 옵션을 사용할 수 있습니다.
 
 link:https://www.netapp.com/us/contact-us/support.aspx["전화"]
-
+link:https://mysupport.netapp.com/site/cases/mine/create?serialNumber=95001014387268156333["지원 티켓"]
 
 자세한 내용은 를 참조하십시오 https://docs.netapp.com/us-en/cloudinsights/concept_requesting_support.html["Cloud Insights 지원 문서"].

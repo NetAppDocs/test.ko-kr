@@ -5,6 +5,7 @@ summary: Agent로 사용하는 서버 또는 VM은 최소 요구 사항을 충�
 keywords: agent, Linux, requirements, docker, browsers, permissions, Network 
 ---
 = 상담원 요구 사항
+:allow-uri-read: 
 
 
 [role="lead"]

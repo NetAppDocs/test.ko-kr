@@ -5,6 +5,7 @@ keywords: data collector, Nutanix, NX Series
 summary: Nutanix 데이터 수집기를 구성하는 중입니다. 
 ---
 = Nutanix NX 데이터 수집기
+:allow-uri-read: 
 
 
 [role="lead"]

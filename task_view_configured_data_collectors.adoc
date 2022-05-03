@@ -5,6 +5,7 @@ keywords: acquisition, AU, data collector, collector, bulk edit, postpone pollin
 summary: 요약. 
 ---
 = 구성된 데이터 수집기 관리
+:allow-uri-read: 
 
 
 [role="lead"]
