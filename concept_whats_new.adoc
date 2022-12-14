@@ -853,7 +853,7 @@ image:define_monitor_conditions_2.png["모니터 조건"]
 
 
 
-==== Cloud Secure에서 스냅샷 작업을 합니다
+==== Cloud Secure_스냅샷_조치 수행
 
 Cloud Secure는 악의적인 활동이 감지되면 스냅샷을 자동으로 생성하여 데이터를 보호하고 데이터가 안전하게 백업되도록 합니다.
 

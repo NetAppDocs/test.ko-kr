@@ -15,7 +15,7 @@ image:KubernetesNodeFiltering.png["필터링을 보여 주는 Kubernetes 노드 
 
 
 
-==== 노드의 Pod 및 영구 볼륨 탐색
+==== 노드 Pod 및 영구 볼륨 탐색
 
 Cloud Insights는 Kubernetes 환경의 백엔드 스토리지에 대한 가시성을 제공하므로 Kubernetes Pod 및 PVS(Persistent Volumes)에 대한 통찰력을 얻을 수 있습니다. PV 카운터를 통해 단일 Pod에서 PV로, 그리고 백엔드 스토리지 장치로 가는 모든 방법으로 IOPS, 지연 시간 및 처리량과 같은 PV 카운터를 추적할 수 있습니다.
 

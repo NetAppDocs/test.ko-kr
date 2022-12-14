@@ -72,7 +72,7 @@ SVM 이름, CIFS 서버 이름 및 추가 필드가 반환됩니다.
 
 
 
-==== 클러스터 관리 IP를 통해 추가할 때의 권한:
+==== 클러스터 관리 IP * 를 통해 추가할 때의 권한:
 
 클러스터 관리 관리자 사용자를 사용하여 Cloud Secure가 ONTAP SVM 데이터 수집기에 액세스할 수 없는 경우 아래 명령에 표시된 역할을 사용하여 "CsUser"라는 새 사용자를 생성할 수 있습니다. 클러스터 관리 IP를 사용하도록 Cloud Secure 데이터 수집기를 구성할 때 "CsUser"의 사용자 이름 "CsUser"와 암호를 사용합니다.
 
@@ -97,7 +97,7 @@ security login role create -role csrole -cmddirname "vserver export-policy rule"
 ....
 
 
-==== Vserver 관리 IP를 통해 추가할 때의 권한:
+==== vVserver 관리 IP * 를 통해 추가할 때의 권한:
 
 클러스터 관리 관리자 사용자를 사용하여 Cloud Secure가 ONTAP SVM 데이터 수집기에 액세스할 수 없는 경우 아래 명령에 표시된 역할을 사용하여 "CsUser"라는 새 사용자를 생성할 수 있습니다. Cloud Secure 데이터 수집기에서 SVM 관리 IP를 사용하도록 구성할 때 "CsUser"의 사용자 이름 "CsUser"와 암호를 사용합니다.
 

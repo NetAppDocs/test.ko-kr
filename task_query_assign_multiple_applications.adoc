@@ -14,6 +14,7 @@ keywords: query, queries, application, annotation, multiple
 
 NOTE: 이 단계를 사용하여 같은 방법으로 주석을 추가하거나 제거할 수 있습니다.
 
+.시작하기 전에
 편집할 모든 자산을 찾는 쿼리를 이미 만들어야 합니다.
 
 .단계

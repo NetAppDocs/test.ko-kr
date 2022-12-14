@@ -54,6 +54,7 @@ image:SubscriptionNotificationSection.png["구독 이메일 알림"]
 
 글로벌 경고 수신자를 구성하려면 * Admin > Notifications * 를 클릭하고 * Global Monitor Notification Recipients * 섹션에서 원하는 수신자를 선택합니다.
 
+.image:GlobalMonitorRecipients.png["글로벌 모니터 알림 수신자"]
 [role="thumb"]
 모니터를 만들거나 수정할 때 항상 개별 모니터의 전체 수신자 목록을 재정의할 수 있습니다.
 
