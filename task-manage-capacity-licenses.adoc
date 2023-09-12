@@ -1,0 +1,231 @@
+---
+sidebar: sidebar 
+permalink: task-manage-capacity-licenses.html 
+keywords: license, licensing, capacity license, capacity based license, add license, install license, digital wallet 
+summary: BlueXP 디지털 지갑에서 용량 기반 라이센스를 관리하여 NetApp 계정의 Cloud Volumes ONTAP 시스템 용량이 충분한지 확인합니다. 
+---
+= 용량 기반 라이센스 관리
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+BlueXP 디지털 지갑에서 용량 기반 라이센스를 관리하여 NetApp 계정의 Cloud Volumes ONTAP 시스템 용량이 충분한지 확인합니다.
+
+_용량 기반 라이센스_Cloud Volumes ONTAP/TiB 용량 비용을 지불할 수 있습니다.
+
+BlueXP 디지털 지갑 _ 을(를) 사용하면 한 곳에서 Cloud Volumes ONTAP에 대한 라이센스를 관리할 수 있습니다. 새 라이센스를 추가하고 기존 라이센스를 업데이트할 수 있습니다.
+
+https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-licensing.html["Cloud Volumes ONTAP 라이센스에 대해 자세히 알아보십시오"].
+
+
+
+== BlueXP 디지털 지갑에 라이센스를 추가하는 방법
+
+NetApp 세일즈 담당자로부터 라이센스를 구입하면 일련 번호와 추가 라이센스 세부 정보가 포함된 이메일이 전송됩니다.
+
+그 동안 BlueXP는 NetApp의 라이센스 서비스에 대해 자동으로 쿼리하여 NetApp Support 사이트 계정과 연결된 라이센스에 대한 자세한 정보를 확인합니다. 오류가 없으면 BlueXP는 자동으로 디지털 지갑에 라이센스를 추가합니다.
+
+BlueXP에서 라이센스를 추가할 수 없는 경우 디지털 지갑에 직접 추가해야 합니다. 예를 들어, 인터넷에 액세스할 수 없는 위치에 Connector가 설치되어 있는 경우 라이센스를 직접 추가해야 합니다. <<구입한 라이센스를 계정에 추가합니다,구입한 라이센스를 계정에 추가하는 방법에 대해 알아봅니다>>.
+
+
+
+== 계정에서 사용된 용량을 확인합니다
+
+BlueXP 디지털 지갑에는 계정의 총 소비된 용량과 라이센스 패키지를 통한 소비된 용량이 표시됩니다. 이를 통해 비용이 청구되는 방식 및 추가 용량을 구입해야 하는지 여부를 파악할 수 있습니다.
+
+.단계
+. BlueXP 탐색 메뉴에서 * Governance > Digital Wallet * 을 선택합니다.
+. Cloud Volumes ONTAP * 탭에서 * 용량 기반 라이센스 * 를 선택한 상태로 유지합니다.
+. 사용된 용량, 사전 커밋된 총 용량 및 총 PAYGO 용량을 보여 주는 패키지 요약을 봅니다.
++
+** _Total Consumed Capacity _ 는 NetApp 계정의 모든 Cloud Volumes ONTAP 시스템에 프로비저닝된 총 용량입니다. 충전은 볼륨 내의 로컬, 사용, 저장 또는 유효 공간에 관계없이 각 볼륨의 프로비저닝된 크기를 기준으로 합니다.
+** _Total Prep커밋된 용량 _ 은(는) NetApp에서 구매한 총 라이센스 용량(BYOL 또는 Marketplace 계약)입니다.
+** _Total PAYGO_는 클라우드 마켓플레이스 서브스크립션을 사용하여 프로비저닝된 총 용량입니다. PAYGO를 통한 충전은 사용된 용량이 BYOL 라이센스 용량보다 높거나 BlueXP 디지털 지갑에 사용 가능한 라이센스가 없는 경우에만 사용됩니다.
++
+다음은 BlueXP 디지털 지갑의 Cloud Volumes ONTAP 패키지 요약의 예입니다.
+
++
+image:screenshot_capacity-based-licenses.png["BlueXP 디지털 지갑의 총 소비 용량, 총 사전 커밋 용량(BYOL 및 Marketplace 계약), 총 PAYGO 또는 프로비저닝된 용량을 비롯한 Cloud Volumes ONTAP 패키지 요약을 보여 주는 스크린샷."]
+
+
+
+. 요약에서 각 라이센스 패키지의 사용된 용량을 확인합니다.
++
+** _Consumed capacity_는 해당 패키지의 볼륨 용량을 표시합니다. 특정 패키지에 대한 자세한 내용을 보려면 도구 설명 위로 마우스를 가져갑니다.
++
+Essentials 패키지에 표시되는 용량을 더 잘 이해하려면 충전 작동 방식에 익숙해야 합니다. https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-licensing.html#notes-about-charging["Essentials 패키지 충전 방법에 대해 알아봅니다"].
+
+** _PreCommitted Capacity_는 NetApp에서 구매한 라이센스 용량(BYOL 또는 마켓플레이스 계약)입니다.
++
+*** _BYOL_은 이 패키지 유형에 대해 NetApp에서 구입한 라이센스 용량을 보여 줍니다.
+*** _Marketplace 계약_ 은 이 패키지 유형에 대한 마켓플레이스 계약과 함께 구입한 라이센스 용량을 표시합니다.
+
+
+** _PAYGO_는 라이센스 소비 모델에 따라 사용된 용량을 보여줍니다.
++
+다음은 여러 라이센스 패키지가 있는 계정의 예입니다.
+
++
+image:screenshot-digital-wallet-packages.png["기본 및 전문 패키지에 사용된 용량, 사전 커밋된 용량 및 PAYGO 또는 프로비저닝된 용량을 보여 주는 스크린샷."]
+
+
+
+
+
+
+
+== 사용 보고서를 다운로드합니다
+
+계정 관리자는 BlueXP의 디지털 지갑에서 네 가지 사용 보고서를 다운로드할 수 있습니다. 이러한 사용 보고서는 구독의 용량 세부 정보를 제공하고 Cloud Volumes ONTAP 구독에 포함된 리소스에 대한 비용 청구 방식을 알려줍니다. 다운로드할 수 있는 보고서는 특정 시점에 데이터를 캡처하여 다른 사람과 쉽게 공유할 수 있습니다.
+
+image:screenshot-digital-wallet-usage-report.png["스크린샷은 Digital Wallet Cloud Volumes ONTAP Capacity Based License(디지털 지갑 용량 기반 라이센스) 페이지를 보여 주고 사용 보고서 단추를 강조 표시합니다."]
+
+다음 보고서를 다운로드할 수 있습니다. 표시된 용량 값은 TiB입니다.
+
+* * 고급 사용량*: 이 보고서는 디지털 지갑의 “Cloud Volumes ONTAP 패키지 요약” 카드에 있는 내용을 정확하게 보여줍니다. 여기에는 다음 정보가 포함됩니다.
++
+** 사용된 총 용량입니다
+** 사전 커밋된 총 용량입니다
+** 총 BYOL 용량
+** 총 마켓플레이스 계약 용량입니다
+** 총 PAYGO 용량
+
+
+* * Cloud Volumes ONTAP 패키지 사용 *: 이 보고서는 디지털 지갑의 패키지 카드에 있는 내용을 정확하게 보여줍니다. 최적화된 I/O 패키지를 제외한 각 패키지에 대한 다음 정보가 포함되어 있습니다.
++
+** 사용된 총 용량입니다
+** 사전 커밋된 총 용량입니다
+** 총 BYOL 용량
+** 총 마켓플레이스 계약 용량입니다
+** 총 PAYGO 용량
+
+
+* * 스토리지 VM 사용량 *: 이 보고서는 Cloud Volumes ONTAP 시스템과 스토리지 가상 시스템(SVM)에서 청구 용량이 얼마나 분석되는지를 보여줍니다. 이 정보는 디지털 지갑의 화면에서는 사용할 수 없습니다. 여기에는 다음 정보가 포함됩니다.
++
+** 작업 환경 ID 및 이름(UUID로 표시됨)
+** 클라우드
+** NetApp 계정 ID입니다
+** 작업 환경 구성
+** SVM 이름
+** 용량을 프로비저닝합니다
+** 데이터 중복 제거 용량
+** 마켓플레이스 청구 기간
+** Cloud Volumes ONTAP 패키지 또는 기능
+** SaaS Marketplace 구독 이름 충전 중
+** SaaS Marketplace 구독 ID를 충전하는 중입니다
+** 워크로드 유형
+
+
+* * Volumes usage *: 이 보고서는 작업 환경의 볼륨에 의해 청구된 용량이 어떻게 분할되는지 보여줍니다. 이 정보는 디지털 지갑의 화면에서는 사용할 수 없습니다. 여기에는 다음 정보가 포함됩니다.
++
+** 작업 환경 ID 및 이름(UUID로 표시됨)
+** SVN 이름
+** 볼륨 ID입니다
+** 볼륨 유형입니다
+** 볼륨 프로비저닝 용량입니다
++
+
+NOTE: FlexClone 볼륨은 이러한 유형의 볼륨에 비용이 발생하지 않으므로 이 보고서에 포함되지 않습니다.
+
+
+
+
+
+.단계
+. BlueXP 탐색 메뉴에서 * Governance > Digital Wallet * 을 선택합니다.
+. Cloud Volumes ONTAP * 탭에서 * Capacity Based Licenses * 를 선택한 상태로 두고 * Usage report * 를 클릭합니다.
++
+사용량 보고서가 다운로드됩니다.
+
+. 다운로드한 파일을 열어 보고서에 액세스합니다.
+
+
+
+
+== 구입한 라이센스를 계정에 추가합니다
+
+BlueXP 디지털 지갑에 구입한 라이센스가 없으면 Cloud Volumes ONTAP에 사용할 수 있도록 BlueXP에 라이센스를 추가해야 합니다.
+
+.필요한 것
+* 라이센스 또는 라이센스 파일의 일련 번호를 BlueXP에 제공해야 합니다.
+* 일련 번호를 입력하려면 먼저 해야 합니다 https://docs.netapp.com/us-en/bluexp-setup-admin/task-adding-nss-accounts.html["NetApp Support 사이트 계정을 BlueXP에 추가합니다"^]. 일련 번호에 액세스할 수 있는 권한이 있는 NetApp Support 사이트 계정입니다.
+
+
+.단계
+. BlueXP 탐색 메뉴에서 * Governance > Digital Wallet * 을 선택합니다.
+. Cloud Volumes ONTAP * 탭에서 * 용량 기반 라이센스 * 를 선택한 상태로 두고 * 라이센스 추가 * 를 클릭합니다.
+. 용량 기반 라이센스의 일련 번호를 입력하거나 라이센스 파일을 업로드하십시오.
++
+일련 번호를 입력한 경우 일련 번호에 액세스할 수 있는 권한이 있는 NetApp Support 사이트 계정도 선택해야 합니다.
+
+. 라이선스 추가 * 를 클릭합니다.
+
+
+
+
+== 용량 기반 라이센스를 업데이트합니다
+
+추가 용량을 구매하거나 라이센스 기간을 연장한 경우 BlueXP는 디지털 지갑에서 라이센스를 자동으로 업데이트합니다. 당신이 해야 할 일은 아무것도 없습니다.
+
+하지만 인터넷에 액세스할 수 없는 위치에 BlueXP를 배포한 경우에는 BlueXP에서 라이센스를 수동으로 업데이트해야 합니다.
+
+.필요한 것
+라이센스 파일(또는 HA 쌍이 있는 경우 _ 파일 _).
+
+.단계
+. BlueXP 탐색 메뉴에서 * Governance > Digital Wallet * 을 선택합니다.
+. Cloud Volumes ONTAP* 탭에서 사용권 옆에 있는 작업 메뉴를 클릭하고 * 사용권 업데이트 * 를 선택합니다.
+. 라이센스 파일을 업로드합니다.
+. 라이센스 업로드 * 를 클릭합니다.
+
+
+
+
+== 충전 방법을 변경합니다
+
+용량 기반 라이센스를 사용하는 Cloud Volumes ONTAP 시스템의 충전 방법을 변경할 수 있습니다. 예를 들어, Essentials 패키지와 함께 Cloud Volumes ONTAP 시스템을 배포한 경우 비즈니스 요구사항이 변경되면 이를 Professional 패키지로 변경할 수 있습니다.
+
+ifdef::azure[]
+
+.제한
+Edge Cache 라이센스로 변경하거나 변경하는 것은 지원되지 않습니다.
+
+endif::azure[]
+
+.중요 참고 사항
+클라우드 공급자 마켓플레이스에서 프라이빗 오퍼 또는 계약을 체결한 경우, 계약에 포함되지 않은 충전 방법으로 변경하면 BYOL(NetApp에서 라이센스를 구매한 경우) 또는 PAYGO에 대해 충전이 생성됩니다.
+
+.단계
+. BlueXP 탐색 메뉴에서 * Governance > Digital Wallet * 을 선택합니다.
+. Cloud Volumes ONTAP * 탭에서 * 충전 방법 변경 * 을 클릭합니다.
++
+image:screenshot-digital-wallet-charging-method-button.png["BlueXP 디지털 지갑에서 충전 방법 변경 단추가 표 바로 위에 있는 Cloud Volumes ONTAP 페이지 스크린샷"]
+
+. 작업 환경을 선택하고 새 충전 방법을 선택한 다음 패키지 유형을 변경하면 서비스 요금이 달라지게 된다는 것을 이해했는지 확인합니다.
++
+image:screenshot-digital-wallet-charging-method.png["Cloud Volumes ONTAP 작업 환경의 새 충전 방법을 선택하는 충전 방법 변경 대화 상자의 스크린 샷"]
+
+. 충전 방법 변경 * 을 클릭합니다.
+
+
+.결과
+BlueXP는 Cloud Volumes ONTAP 시스템의 충전 방법을 변경합니다.
+
+BlueXP 디지털 지갑은 각 패키지 유형의 소비된 용량을 새로 고쳐 방금 변경한 내용을 고려할 수도 있습니다.
+
+
+
+== 용량 기반 라이센스를 제거합니다
+
+용량 기반 라이센스가 만료되어 더 이상 사용되지 않는 경우 언제든지 라이센스를 제거할 수 있습니다.
+
+.단계
+. BlueXP 탐색 메뉴에서 * Governance > Digital Wallet * 을 선택합니다.
+. Cloud Volumes ONTAP* 탭에서 사용권 옆에 있는 작업 메뉴를 클릭하고 * 사용권 제거 * 를 선택합니다.
+. 확인하려면 * 제거 * 를 클릭합니다.
+

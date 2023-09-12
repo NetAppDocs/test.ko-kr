@@ -1,440 +1,342 @@
 ---
 settings:
-  name: Cloud Insights
-  rss_page: concept_whats_new.html
-  noindex: true
+  name: Cloud Volumes ONTAP
+  harmony_integration: maestro
+  platform: cloud
   internal:
     pdf_enabled: true
   prod:
-    pdf_enabled: false
+    pdf_enabled: true
     harmony_enabled: false
-    hide_language_selector: true
-  langs: ko-kr,us-en,ja-jp,zh-cn,zh-tw,de-de,es-es,fr-fr
+  versions:
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-relnotes"
+    version-number: 9.13.1
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-9130-relnotes"
+    version-number: 9.13.0
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-9121-relnotes"
+    version-number: 9.12.1
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-9120-relnotes"
+    version-number: 9.12.0
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-9111-relnotes"
+    version-number: 9.11.1
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-9110-relnotes"
+    version-number: 9.11.0
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-9101-relnotes"
+    version-number: 9.10.1
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-9100-relnotes"
+    version-number: 9.10.0
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-991-relnotes"
+    version-number: 9.9.1
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-990-relnotes"
+    version-number: 9.9.0
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-98-relnotes"
+    version-number: '9.8'
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-97-relnotes"
+    version-number: '9.7'
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-96-relnotes"
+    version-number: '9.6'
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-95-relnotes"
+    version-number: '9.5'
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-94-relnotes"
+    version-number: '9.4'
+  - name: ONTAP 클라우드
+    url: "/cloud-volumes-ontap-93-relnotes"
+    version-number: '9.3'
+  rss_page: whats-new.html
+  filter:
+    label: 클라우드 공급자
+    default: 모든 클라우드 공급자
+    options:
+    - name: Amazon Web Services에서 직접 지원합니다
+      alias: 설치하고
+      id: aws
+    - name: Google 클라우드
+      alias: Google 클라우드
+      id: gcp
+    - name: Microsoft Azure를 참조하십시오
+      alias: Azure를 지원합니다
+      id: azure
+  langs: ko-kr,us-en,ja-jp,zh-cn,zh-tw,de-de,es-es,fr-fr,it-it
 sidebar:
   entries:
-  - title: Cloud Insights 설명서
+  - title: Cloud Volumes ONTAP 문서
     url: "/index.html"
-  - title: 새로운 기능
-    url: "/concept_whats_new.html"
-  - title: Cloud Insights에 등록 중입니다
-    url: "/task_cloud_insights_onboarding_1.html"
-  - title: 보안
+  - title: 릴리스 정보
     entries:
-    - title: 보안 사례
-      url: "/security_overview.html"
-    - title: 저장 내용 및 위치
-      url: "/security_information_and_region.html"
-  - title: 시작하기
+    - title: 새로운 소식
+      url: "/whats-new.html"
+    - title: 알려진 제한 사항
+      url: "/reference-limitations.html"
+    - title: Cloud Volumes ONTAP 릴리즈 노트
+      url: "/whats-new-ontap.html"
+  - title: 시작하십시오
     entries:
-    - title: 피처 튜터리얼
-      url: "/concept_feature_tutorials.html"
-    - title: 데이터 수집 중
+    - title: Cloud Volumes ONTAP에 대해 자세히 알아보십시오
+      url: "/concept-overview-cvo.html"
+    - title: 새로운 배포에 지원되는 버전입니다
+      url: "/reference-versions.html"
+    - title: Amazon Web Services에서 시작하십시오
+      flavor: aws
       entries:
-      - title: 개요
-        url: "/task_getting_started_with_cloud_insights.html"
-      - title: 획득 장치 요구 사항
-        url: "/concept_acquisition_unit_requirements.html"
-      - title: 획득 장치 구성
-        url: "/task_configure_acquisition_unit.html"
-      - title: Agent 구성
-        url: "/task_config_telegraf_agent.html"
-      - title: 데이터 수집기 구성
-        url: "/task_configure_data_collectors.html"
-      - title: Data Collector 획득 상태 확인
-        url: "/concept_determining_data_collector_acq_status.html"
-      - title: 구성된 데이터 수집기 관리
-        url: "/task_view_configured_data_collectors.html"
-      - title: 데이터 수집기 오류를 조사합니다
-        url: "/task_research_failed_collector.html"
-    - title: 권장 대시보드 가져오기
-      url: "/concept_import_from_dashboard_gallery.html"
-    - title: 사용자 계정 및 역할
-      url: "/concept_user_roles.html"
-    - title: 다른 Cloud Central 제품으로 전환
-      url: "/concept_other_cloud_products.html"
-  - title: Data Collector 목록
-    url: "/data_collector_list.html"
-  - title: Cloud Insights 구독
-    url: "/concept_subscribing_to_cloud_insights.html"
-  - title: 자동 장치 해상도
-    entries:
-    - title: 장치 해상도 개요
-      url: "/concept_device_resolution_overview.html"
-    - title: 장치 해상도 규칙
-      url: "/task_device_resolution_rules.html"
-    - title: 파이버 채널 장치 해상도
-      url: "/task_device_resolution_fibre_channel.html"
-    - title: IP 장치 해상도
-      url: "/task_device_resolution_ip.html"
-    - title: 장치 해상도 기본 설정 지정
-      url: "/task_device_resolution_preferences.html"
-    - title: 정규식 예
-      url: "/concept_device_resolution_regex_examples.html"
-  - title: 대시보드 만들기
-    entries:
-    - title: 대시보드 개요
-      url: "/concept_dashboards_overview.html"
-    - title: 대시보드의 기능
-      url: "/concept_dashboard_features.html"
-    - title: 대시보드 예제
+      - title: 빠른 시작
+        url: "/task-getting-started-aws.html"
+      - title: 구성을 계획합니다
+        url: "/task-planning-your-config.html"
+      - title: 네트워크 설정
+        entries:
+        - title: 네트워킹 요구 사항
+          url: "/reference-networking-aws.html"
+        - title: AWS 전송 게이트웨이를 설정합니다
+          url: "/task-setting-up-transit-gateway.html"
+        - title: 공유 서브넷에 HA 쌍 구축
+          url: "/task-deploy-aws-shared-vpc.html"
+        - title: AWS의 보안 그룹 규칙
+          url: "/reference-security-groups.html"
+      - title: AWS KMS를 설정합니다
+        url: "/task-setting-up-kms.html"
+      - title: IAM 역할을 설정합니다
+        url: "/task-set-up-iam-roles.html"
+      - title: 라이센스를 설정합니다
+        url: "/task-set-up-licensing-aws.html"
+      - title: AWS에서 Cloud Volumes ONTAP를 시작합니다
+        url: "/task-deploying-otc-aws.html"
+      - title: AWS C2S에서 시작하십시오
+        url: "/task-getting-started-aws-c2s.html"
+    - title: Microsoft Azure에서 시작하십시오
+      flavor: azure
       entries:
-      - title: 가상 시스템 성능
-        url: "/task_dashboard_example_VM_performance.html"
-    - title: 대시보드 모범 사례
-      url: "/concept_dashboard_best_practices.html"
-  - title: Kubernetes 탐색기
-    entries:
-    - title: Kubernetes 개요 페이지
-      url: "/kubernetes_landing_page.html"
-    - title: Kubernetes 클러스터 페이지
-      url: "/kubernetes_cluster_detail.html"
-  - title: 쿼리 작업
-    entries:
-    - title: 자산 쿼리
-      url: "/concept_querying_assets.html"
-    - title: 쿼리 만들기
-      url: "/task_create_query.html"
-    - title: 사용 가능한 쿼리 보기
-      url: "/task_view_queries.html"
-    - title: 쿼리 결과를 .csv로 내보내는 중입니다
-      url: "/task_export_query_results.html"
-    - title: 쿼리 수정 또는 삭제
-      url: "/task_modify_delete_query.html"
-    - title: 개체에 여러 응용 프로그램/주석 할당
-      url: "/task_query_assign_multiple_applicationss.html"
-    - title: 클립보드로 테이블 값 복사
-      url: "/task_query_copy_table_values.html"
-    - title: 로그를 쿼리하는 중입니다
-      url: "/concept_log_explorer.html"
-  - title: 주석 작업
-    entries:
-    - title: 주석 정의
-      url: "/task_defining_annotations.html"
-    - title: 주석 사용
-      url: "/task_create_annotation.html"
-    - title: 주석 규칙 사용
-      url: "/task_create_annotation_rules.html"
-    - title: API를 사용하여 주석 불러오기
-      url: "/task_annotation_import.html"
-  - title: 응용 프로그램 작업
-    entries:
-    - title: 응용 프로그램 개념
-      url: "/concept_about_applications.html"
-    - title: 응용 프로그램 구성
-      url: "/task_create_application.html"
-  - title: 모니터링 및 경고
-    entries:
-    - title: 모니터 생성 중
-      url: "/task_create_monitor.html"
-    - title: 경고 보기 및 관리
-      url: "/task_view_and_manage_alerts.html"
-    - title: 알림 수신자 구성
-      url: "/concept_notifications_email.html"
-    - title: 시스템 정의 모니터
-      url: "/task_system_monitors.html"
-  - title: API 사용
-    url: "/API_Overview.html"
-  - title: Webhook 알림
-    url: "/task_create_webhook.html"
-  - title: 환경 모니터링
-    entries:
-    - title: 이벤트 감사
-      url: "/concept_audit.html"
-    - title: TTL 및 다운샘플링
-      url: concept_ttl_and_downsampling.html
-  - title: 자산 페이지 정보
-    entries:
-    - title: 자산 페이지 개요
-      url: "/concept_asset_page_overview.html"
-    - title: 개체에 대한 컨텍스트 내 필터링
-      url: "/concept_in_context_filters.html"
-    - title: 요약 토폴로지 섹션
-      url: "/concept_asset_summary_section.html"
-    - title: 전문가 보기 섹션
-      url: "/concept_asset_expert_view_section.html"
-    - title: 사용자 데이터 섹션
-      url: "/concept_asset_user_data_section.html"
-    - title: 관련 경고 섹션
-      url: "/concept_asset_alerts_section.html"
-    - title: 자산 검색에 대한 힌트 및 팁
-      url: "/concept_searching_assets.html"
-  - title: 보고
-    entries:
-    - title: 보고 개요
-      url: "/reporting_overview.html"
-    - title: 보고 사용자 역할
-      url: "/reporting_user_roles.html"
-    - title: 사전 정의된 보고서 사용
-      url: "/reporting_predefined_reports.html"
-    - title: Storage Manager 대시보드
-      url: "/reporting_storage_manager_dashboard.html"
-    - title: 예제 보고서 만들기
-      url: "/reporting_create_example.html"
-    - title: 보고서 관리
-      url: "/reporting_managing_reports.html"
-    - title: 사용자 지정 보고서
-      url: "/reporting_creating_custom_reports.html"
-    - title: 제공합니다
-      url: "/reporting_creating_custom_reports.html#reporting-data-models"
-    - title: 보고 데이터베이스 API
-      url: "/reporting_querying_database.html"
-    - title: 데이터 보존
-      url: "/reporting_data_retention.html"
-    - title: 스키마 다이어그램
-      url: "/reporting_schema_diagrams.html"
-    - title: 스키마 테이블
-      url: "/reference_schemas.html"
-  - title: Cloud Secure
-    entries:
-    - title: Cloud Secure 정보
-      url: "/cs_intro.html"
-    - title: 시작하기
+      - title: 빠른 시작
+        url: "/task-getting-started-azure.html"
+      - title: 구성을 계획합니다
+        url: "/task-planning-your-config-azure.html"
+      - title: 네트워크 설정
+        url: "/reference-networking-azure.html"
+      - title: 키를 사용하여 암호화를 설정합니다
+        url: "/task-set-up-azure-encryption.html"
+      - title: 라이센스를 설정합니다
+        url: "/task-set-up-licensing-azure.html"
+      - title: 고가용성 모드를 활성화합니다
+        url: "/task-azure-high-availability-mode.html"
+      - title: Azure에서 Cloud Volumes ONTAP를 실행합니다
+        url: "/task-deploying-otc-azure.html"
+    - title: Google Cloud에서 시작하십시오
+      flavor: gcp
       entries:
-      - title: Cloud Secure 시작하기
-        url: "/task_cs_getting_started.html"
-      - title: Cloud Secure 에이전트 요구 사항
-        url: "/concept_cs_agent_requirements.html"
-      - title: Cloud Secure 에이전트 구성
-        url: "/task_cs_add_agent.html"
-      - title: Cloud Secure 에이전트를 삭제하는 중입니다
-        url: "/task_cs_delete_agent.html"
-      - title: AD Directory Collector 구성
-        url: "/task_config_user_dir_connect.html"
-      - title: LDAP 디렉토리 수집기 구성
-        url: "/task_config_user_dir_connect_ldap.html"
-      - title: NetApp ONTAP Collector용 Amazon FSX 구성
-        url: "/task_config_cs_amazon_fsx.html"
-      - title: ONTAP SVM Data Collector 구성
-        url: "/task_add_collector_svm.html"
-      - title: Cloud ONTAP 데이터 수집기 구성
-        url: "/task_config_cs_incloud.html"
-      - title: Cloud Secure 사용자 관리
-        url: "/task_cs_user_management.html"
-      - title: 이벤트 속도 검사기
-        url: "/concept_cs_event_rate_checker.html"
-    - title: 경고
-      url: "/cs_alert_data.html"
-    - title: 법의학
-      entries:
-      - title: 활동 포렌식 - 모든 활동
-        url: "/forensic_activity_history.html"
-      - title: 활동 포렌식 - 엔티티
-        url: "/forensic_entity_detail.html"
-      - title: 사용자
-        url: "/forensic_user_overview.html"
-    - title: 자동 응답 정책
-      url: "/cs_automated_response_policies.html"
-    - title: 사용자 액세스를 제한합니다
-      url: "/cs_restrict_user_access.html"
-    - title: 랜섬웨어 공격 시뮬레이션
-      url: "/concept_cs_attack_simulator.html"
-    - title: 알림
-      url: "/cs_notifications_email.html"
-    - title: Cloud Secure API를 참조하십시오
-      url: "/concept_cs_api.html"
-  - title: Active IQ
-    url: "/concept_activeiq.html"
-  - title: 문제 해결
+      - title: 빠른 시작
+        url: "/task-getting-started-gcp.html"
+      - title: 구성을 계획합니다
+        url: "/task-planning-your-config-gcp.html"
+      - title: 네트워크 설정
+        url: "/reference-networking-gcp.html"
+      - title: VPC 서비스 제어 계획
+        url: "/reference-vpc-service-controls-gcp.html"
+      - title: 서비스 계정을 생성합니다
+        url: "/task-creating-gcp-service-account.html"
+      - title: 고객이 관리하는 암호화 키를 사용합니다
+        url: "/task-setting-up-gcp-encryption.html"
+      - title: 라이센스를 설정합니다
+        url: "/task-set-up-licensing-google.html"
+      - title: Google Cloud에서 Cloud Volumes ONTAP를 실행합니다
+        url: "/task-deploying-gcp.html"
+      - title: Google Cloud Platform 이미지 검증
+        entries:
+        - title: 개요
+          url: "/concept-gcp-image-verification.html"
+        - title: GCP에서 이미지를 원시 형식으로 변환합니다
+          url: "/task-gcp-convert-image-raw.html"
+        - title: 이미지 서명 확인
+          entries:
+          - title: GCP 서명 이미지를 확인합니다
+            url: "/concept-gcp-verify-signed-image.html"
+          - title: OpenSSL을 사용하여 내용을 확인하십시오
+            url: "/task-verify-openssl-gcp.html"
+  - title: Cloud Volumes ONTAP를 사용합니다
     entries:
-    - title: 일반 문제 해결
-      url: "/task_troubleshooting_general_problems.html"
-    - title: Linux 획득 장치 문제 해결
-      url: "/task_troubleshooting_linux_acquisition_unit_problems.html"
-    - title: Windows 획득 장치 문제 해결
-      url: "/task_troubleshooting_windows_acquisition_unit_problems.html"
-    - title: 데이터 수집기 오류 조사
-      url: "/task_research_failed_collector.html"
-  - title: 참조 지원
-    entries:
-    - title: 지원을 요청하는 중입니다
-      url: "/concept_requesting_support.html"
-    - title: Data Collector 지원 매트릭스
-      url: "/reference_data_collector_support_matrix.html"
-    - title: Data Collector 참조 - 인프라
+    - title: 라이센스 관리
       entries:
-      - title: 공급업체 참조 개요
-        url: "/concept_data_collector_reference.html"
+      - title: 용량 기반 라이센스 관리
+        url: "/task-manage-capacity-licenses.html"
+      - title: Keystone 구독 관리
+        url: "/task-manage-keystone.html"
+      - title: 노드 기반 라이센스 관리
+        url: "/task-manage-node-licenses.html"
+    - title: 볼륨 및 LUN 관리
+      entries:
+      - title: 볼륨 생성
+        url: "/task-create-volumes.html"
+      - title: 기존 볼륨 관리
+        url: "/task-manage-volumes.html"
+      - title: 비활성 데이터를 오브젝트 스토리지에 계층화합니다
+        url: "/task-tiering.html"
+      - title: LUN을 호스트에 연결합니다
+        url: "/task-connect-lun.html"
+      - title: FlexCache을 통해 데이터에 더 빠르게 액세스
+        url: "/task-accelerate-data-access.html"
+    - title: 통합 관리
+      entries:
+      - title: 애그리게이트 생성
+        url: "/task-create-aggregates.html"
+      - title: 기존 애그리게이트를 관리합니다
+        url: "/task-manage-aggregates.html"
+      - title: 용량 설정을 관리합니다
+        url: "/task-manage-capacity-settings.html"
+    - title: 스토리지 VM 관리
+      entries:
+      - title: BlueXP에서 스토리지 VM과 작업합니다
+        url: "/task-managing-svms.html"
+      - title: AWS에서 스토리지 VM을 생성합니다
+        flavor: aws
+        url: "/task-managing-svms-aws.html"
+      - title: Azure에서 스토리지 VM을 생성합니다
+        flavor: azure
+        url: "/task-managing-svms-azure.html"
+      - title: Google Cloud에서 스토리지 VM을 생성합니다
+        flavor: gcp
+        url: "/task-managing-svms-gcp.html"
+      - title: SVM 재해 복구 설정
+        url: "/task-manage-svm-dr.html"
+    - title: 보안 및 데이터 암호화
+      entries:
+      - title: NetApp 암호화로 볼륨 암호화
+        url: "/task-encrypting-volumes.html"
+      - title: AWS 키 관리 서비스로 키를 관리합니다
+        flavor: aws
+        url: "/task-aws-key-management.html"
+      - title: Azure Key Vault를 사용하여 키를 관리합니다
+        flavor: azure
+        url: "/task-azure-key-vault.html"
+      - title: Google Cloud KMS로 키 관리
+        flavor: gcp
+        url: "/task-google-key-manager.html"
+      - title: 랜섬웨어 보호 향상
+        url: "/task-protecting-ransomware.html"
+    - title: 시스템 관리
+      entries:
+      - title: Cloud Volumes ONTAP를 업그레이드합니다
+        url: "/task-updating-ontap-cloud.html"
+      - title: 선불 종량제 시스템을 등록합니다
+        url: "/task-registering.html"
+      - title: 시스템을 중지하고 시작합니다
+        url: "/task-managing-state.html"
+      - title: 시스템 시간을 동기화합니다
+        url: "/task-sync-time.html"
+      - title: 시스템 쓰기 속도를 수정합니다
+        url: "/task-modify-write-speed.html"
+      - title: 시스템 암호를 변경합니다
+        url: "/task-change-password.html"
+      - title: 시스템을 추가, 제거 또는 삭제합니다
+        entries:
+        - title: 기존 시스템을 추가합니다
+          url: "/task-adding-systems.html"
+        - title: 작업 환경을 제거합니다
+          url: "/task-removing.html"
+        - title: 시스템을 삭제합니다
+          url: "/task-deleting-working-env.html"
       - title: 설치하고
-        url: "/task_dc_amazon_ec2.html"
-      - title: Azure를 지원합니다
-        url: "/task_dc_ms_azure.html"
-      - title: Broadcom의
+        flavor: aws
         entries:
-        - title: Brocade 네트워크 자문업체
-          url: "/task_dc_brocade_bna.html"
-        - title: 파이버 채널 스위치
-          url: "/task_dc_brocade_fc_switch.html"
-      - title: Cisco의
-        url: "/task_dc_cisco_fc_switch.html"
-      - title: Dell
+        - title: EC2 인스턴스 유형을 변경합니다
+          url: "/task-change-ec2-instance.html"
+        - title: HA 쌍의 경로 테이블을 변경합니다
+          url: "/task-change-route-tables.html"
+        - title: 반 배정 그룹 생성을 구성합니다
+          url: task-configure-placement-group-failure-aws.html
+      - title: Azure 관리
+        flavor: azure
         entries:
-        - title: XC 시리즈
-          url: "/task_dc_dell_xc_series.html"
-      - title: Dell EMC
+        - title: Azure VM 유형을 변경합니다
+          url: "/task-change-azure-vm.html"
+        - title: CIFS 잠금을 재정의합니다
+          url: "/task-overriding-cifs-locks.html"
+        - title: Azure Private Link 또는 서비스 끝점을 사용합니다
+          url: "/task-enabling-private-link.html"
+        - title: 자원 그룹을 이동합니다
+          url: "/task-moving-resource-groups-azure.html"
+      - title: Google Cloud 관리
+        flavor: gcp
         entries:
-        - title: Data Domain을 참조하십시오
-          url: "/task_dc_emc_datadomain.html"
-        - title: ECS를 참조하십시오
-          url: "/task_dc_emc_ecs.html"
-        - title: 파워 스케일
-          url: "/task_dc_emc_isilon.html"
-        - title: PowerStore
-          url: "/task_dc_emc_powerstore.html"
-        - title: RecoverPoint를 참조하십시오
-          url: "/task_dc_emc_recoverpoint.html"
-        - title: ScaleIO를 참조하십시오
-          url: "/task_dc_emc_scaleio.html"
-        - title: Unity(VNXe)
-          url: "/task_dc_emc_unity.html"
-        - title: VMAX/PowerMax
-          url: "/task_dc_emc_vmax_powermax.html"
-        - title: VNX 블록(CLARiX)
-          url: "/task_dc_emc_vnx_block.html"
-        - title: VNX 파일(Celerra)
-          url: "/task_dc_emc_vnx_file.html"
-        - title: VNX 유니파이드
-          url: "/task_dc_emc_vnx_unified.html"
-        - title: VPLEX
-          url: "/task_dc_emc_vplex.html"
-        - title: XtremIO
-          url: "/task_dc_emc_xio.html"
-      - title: Fujitsu
-        url: "/task_dc_fujitsu_eternus.html"
-      - title: 구글
-        url: "/task_dc_google_cloud.html"
-      - title: HP 엔터프라이즈
-        entries:
-        - title: HP Alletra 9000 및 Primera
-          url: "/task_dc_hp_3par.html"
-        - title: HP Command View AE
-          url: "/task_dc_hpe_commandview.html"
-        - title: HPE Alletra 6000
-          url: "/task_dc_hpe_nimble.html"
-      - title: Hitachi Data Systems를 통해
-        entries:
-        - title: HDS Command Suite
-          url: "/task_dc_hds_commandsuite.html"
-        - title: HDS HNAS입니다
-          url: "/task_dc_hds_nas.html"
-        - title: HDS 운영 센터
-          url: "/task_dc_hds_ops_center.html"
-      - title: Infinidat
-        url: "/task_dc_infinidat_infinibox.html"
-      - title: Huawei
-        url: "/task_dc_huawei_oceanstor.html"
-      - title: IBM을 선택합니다
-        entries:
-        - title: 클리버세이프
-          url: "/task_dc_ibm_cleversafe.html"
-        - title: CS 시리즈
-          url: "/task_dc_ibm_cs.html"
-        - title: 시스템 스토리지 DS8000 시리즈
-          url: "/task_dc_ibm_ds.html"
-        - title: PowerVM
-          url: "/task_dc_ibm_powervm.html"
-        - title: SAN 볼륨 컨트롤러(SVC)
-          url: "/task_dc_ibm_svc.html"
-        - title: XIV/A9000
-          url: "/task_dc_ibm_xiv.html"
-      - title: 레노버
-        url: "/task_dc_lenovo.html"
-      - title: 마이크로소프트
-        entries:
-        - title: Azure NetApp Files
-          url: "/task_dc_ms_anf.html"
-        - title: Hyper-V
-          url: "/task_dc_ms_hyperv.html"
-      - title: 넷엡
-        entries:
-        - title: Astra 데이터 저장소
-          url: "/task_dc_na_astra_data_store.html"
-        - title: ONTAP 9.9+용 클라우드 연결
-          url: "/task_dc_na_cloud_connection.html"
-        - title: Cloud Volumes ONTAP
-          url: "/task_dc_na_cloud_volumes_ontap.html"
-        - title: AWS용 Cloud Volumes Services
-          url: "/task_dc_na_cloud_volumes.html"
-        - title: ONTAP 데이터 관리 소프트웨어
-          url: "/task_dc_na_cdot.html"
-        - title: Data ONTAP 7-Mode를 지원합니다
-          url: "/task_dc_na_7mode.html"
-        - title: E-Series 를 참조하십시오
-          url: "/task_dc_na_eseries.html"
-        - title: NetApp HCI 관리 서버
-          url: "/task_dc_na_hci.html"
-        - title: SolidFire
-          url: "/task_dc_na_solidfire.html"
-        - title: StorageGRID
-          url: "/task_dc_na_storagegrid.html"
-      - title: 말씀해 주십시오
-        url: "/task_dc_nutanix.html"
-      - title: 더 적합하였습니다
-        url: "/task_dc_openstack.html"
-      - title: 오라클
-        url: "/task_dc_oracle_zfs.html"
-      - title: 퓨어
-        url: "/task_dc_pure_flasharray.html"
-      - title: Red Hat
-        url: "/task_dc_redhat_virtualization.html"
-      - title: VMware
-        url: "/task_dc_vmware.html"
-    - title: Data Collector 참조 - 서비스
+        - title: 기계 유형을 변경합니다
+          url: "/task-change-gcp-machine.html"
+      - title: System Manager에서 관리
+        url: "/task-administer-advanced-view.html"
+      - title: CLI에서 관리
+        url: "/task-connecting-to-otc.html"
+    - title: 시스템 상태 및 이벤트입니다
       entries:
-      - title: 호스트/노드
-        url: "/task_config_telegraf_node.html"
-      - title: ActiveMQ
-        url: "/task_config_telegraf_activemq.html"
-      - title: 아파치
-        url: "/task_config_telegraf_apache.html"
-      - title: 영사
-        url: "/task_config_telegraf_consul.html"
-      - title: 바로 Couchbase입니다
-        url: "/task_config_telegraf_couchbase.html"
-      - title: Couchbase
-        url: "/task_config_telegraf_couchdb.html"
-      - title: Docker 를 참조하십시오
-        url: "/task_config_telegraf_docker.html"
-      - title: Elasticsearch(Elasticsearch)
-        url: "/task_config_telegraf_elasticsearch.html"
-      - title: 플링크
-        url: "/task_config_telegraf_flink.html"
-      - title: 하둡
-        url: "/task_config_telegraf_hadoop.html"
-      - title: HAProxy
-        url: "/task_config_telegraf_haproxy.html"
-      - title: 자바
-        url: "/task_config_telegraf_jvm.html"
-      - title: 카프카
-        url: "/task_config_telegraf_kafka.html"
-      - title: Kapacitor
-        url: task_config_telegraf_kapacitor.html
-      - title: 키바나
-        url: "/task_config_telegraf_kibana.html"
-      - title: 쿠버네티스
-        url: "/task_config_telegraf_agent.html#kubernetes"
-      - title: 멤캐시드
-        url: "/task_config_telegraf_memcached.html"
-      - title: MongoDB
-        url: "/task_config_telegraf_mongodb.html"
-      - title: MySQL
-        url: "/task_config_telegraf_mysql.html"
-      - title: netstat
-        url: "/task_config_telegraf_netstat.html"
-      - title: Nginx
-        url: "/task_config_telegraf_nginx.html"
-      - title: OpenZFS 를 선택합니다
-        url: task_config_telegraf_openzfs.html
-      - title: PostgreSQL
-        url: "/task_config_telegraf_postgresql.html"
-      - title: 인형
-        url: "/task_config_telegraf_puppetagent.html"
-      - title: 레드입니다
-        url: "/task_config_telegraf_redis.html"
-      - title: RethinkDB를 참조하십시오
-        url: task_config_telegraf_rethinkdb.html
-      - title: ZooKeeper
-        url: task_config_telegraf_zookeeper.html
-    - title: 개체 아이콘 참조
-      url: "/reference_object_icons.html"
+      - title: AutoSupport 설정을 확인합니다
+        url: "/task-verify-autosupport.html"
+      - title: EMS를 설정한다
+        url: "/task-configure-ems.html"
+  - title: 개념
+    entries:
+    - title: 라이센싱
+      url: "/concept-licensing.html"
+    - title: 스토리지
+      entries:
+      - title: 클라이언트 프로토콜
+        url: "/concept-client-protocols.html"
+      - title: 디스크와 애그리게이트
+        url: "/concept-storage.html"
+      - title: AWS의 탄력적인 볼륨
+        flavor: aws
+        url: "/concept-aws-elastic-volumes.html"
+      - title: 데이터 계층화
+        url: "/concept-data-tiering.html"
+      - title: 스토리지 관리
+        url: "/concept-storage-management.html"
+      - title: 쓰기 속도
+        url: "/concept-write-speed.html"
+      - title: Flash Cache를 참조하십시오
+        url: "/concept-flash-cache.html"
+      - title: WORM 스토리지
+        url: "/concept-worm.html"
+    - title: 고가용성 쌍
+      entries:
+      - title: AWS의 HA 쌍
+        flavor: aws
+        url: "/concept-ha.html"
+      - title: Azure의 HA 쌍
+        flavor: azure
+        url: "/concept-ha-azure.html"
+      - title: GCP의 HA 쌍
+        flavor: gcp
+        url: "/concept-ha-google-cloud.html"
+      - title: 스토리지 테이크오버 중 동작
+        url: "/concept-degraded-ha-pair.html"
+    - title: 보안
+      url: "/concept-security.html"
+    - title: 성능
+      url: "/concept-performance.html"
+    - title: 노드 기반 BYOL 관리
+      url: "/concept-license-management.html"
+    - title: AutoSupport 및 Active IQ 디지털 자문업체
+      url: "/concept-active-iq.html"
+    - title: 기본 설정
+      url: "/reference-default-configs.html"
+  - title: 지식 및 지원
+    entries:
+    - title: 지원을 위해 등록하십시오
+      url: "/task-support-registration.html"
+    - title: 도움을 받으십시오
+      url: "/task-get-help.html"
   - title: 법적 고지
-    url: "/reference_legal_notices.html"
+    url: "/legal-notices.html"
+product-family:
+  name: BlueXP
+  repo: bluexp-family
+  sidebar_label: 모든 BlueXP 설명서
