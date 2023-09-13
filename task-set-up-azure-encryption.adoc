@@ -1,0 +1,257 @@
+---
+sidebar: sidebar 
+permalink: task-set-up-azure-encryption.html 
+keywords: customer-managed key, customer key, azure storage service encryption, azure encryption, encryption key, azure encryption key 
+summary: Microsoft 관리 키가 있는 Azure 스토리지 서비스 암호화를 사용하여 Azure의 Cloud Volumes ONTAP에서 데이터를 자동으로 암호화합니다. 그러나 이 페이지의 단계를 따르면 사용자 고유의 암호화 키를 사용할 수 있습니다. 
+---
+= Azure에서 고객이 관리하는 키를 사용하도록 Cloud Volumes ONTAP를 설정합니다
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Azure의 Cloud Volumes ONTAP에서 를 사용하여 데이터가 자동으로 암호화됩니다 https://azure.microsoft.com/en-us/documentation/articles/storage-service-encryption/["Azure 스토리지 서비스 암호화"] Microsoft 관리 키를 사용합니다. 그러나 이 페이지의 단계를 따르면 사용자 고유의 암호화 키를 사용할 수 있습니다.
+
+
+
+== 데이터 암호화 개요
+
+Cloud Volumes ONTAP 데이터는 를 사용하여 Azure에서 자동으로 암호화됩니다 https://azure.microsoft.com/en-us/documentation/articles/storage-service-encryption/["Azure 스토리지 서비스 암호화"^]. 기본 구현에는 Microsoft 관리 키가 사용됩니다. 설정이 필요하지 않습니다.
+
+Cloud Volumes ONTAP에서 고객 관리 키를 사용하려면 다음 단계를 완료해야 합니다.
+
+. Azure에서 키 볼트를 작성한 다음 해당 볼트에 키를 생성합니다
+. BlueXP에서 API를 사용하여 키를 사용하는 Cloud Volumes ONTAP 작업 환경을 만듭니다
+
+
+
+
+=== 키 회전
+
+새 버전의 키를 만들면 Cloud Volumes ONTAP에서 자동으로 최신 키 버전을 사용합니다.
+
+
+
+=== 데이터 암호화 방법
+
+고객이 관리하는 키를 사용하도록 구성된 Cloud Volumes ONTAP 작업 환경을 생성한 후 Cloud Volumes ONTAP 데이터는 다음과 같이 암호화됩니다.
+
+Azure HA 다중 가용성 영역::
++
+--
+* Cloud Volumes ONTAP의 모든 Azure 저장소 계정은 고객이 관리하는 키를 사용하여 암호화됩니다.^1^
+* 루트, 부팅, NVRAM, 코어 및 데이터 디스크의 경우 BlueXP는 디스크 암호화 세트를 사용하여 관리되는 디스크로 암호화 키를 관리할 수 있습니다.
+* 새 데이터 디스크도 동일한 디스크 암호화 세트를 사용합니다.
+
+
+--
+Azure HA 단일 가용성 영역::
++
+--
+* Cloud Volumes ONTAP의 모든 Azure 저장소 계정은 고객이 관리하는 키를 사용하여 암호화됩니다.^1^
+* 디스크 또는 애그리게이트를 추가하는 경우와 같이 새로운 스토리지 계정에서도 동일한 키를 사용합니다.^1^
+* ONTAP 9.10.1P3에서 NVRAM 및 코어 디스크의 경우 BlueXP는 을 사용합니다 https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption["디스크 암호화가 설정되었습니다"^]관리 디스크를 사용하여 암호화 키를 관리할 수 있습니다. 하위 버전은 고객 관리 키 대신 Microsoft 관리 키를 사용합니다.
+
+
+--
+단일 노드::
++
+--
+* Cloud Volumes ONTAP의 모든 Azure 저장소 계정은 고객이 관리하는 키를 사용하여 암호화됩니다. ^1^
+* 루트, 부팅 및 데이터 디스크의 경우 BlueXP는 을 사용합니다 https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption["디스크 암호화가 설정되었습니다"^]관리 디스크를 사용하여 암호화 키를 관리할 수 있습니다.
+* 새 데이터 디스크도 동일한 디스크 암호화 세트를 사용합니다.
+* ONTAP 9.9.1P7에서 NVRAM 및 코어 디스크의 경우 BlueXP는 디스크 암호화 세트를 사용하여 관리되는 디스크로 암호화 키를 관리할 수 있습니다. 하위 버전은 고객 관리 키 대신 Microsoft 관리 키를 사용합니다.
+
+
+--
+
+
+.각주
+. 생성 중에 스토리지 계정을 암호화하려면 CVO 생성 요청에서 리소스 ID를 생성하고 제공해야 합니다. 이는 모든 유형의 배포에 적용됩니다. 제공하지 않으면 저장소 계정은 여전히 암호화되지만 BlueXP는 먼저 Microsoft 관리 키 암호화를 사용하여 저장소 계정을 만든 다음 고객이 관리하는 키를 사용하도록 저장소 계정을 업데이트합니다.
+
+
+
+
+== 사용자가 할당한 관리 ID를 만듭니다
+
+사용자가 할당한 관리 ID라는 리소스를 만들 수 있습니다. 이렇게 하면 Cloud Volumes ONTAP 작업 환경을 생성할 때 스토리지 계정을 암호화할 수 있습니다. 키 볼트를 작성하고 키를 생성하기 전에 이 리소스를 생성하는 것이 좋습니다.
+
+리소스의 ID는 다음과 같습니다. `userassignedidentity`.
+
+.단계
+. Azure에서 Azure 서비스로 이동하여 * Managed Identities * 를 선택합니다.
+. Create * 를 클릭합니다.
+. 다음 세부 정보를 제공합니다.
++
+** * 구독 *: 구독을 선택합니다. Connector 가입과 동일한 구독을 선택하는 것이 좋습니다.
+** * 리소스 그룹 *: 기존 리소스 그룹을 사용하거나 새 리소스 그룹을 생성합니다.
+** * Region * (영역 *): 선택적으로 Connector (커넥터)와 동일한 영역을 선택합니다.
+** * 이름 *: 리소스 이름을 입력합니다.
+
+
+. 필요에 따라 태그를 추가합니다.
+. Create * 를 클릭합니다.
+
+
+
+
+== 키 볼트를 작성하고 키를 생성합니다
+
+키 볼트는 Cloud Volumes ONTAP 시스템을 생성하려는 Azure 가입 및 지역에 있어야 합니다.
+
+있다면 <<사용자가 할당한 관리 ID를 만듭니다,사용자가 할당한 관리 ID를 만들었습니다>>키 볼트를 작성하는 동안 키 볼트에 대한 액세스 정책도 작성해야 합니다.
+
+.단계
+. https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal["Azure 구독에서 키 볼트를 작성합니다"^].
++
+키 볼트에 대한 다음 요구 사항을 확인합니다.
+
++
+** 키 볼트는 Cloud Volumes ONTAP 시스템과 동일한 영역에 있어야 합니다.
+** 다음 옵션을 활성화해야 합니다.
++
+*** * soft-delete * (이 옵션은 기본적으로 활성화되어 있지만 반드시 _not_사용하지 않아야 함)
+*** * 퍼지 보호 *
+*** * 볼륨 암호화를 위한 Azure 디스크 암호화 * (단일 노드 시스템 또는 여러 존의 HA 쌍)
+
+
+** 사용자 지정 관리 ID를 만든 경우 다음 옵션을 활성화해야 합니다.
++
+*** * 볼트 액세스 정책 *
+
+
+
+
+. 볼트 액세스 정책을 선택한 경우, 작성 을 클릭하여 키 볼트에 대한 액세스 정책을 작성합니다. 그렇지 않은 경우 3단계로 건너뜁니다.
++
+.. 다음 권한을 선택합니다.
++
+*** 가져오기
+*** 목록
+*** 암호를 해독합니다
+*** 암호화
+*** 줄 바꿈 해제 키
+*** 랩 키
+*** 확인합니다
+*** 서명
+
+
+.. 사용자가 할당한 관리 ID(리소스)를 보안 주체에 선택합니다.
+.. 액세스 정책을 검토하고 생성합니다.
+
+
+. https://docs.microsoft.com/en-us/azure/key-vault/keys/quick-create-portal#add-a-key-to-key-vault["키 볼트에 키를 생성합니다"^].
++
+키에 대한 다음 요구 사항을 확인합니다.
+
++
+** 키 유형은 * rsa * 여야 합니다.
+** 권장되는 RSA 키 크기는 * 2048 * 이지만 다른 크기가 지원됩니다.
+
+
+
+
+
+
+== 암호화 키를 사용하는 작업 환경을 만듭니다
+
+키 볼트를 작성하고 암호화 키를 생성한 후 키를 사용하도록 구성된 새 Cloud Volumes ONTAP 시스템을 작성할 수 있습니다. 이러한 단계는 BlueXP API를 사용하여 지원됩니다.
+
+.필수 권한
+단일 노드 Cloud Volumes ONTAP 시스템에서 고객 관리 키를 사용하려면 BlueXP 커넥터에 다음과 같은 권한이 있는지 확인하십시오.
+
+[source, json]
+----
+"Microsoft.Compute/diskEncryptionSets/read",
+"Microsoft.Compute/diskEncryptionSets/write",
+"Microsoft.Compute/diskEncryptionSets/delete"
+"Microsoft.KeyVault/vaults/deploy/action",
+"Microsoft.KeyVault/vaults/read",
+"Microsoft.KeyVault/vaults/accessPolicies/write",
+"Microsoft.ManagedIdentity/userAssignedIdentities/assign/action"
+----
+https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-azure.html["최신 사용 권한 목록을 봅니다"^]
+
+.단계
+. 다음 BlueXP API 호출을 사용하여 Azure 구독의 키 볼트 목록을 가져옵니다.
++
+HA 쌍: `GET /azure/ha/metadata/vaults`
+
++
+단일 노드의 경우: `GET /azure/vsa/metadata/vaults`
+
++
+이름 * 과 * resourceGroup * 을 기록해 둡니다. 다음 단계에서 이러한 값을 지정해야 합니다.
+
++
+https://docs.netapp.com/us-en/bluexp-automation/cm/api_ref_resources.html#azure-hametadata["이 API 호출에 대해 자세히 알아보십시오"^].
+
+. 다음 BlueXP API 호출을 사용하여 볼트 내의 키 목록을 가져옵니다.
++
+HA 쌍: `GET /azure/ha/metadata/keys-vault`
+
++
+단일 노드의 경우: `GET /azure/vsa/metadata/keys-vault`
+
++
+keyName * 을 기록해 두십시오. 다음 단계에서 해당 값을 볼트 이름과 함께 지정해야 합니다.
+
++
+https://docs.netapp.com/us-en/bluexp-automation/cm/api_ref_resources.html#azure-hametadata["이 API 호출에 대해 자세히 알아보십시오"^].
+
+. 다음 BlueXP API 호출을 사용하여 Cloud Volumes ONTAP 시스템을 생성합니다.
++
+.. HA 쌍:
++
+`POST /azure/ha/working-environments`
+
++
+요청 본문에는 다음 필드가 포함되어야 합니다.
+
++
+[source, json]
+----
+"azureEncryptionParameters": {
+              "key": "keyName",
+              "vaultName": "vaultName"
+}
+----
++
+
+NOTE: 을 포함합니다 `"userAssignedIdentity": " userAssignedIdentityId"` 스토리지 계정 암호화에 사용할 이 리소스를 생성한 경우 필드입니다.
+
++
+https://docs.netapp.com/us-en/bluexp-automation/cm/api_ref_resources.html#azure-haworking-environments["이 API 호출에 대해 자세히 알아보십시오"^].
+
+.. 단일 노드 시스템의 경우:
++
+`POST /azure/vsa/working-environments`
+
++
+요청 본문에는 다음 필드가 포함되어야 합니다.
+
++
+[source, json]
+----
+"azureEncryptionParameters": {
+              "key": "keyName",
+              "vaultName": "vaultName"
+}
+----
++
+
+NOTE: 을 포함합니다 `"userAssignedIdentity": " userAssignedIdentityId"` 스토리지 계정 암호화에 사용할 이 리소스를 생성한 경우 필드입니다.
+
++
+https://docs.netapp.com/us-en/bluexp-automation/cm/api_ref_resources.html#azure-vsaworking-environments["이 API 호출에 대해 자세히 알아보십시오"^].
+
+
+
+
+
+.결과
+데이터 암호화에 고객 관리 키를 사용하도록 구성된 새 Cloud Volumes ONTAP 시스템이 있습니다.
