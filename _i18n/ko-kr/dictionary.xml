@@ -4617,7 +4617,6 @@ AWS에서 Elastic Volumes를 지원하는 애그리게이트의 경우 BlueXP는
   <block id="3f0a47d5e00d1740ceca3815cf7bf9b4" category="section-title">데이터 계층화 설정</block>
   <block id="ac50ed5a6f154224bf044f6797accc8c" category="paragraph">지원되는 구성의 지침과 목록은 를 참조하십시오 <block ref="4fbc08218411ffa53189962e6368b39b" category="inline-link-macro-rx"></block>.</block>
   <block id="3ddffa447216115135ad7b5a7bdd106d" category="doc">Cloud Volumes ONTAP에 대해 자세히 알아보십시오</block>
-  <block id="f703efebd5f1fe499787635d16bb070c" category="paragraph">Cloud Volumes ONTAP은 클라우드에서 ONTAP 데이터 관리 소프트웨어를 실행하는 소프트웨어 전용 스토리지 어플라이언스입니다. 엔터프라이즈급 스토리지에서 제공하는 주요 기능은 다음과 같습니다.</block>
   <block id="af20abc7154e9ee224c54b48b6ec7d63" category="list-text">스토리지 효율성</block>
   <block id="18b6826f1d119f55347e1db9badac2c3" category="paragraph">내장된 데이터 중복제거, 데이터 압축, 씬 프로비저닝 및 복제를 활용하여 스토리지 비용을 최소화합니다.</block>
   <block id="05807e454c19f244770adae059b3c330" category="list-text">고가용성</block>
@@ -5155,4 +5154,5 @@ AWS에서 Elastic Volumes를 지원하는 애그리게이트의 경우 BlueXP는
   <block id="f6185bb12f5e53c800be8cda7fbca65b" category="paragraph">클라우드 공급자의 파일 서비스, 자체 인프라 또는 서비스를 사용하는 솔루션과 관련된 기술 지원은 해당 제품의 BlueXP 설명서에서 "도움말 얻기"를 참조하십시오.</block>
   <block id="3880ae5df9fdc4d0fc4a6d00a2239530" category="paragraph">BlueXP 및 해당 스토리지 솔루션 및 서비스에 관한 기술 지원을 받으려면 아래에 설명된 지원 옵션을 사용하십시오.</block>
   <block id="85a772bebde3e95966723beb7a641685" category="paragraph">일부 Cloud Volumes ONTAP 구성에는 성능을 높이기 위해 Cloud Volumes ONTAP이 _Flash Cache_로 사용하는 로컬 NVMe 스토리지가 포함됩니다. 토큰 업데이트 테스트를 위한 행을 추가하는 중입니다.</block>
+  <block id="831f5238637d5e95172a19700b3d60d2" category="paragraph">Cloud Volumes ONTAP은 클라우드에서 ONTAP 데이터 관리 소프트웨어를 실행하는 소프트웨어 전용 스토리지 어플라이언스입니다. 엔터프라이즈급 스토리지에는 다음과 같은 주요 기능이 포함됩니다.</block>
 </blocks>
