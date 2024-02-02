@@ -1512,7 +1512,6 @@ Azure AD 도메인 서비스를 Cloud Volumes ONTAP용 AD 서버로 구성하려
   <block id="e3cd99e4aa330ae6bdfb3754d83ae962" category="list-text">파트너 또는 리셀러 계정이 있는 경우 NSS 계정을 하나 이상 추가할 수 있지만 고객 수준 계정과 함께 추가할 수는 없습니다.</block>
   <block id="c0e0b7ff0de9558404e9b77ece42948a" category="list-text">NSS 관리 &gt; NSS 계정 추가 * 를 선택합니다.</block>
   <block id="85b9386ed443776127e099931d73448a" category="list-text">메시지가 표시되면 * 계속 * 을 선택하여 Microsoft 로그인 페이지로 리디렉션합니다.</block>
-  <block id="19d089db572ee6a1e154a0c9c9e57bfd" category="paragraph">NetApp은 Microsoft Azure Active Directory를 지원 및 라이선싱과 관련된 인증 서비스의 ID 공급자로 사용합니다.</block>
   <block id="465ec6d5eafa3524c948c99d8bfcd306" category="list-text">로그인 페이지에서 인증 프로세스를 수행할 수 있도록 NetApp Support 사이트의 등록 이메일 주소와 암호를 제공합니다.</block>
   <block id="cbc6cc3bb022583403171b447b2a962c" category="paragraph">이러한 작업을 통해 BlueXP는 NSS 계정을 사용하여 라이선스 다운로드, 소프트웨어 업그레이드 확인 및 향후 지원 등록과 같은 작업을 수행할 수 있습니다.</block>
   <block id="ec084bb25ed5b934c09b361069c246b2" category="list-text">NSS 계정은 고객 수준 계정이어야 합니다(게스트 또는 임시 계정이 아님). 여러 개의 고객 수준 NSS 계정을 가질 수 있습니다.</block>
@@ -5184,4 +5183,5 @@ AWS에서 Elastic Volumes를 지원하는 애그리게이트의 경우 BlueXP는
   <block id="f606f03b9471e3c22a0e9412852320bd" category="paragraph">{nbsp} 이전</block>
   <block id="64e9073b4fb50b91766ce8b5e61945c1" category="paragraph-title">너비가 0인 공간</block>
   <block id="589a92e5ac7fd2654f5ce5d9594f5e7c" category="paragraph">{zwsp} 이전</block>
+  <block id="d59e0b46782e48a01966e5c7ccc38d17" category="paragraph">NetApp는 지원 및 라이센스와 관련된 인증 서비스의 ID 공급자로 Microsoft Entra ID를 사용합니다.</block>
 </blocks>
