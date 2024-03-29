@@ -5184,4 +5184,5 @@ AWS에서 Elastic Volumes를 지원하는 애그리게이트의 경우 BlueXP는
   <block id="64e9073b4fb50b91766ce8b5e61945c1" category="paragraph-title">너비가 0인 공간</block>
   <block id="589a92e5ac7fd2654f5ce5d9594f5e7c" category="paragraph">{zwsp} 이전</block>
   <block id="d59e0b46782e48a01966e5c7ccc38d17" category="paragraph">NetApp는 지원 및 라이센스와 관련된 인증 서비스의 ID 공급자로 Microsoft Entra ID를 사용합니다.</block>
+  <block id="1e7177c795477cb086ca058b93815a58" category="paragraph">현지화 변경 사항</block>
 </blocks>
