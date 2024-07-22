@@ -5185,5 +5185,5 @@ AWS에서 Elastic Volumes를 지원하는 애그리게이트의 경우 BlueXP는
   <block id="589a92e5ac7fd2654f5ce5d9594f5e7c" category="paragraph">{zwsp} 이전</block>
   <block id="d59e0b46782e48a01966e5c7ccc38d17" category="paragraph">NetApp는 지원 및 라이센스와 관련된 인증 서비스의 ID 공급자로 Microsoft Entra ID를 사용합니다.</block>
   <block id="62dfedabf822fc3986bc7eb04a7ea341" category="paragraph">ONTAP의 AutoSupport 구성 요소는 원격 측정을 수집하여 분석을 위해 전송합니다. Active IQ 디지털 어드바이저는 AutoSupport의 데이터를 분석하고 능동적인 관리 및 최적화를 제공합니다. Active IQ은 인공 지능을 사용하여 잠재적인 문제를 파악하고 비즈니스에 영향을 미치기 전에 이를 해결하도록 지원합니다. 컷오버 테스트를 위한 변경 사항</block>
-  <block id="288d8016e69b5d785a09dec3b694a558" category="paragraph">현지화 변경 사항 Docbot 및 테스트 위치 표시를 활성화합니다. dockbot 비활성화 테스트 중입니다. 세 번째로 루비 업그레이드를 다시 테스트합니다. 루비 업그레이드 푸시 테스트</block>
+  <block id="92b269437798eab4dd88c5cb0faf866d" category="paragraph">현지화 변경 사항 Docbot 및 테스트 위치 표시를 활성화합니다. dockbot 비활성화 테스트 중입니다. 세 번째로 루비 업그레이드를 다시 테스트합니다. 테스트 모든 결과 라벨 번역을 참조하십시오.</block>
 </blocks>
